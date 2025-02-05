@@ -1,0 +1,41 @@
+#banner{
+    width: 100%;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+}
+
+#imgBanner>img{
+    width: 70%;
+
+}
+
+#banner>div{
+    width: 50%;
+    margin-left: 2%;
+    margin-bottom: 20%;
+}
+
+#banner>#texto{
+    align-self: center;
+    margin-top: 13%;
+}
+
+#banner>#texto>h1{
+    width: 60%;
+    font-size: 60px;
+    color: #776BA0;
+    margin-left: 8%;
+    z-index: 100;
+}
+
+@media (max-width: 768px) {
+    #imgBanner>img{ 
+        width: 75%;
+        position: absolute;
+        right: -10%;
+        top: 20%;
+        z-index: -1000;
+        height: 500px;
+    }
+  }

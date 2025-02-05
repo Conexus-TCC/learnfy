@@ -1,0 +1,43 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: max-content;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+button{
+    border: none;
+}
+
+ul{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+    color: #949494;
+}
+
+/* Para dispositivos móveis (smartphones) */
+@media (max-width: 768px) {
+    body{
+        overflow-x: hidden;
+    }
+  }
+  
+  /* Para telas pequenas (smartphones menores) */
+  @media (max-width: 480px) {
+    /* Estilos para dispositivos móveis menores */
+  }
+  
+  /* Para tablets */
+  @media (max-width: 1024px) {
+    /* Estilos para tablets */
+  }
+
+  

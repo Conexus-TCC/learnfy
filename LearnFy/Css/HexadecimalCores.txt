@@ -1,0 +1,7 @@
+#558D8C - Botões nav
+#776BA0 - H1 Banner
+#92386B - Botão cadastro
+#776BA0 - H2
+#38605F - Listra
+#949494 - P
+#949494 - P Rodapé

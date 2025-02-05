@@ -1,0 +1,53 @@
+#cadastro{
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+}
+
+#formIcon>li{
+    width: 20%;
+    display: flex;
+    text-align: start;
+    color: #92386B;
+}
+
+#formIcon>li>p{
+    margin-left: 5%;
+    margin-top: 5%;
+}
+
+#contCad{
+    padding-left: 20%;
+}
+
+
+#contCad>div>ul>li>img{
+    width: 30px;
+    height: 30px;
+}    
+
+#contCad>div>p{
+color: #949494;
+margin-bottom: 5%;
+width: 60%;
+}
+
+#contCad>h1{
+    color: #776BA0;
+    width: 80%;
+    margin-top: 5%;
+    margin-bottom: 5%;  
+}
+
+#contCad>div>a>button{
+    height: 37px;
+    width: 30%;
+    border-radius: 10px;
+    margin-left: 30%;
+    background-color: #985C7E;
+    color: white;
+}
+
+#cadastro>div>img{
+    width: 120%;
+}
