@@ -6,8 +6,9 @@
 }
 
 #imgBanner>img{
-    width: 70%;
-
+    width: 50%;
+    margin-top: 3%;
+    margin-left: 10%;
 }
 
 #banner>div{
