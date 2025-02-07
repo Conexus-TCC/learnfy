@@ -10,6 +10,7 @@ body{
     height: max-content;
     width: 100%;
     overflow-x: hidden;
+    font-size: 1.1rem;
 }
 
 button{

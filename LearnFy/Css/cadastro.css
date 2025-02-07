@@ -2,9 +2,12 @@
     display: flex;
     justify-content: center;
     margin-top: 5%;
+    justify-content: space-evenly;
 }
 
 #formIcon>li{
+    gap: 5px;
+    align-items: center;
     width: 20%;
     display: flex;
     text-align: start;
@@ -12,18 +15,15 @@
 }
 
 #formIcon>li>p{
-    margin-left: 5%;
     margin-top: 5%;
 }
 
-#contCad{
-    padding-left: 20%;
-}
+
 
 
 #contCad>div>ul>li>img{
-    width: 30px;
-    height: 30px;
+   width: 17px;
+    height: 16px;
 }    
 
 #contCad>div>p{

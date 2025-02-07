@@ -2,17 +2,18 @@
     display: flex;
     justify-content: center;
     margin: 0 5% ;
-    margin-bottom: 15%;
 }
 
 #metodologia>div{
     width: 40%;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    height: 400px;
+    justify-content: center;
+    gap: 13%;
 }
-
+#metodologia>img{
+    width: 30%;
+}
 #metodologia>div>p{
     color: #949494;
     font-size: 20px;
@@ -30,6 +31,7 @@
 }
 
 #metodologia>div>ul>li{
+    gap: 5px;
     display: flex;
 }
 
