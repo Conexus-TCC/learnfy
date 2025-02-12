@@ -15,6 +15,6 @@
 }
 
 #marquee > img {
-  object-fit: contain;
+  object-fit: none;
   margin-left: 15%;
 }

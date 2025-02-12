@@ -1,7 +1,6 @@
 #cadastro{
     display: flex;
     justify-content: center;
-    margin-top: 5%;
     justify-content: space-evenly;
 }
 
@@ -17,9 +16,6 @@
 #formIcon>li>p{
     margin-top: 5%;
 }
-
-
-
 
 #contCad>div>ul>li>img{
    width: 17px;

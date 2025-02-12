@@ -12,6 +12,11 @@ body{
     overflow-x: hidden;
     font-size: 1.1rem;
 }
+main{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
 
 button{
     border: none;

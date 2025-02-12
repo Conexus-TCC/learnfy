@@ -1,33 +1,20 @@
 #banner{
-    width: 100%;
-    height: 600px;
     display: flex;
-    justify-content: center;
-}
-
-#imgBanner>img{
-    width: 55%;
-    margin-top: 3%;
-    margin-left: 10%;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 
 #banner>div{
-    width: 50%;
-    margin-left: 2%;
-    margin-bottom: 20%;
+    width: 30%;
 }
 
 #banner>#texto{
     align-self: center;
-    margin-top: 13%;
 }
 
 #banner>#texto>h1{
-    width: 60%;
     font-size: 60px;
     color: #776BA0;
-    margin-left: 8%;
-    z-index: 100;
 }
 
 @media (max-width: 768px) {

@@ -1,5 +1,5 @@
 #rodape{
-    margin: 5% 5% ;
+    margin: 5% 0 ;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -16,6 +16,16 @@
     font-size: 20px;
 } 
 
+#rodape>div{
+    width: 23%;
+}
+#rodape>div:nth-child(1){
+    display: flex;
+    justify-content: center;
+}
+#rodape>div:nth-child(1)>img{
+    object-fit: none;
+}
 ul{
     color: #949494;
 }
@@ -43,7 +53,6 @@ ul{
 #direitos{
     display: flex;
     justify-content: center;
-    margin-bottom: 3%;
 }
 
 @media (max-width: 768px) {
