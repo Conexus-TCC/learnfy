@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="/Css/nav.css">
     <link rel="stylesheet" href="/Css/geral.css">
     <link rel="stylesheet" href="/Css/rodape.css">
-    <link rel="stylesheet" href="/Css/contato.css">
 </head>
 <body>
 
@@ -33,41 +32,7 @@
     
     </div><!--Fim nav-->
 
-    <div id="principal">
 
-        <div id="contato">
-            <h1>Contato</h1>
-            <div id="cont">
-            
-            <div>
-            <img src="/Ícones/Mail.png" alt="">
-            <p>Email: learnfy.help@conexus.com</p>
-            </div>
-            
-            <div>
-            <img src="/Ícones/Phone.png" alt="">
-            <p>+55 11 99999-9999</p>
-            </div>
-
-            <div>
-            <img src="/Ícones/Smartphone.png" alt=""> 
-            <p>Celular\WhatsApp: +55 (11) 91264-8687</p>
-            </div>
-
-            </div>
-        </div>
-
-        <div id="formulario">
-            <h1>Fale Conosco</h1>
-            <form action="" method="post">
-                <label for="Email">E-mail <input type="email" name="email"></label>
-                <label for="text">Assunto <input type="text" name="assunto"></label>
-                <label for="text">Conteúdo <textarea id="conteudo" type="text" name="conteudo"></textarea></label>
-                <input type="submit">
-            </form>
-        </div>
-
-    </div>
 
     <footer>
         <div id="rodape"><!--Rodape-->

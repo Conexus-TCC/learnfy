@@ -1,0 +1,89 @@
+#principal{
+    display: flex;
+    justify-content: center;
+    gap: 20rem;
+    margin-top: 5%;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    height: 420px;
+    padding-top: 10%;
+}
+
+form>label{
+    width: 80%;
+    margin:0 10%;
+}
+
+#cont{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+}
+
+#cont>div{
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+#cont>div>p{
+    margin-top: 2%;
+}
+
+label{
+    display: flex;
+    flex-direction: column;
+}
+
+h1{
+    color: #92386B;
+}
+
+#contato{
+    display: flex;
+    justify-content: flex-start;
+    gap: 32%; 
+    flex-direction: column;
+    font-size: 25px;
+}
+
+
+
+#formulario{
+    height: 400px;
+    width: 25%;
+    margin-bottom: 5%;
+}
+
+#formulario>h1{
+    margin-bottom: 10%;
+}
+
+input{
+    border: none;
+    height: 20px;
+    background-color: #D9D9D9;
+}
+
+#conteudo{
+    height: 150px;
+    border: none;
+    background-color: #D9D9D9;
+    width: 100%;
+    resize: none;
+}
+
+input[type=submit]{
+    width: 30%;
+    height: 30px;
+    background-color: #558D8C;
+    color: white;
+}
