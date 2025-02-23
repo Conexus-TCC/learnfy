@@ -38,3 +38,25 @@
     margin-top: 1%;
     color: #985C7E;
 }
+
+@media (max-width: 768px) {
+    #metodologia{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+    }
+
+    #metodologia>div{
+        width: 80%;
+        gap: 30px;
+    }
+
+    #metodologia>img{
+        width: 50%;
+        margin-right: 15%;
+    }
+    
+    
+  }

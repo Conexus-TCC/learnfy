@@ -53,16 +53,33 @@ ul{
 #direitos{
     display: flex;
     justify-content: center;
+    padding-bottom: 2%;
 }
 
 @media (max-width: 768px) {
     #rodape{
         flex-direction: column;
         justify-content: center;
-        margin: 0 30%;
+        gap: 30px;
+        align-items: center;
+        width: 100%;
+    }
+
+    #rodape>div{
+        width: 70%;
+    }
+
+
+    div>img{
+        margin-right: 17%;
     }
 
     #direitos{
+       width: 85%;
+       align-items: center;
+       text-align: center;
        font-size: 15px;
     }
+
+
   }

@@ -47,3 +47,35 @@ width: 60%;
 #cadastro>div>img{
     width: 120%;
 }
+
+@media (max-width: 768px) {
+    #cadastro{
+        display: flex;
+        justify-content: center;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+
+    #contCad{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #contCad>div{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        margin-left: 10%;
+    }
+
+    #contCad>div>a>button{
+        margin: 10% 20%;
+    }
+
+    #cadastro>div>img{
+        width: 80%;
+    }
+
+  }
