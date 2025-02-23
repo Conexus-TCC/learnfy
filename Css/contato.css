@@ -34,6 +34,10 @@ form>label{
     gap: 10px;
 }
 
+#cont>div>a{
+    margin-top: 1.2%;
+}
+
 label{
     display: flex;
     flex-direction: column;
