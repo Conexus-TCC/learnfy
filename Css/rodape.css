@@ -40,7 +40,6 @@ ul{
     width: 50%;
     margin-top: 5%;
 }
-
 #icones>li>img{
     height: 25px;
     width: 25px;
@@ -49,12 +48,10 @@ ul{
     width: 25px;
     height: 25px;
 }
-
 #direitos{
     display: flex;
     justify-content: center;
 }
-
 @media (max-width: 768px) {
     #rodape{
         flex-direction: column;
