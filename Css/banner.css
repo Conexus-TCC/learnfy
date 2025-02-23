@@ -1,7 +1,8 @@
 #banner{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     flex-wrap: wrap;
+    gap: 15%;
 }
 
 #banner>div{
@@ -18,12 +19,24 @@
 }
 
 @media (max-width: 768px) {
-    #imgBanner>img{ 
-        width: 75%;
-        position: absolute;
-        right: -10%;
-        top: 20%;
-        z-index: -1000;
-        height: 500px;
+    #banner{
+        flex-direction: column;
+        justify-content: flex-start;
     }
+
+    #banner>#texto{
+        align-self: normal;
+    }
+
+    #banner>#texto>h1{
+        font-size: 40px;
+        margin-left: 20%;
+        margin-top: 30%;
+    }
+
+    #banner>div>img{
+        width: 300%;
+    }
+    
+
   }
