@@ -1,0 +1,78 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login.css">
+    <title>Cadastro</title>
+</head>
+
+<body>
+    <div id="telaCadastro">
+        <!-- Coluna do Ícone -->
+        <div id="iconeCadastro">
+            <p>Faça seu cadastro</p>
+            <img src="image-removebg-preview.png" alt="Ícone">
+        </div>
+
+        <!-- Coluna do Formulário -->
+        <div id="cadastro">
+            <div class="container">
+                <div class="column">
+                    <label for="cep">Nome Empresa</label>
+                    <input type="text" id="nome" name="nome">
+
+                    <label for="ie">IE (Inscrição Estadual)</label>
+                    <input type="text" id="ie" name="ie">
+
+                    <label for="cep">CEP</label>
+                    <input type="text" id="cep" name="cep">
+
+                    <label for="bairro">Bairro</label>
+                    <input type="text" id="bairro" name="bairro">
+
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email">
+
+                    <div class="escolheArquivo">
+                        <h1>Logo</h1>
+                        <div class="arquivo">
+                            <!-- Label personalizado para o input de arquivo -->
+                            <input type="file" id="file" name="file">
+                            <div class="selecionar" id="selecionar">Nenhuma logo selecionada</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="column">
+                    <label for="cep">CNPJ</label>
+                    <input type="text" id="cnpj" name="cnpj">
+
+                    <label for="telefone">Telefone</label>
+                    <input type="text" id="telefone" name="telefone">
+
+                    <label for="rua">Rua</label>
+                    <input type="text" id="rua" name="rua">
+
+                    <label for="cidade">Cidade</label>
+                    <input type="text" id="cidade" name="cidade">
+
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" name="senha">
+
+                    <label for="estado">Estado</label>
+                    <input type="text" id="estado" name="estado">
+                    <button type="submit">Cadastrar</button>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+
+</html>
