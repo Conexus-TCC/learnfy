@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../Css/login.css">
+</head>
+<body>
+    <div class="login-container">
+        <!-- Seção de boas-vindas -->
+        <div class="welcome-section">
+            <div class="welcome-content">
+                <h1 class="welcome-title">Bem-vindo</h1>
+                <p class="welcome-text">
+                    Faça seu cadastro, crie cursos para sua empresa e qualifique seus colaboradores.
+                </p>
+                <button class="signup-button">Cadastre-se</button>
+            </div>
+        </div>
+
+        <!-- Seção de login -->
+        <div class="login-section">
+            <div class="login-form">
+                <h2 class="login-title">Faça login</h2>
+                <form>
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <div class="input-container">
+                            <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                            <input type="email" class="form-input" placeholder="Digite seu email" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Senha</label>
+                        <div class="input-container">
+                            <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                            </svg>
+                            <input type="password" class="form-input" placeholder="Digite sua senha" required>
+                        </div>
+                    </div>
+
+                    <a href="#" class="forgot-password">Esqueci a senha</a>
+                    <button type="submit" class="login-button">Entrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

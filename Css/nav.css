@@ -1,19 +1,15 @@
 #nav {
+    position: relative;
     display: flex;
     justify-content: space-between; 
     align-items: center; 
     width: 100%;
     height: 110px;
-    padding-left: 5%;
+    padding: 0 5%;
 }
 
 #nav>div>a>img{
     margin-top: 20%;
-}
-
-#botoesNav {
-    flex: 2; 
-    padding-left: 10%;
 }
 
 #botoesNav ul {
@@ -37,12 +33,11 @@
 }
 
 #navLog {
+    
     display: flex;
     align-items: center; 
     flex-direction: column;
     justify-content: center;
-    flex: 1; 
-    width: 10%;
 }
 
 #navLog img {
@@ -53,7 +48,110 @@
 #navLog p a {
     text-decoration: none; 
     font-size: 16px;
-    color: #739e9d;
-    
+    color: #739e9d;    
 }
 
+.burger{
+    cursor: pointer;
+     display: none; 
+    justify-content: space-evenly;
+    gap: 3px;
+    flex-direction: column;
+}
+.fatia{
+    border-radius: 5px;
+    width: 30px;
+    height: 5px;
+    background-color: #92386B;
+    transition: 0.4s;
+}
+.fatia.ativado:nth-child(1){
+    transform:
+     translate(5px, 8px)
+    rotate(50deg);
+}
+.fatia.ativado:nth-child(2){
+    display: none;
+}
+.fatia.ativado:nth-child(3){
+    transform:
+    translate(5px, -5px)
+    rotate(-50deg);
+}
+
+.fundo{
+   visibility: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(5px) contrast(1.2);
+    z-index: 1;
+   
+}
+.menu{
+    z-index: 2;
+    border-radius: 20px;
+    padding:  15px 0;
+    align-items: center;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    border: black 1px solid;
+    width: 282px;
+    height: 383px;
+    background-color:white;
+    position: absolute;
+    right:0;
+    top:0;
+    transition: 0.4s;
+    transform: translateX(102%);
+}
+.menu.ativado{
+    transform: translateX(0%);
+    right: 10px;
+    top:0px;
+}
+.menu>div{
+    a{
+        height: 100%;
+        img{
+            height: 100%;
+        }
+    }
+    width: 80%;
+    justify-content: space-between;
+    display: flex;
+}
+.menu>a{
+  width: 90%;
+  transition: 0.2s ease-in-out;
+}
+.menu>a:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.menu>a:not(:first-child){
+    border-radius: 5px;
+    padding: 5px 10px;
+    background-color: #739e9d;
+    color: white;
+}
+ @media (max-width: 1024px) {
+  .burger{
+    display: flex;
+  }
+  #botoesNav{
+    display: none;
+  }
+  .menu{
+    display: flex;
+  }
+  #navLog{
+    display: none;
+  }
+  .fundo.ativado{
+    visibility: visible;
+    display: block;
+  }
+  }
