@@ -31,7 +31,9 @@
         </div>
     
     </div><!--Fim nav-->
-
+    <main>
+    %%ïnserir conteudo aqui %%%%
+ </main>    
 
 
     <footer>
