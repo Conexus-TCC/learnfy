@@ -14,13 +14,14 @@
     <link rel="stylesheet" href="../Css/rodape.css">
     <link rel="shortcut icon" href="../Imagens/LogoLearnFy.png" type="image/x-icon">
 <body>
-    
+    <div class="fundo"></div>
 <div id="nav"> <!--Nav-->
 
     <div>
-            <a href=""><img src="../Imagens/LogoLearnFy.png" alt="Logo LearnFy" id="logo"></a>
+            <a href="">
+                <img src="../Imagens/LogoLearnFy.png" alt="Logo LearnFy" id="logo">
+            </a>
     </div>
-
     <div id="botoesNav">
         <ul>
             <li><a href="#">Home</a></li>
@@ -29,10 +30,32 @@
             <li><a href="#">Contato</a></li>
         </ul>
     </div>
-
+    
     <div id="navLog">
         <a href="login.html"><img src="../Ícones/usuario.svg" alt="Ícone de Usuário"></a>
         <p><a href="">Fazer login</a></p>
+    </div>
+    <div class="burger">
+        <div class="fatia"></div>
+        <div class="fatia"></div>
+        <div class="fatia"></div>
+    </div>
+
+    <div class="menu">
+        <div>
+            <a href="login.html">
+            <img src="../Ícones/usuario.svg" alt="Ícone de Usuário">
+            </a>
+            <div class="burger">
+                <div class="fatia"></div>
+                <div class="fatia"></div>
+                <div class="fatia"></div>
+            </div>
+        </div>
+            <a href="#">Home</a>
+            <a href="#">Cursos</a>
+            <a href="#">Sobre</a>
+            <a href="#">Contato</a>
     </div>
 
 </div><!--Fim nav-->
@@ -176,6 +199,7 @@
         Copyright © 2025 LearnFY | Desenvolvido por Conexus Technology
     </h3>
 </div><!--Fim Direitos Reservados-->
+<script src="/js/burger.js"></script>
 </footer>
 </body>
 </html>

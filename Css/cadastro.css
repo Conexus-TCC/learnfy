@@ -1,5 +1,7 @@
 #cadastro{
+    flex-wrap: wrap;
     display: flex;
+    gap: 20px;
     justify-content: center;
     justify-content: space-evenly;
 }
