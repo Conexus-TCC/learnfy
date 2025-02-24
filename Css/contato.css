@@ -12,7 +12,7 @@ form{
     align-items: center;
     gap: 30px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    height: 420px;
+    height: 450px;
     padding-top: 10%;
 }
 
@@ -80,9 +80,10 @@ input{
 }
 
 input[type=submit]{
-    width: 30%;
-    height: 30px;
+    width: 40%;
+    height: 37px;
     background-color: #558D8C;
+    border-radius: 15px;
     color: white;
 }
 
