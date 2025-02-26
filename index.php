@@ -4,61 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LearnFY</title>
-    <link rel="stylesheet" href="Css/nav.css">
     <link rel="stylesheet" href="Css/geral.css">
     <link rel="stylesheet" href="Css/banner.css">
     <link rel="stylesheet" href="Css/cadastro.css">
     <link rel="stylesheet" href="Css/barra.css">
     <link rel="stylesheet" href="Css/metodologia.css">
     <link rel="stylesheet" href="Css/carrosel.css">
-    <link rel="stylesheet" href="Css/rodape.css">
     <link rel="shortcut icon" href="Imagens/LogoLearnFy.png" type="image/x-icon">
 <body>
     <div class="fundo"></div>
-<div id="nav"> <!--Nav-->
 
-    <div>
-            <a href="index.html">
-                <img src="Imagens/LogoLearnFy.png" alt="Logo LearnFy" id="logo">
-            </a>
-    </div>
-    <div id="botoesNav">
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="#">Cursos</a></li>
-            <li><a href="View/sobre.html">Sobre</a></li>
-            <li><a href="View/contato.html">Contato</a></li>
-        </ul>
-    </div>
-    
-    <div id="navLog">
-        <a href="View/login.html"><img src="Ícones/usuario.svg" alt="Ícone de Usuário"></a>
-        <p><a href="View/login.html">Fazer login</a></p>
-    </div>
-    <div class="burger">
-        <div class="fatia"></div>
-        <div class="fatia"></div>
-        <div class="fatia"></div>
-    </div>
 
-    <div class="menu">
-        <div>
-            <a href="View/login.html">
-            <img src="Ícones/usuario.svg" alt="Ícone de Usuário">
-            </a>
-            <div class="burger">
-                <div class="fatia"></div>
-                <div class="fatia"></div>
-                <div class="fatia"></div>
-            </div>
-        </div>
-            <a href="#">Home</a>
-            <a href="#">Cursos</a>
-            <a href="#">Sobre</a>
-            <a href="#">Contato</a>
-    </div>
 
-</div><!--Fim nav-->
+
+<?php 
+
+    include("View/parts/header.php");
+
+
+?>
 
 <main>
 <div id="banner"><!--Banner-->

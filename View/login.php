@@ -13,27 +13,13 @@
 </head>
 <body>
 
-    <div id="nav"> <!--Nav-->
+   
+<?php 
 
-        <div>
-                <a href="../login.html"><img src="../Imagens/LogoLearnFy.png" alt="Logo LearnFy" id="logo"></a>
-        </div>
-    
-        <div id="botoesNav">
-            <ul>
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="#">Cursos</a></li>
-                <li><a href="sobre.html">Sobre</a></li>
-                <li><a href="contato.html">Contato</a></li>
-            </ul>
-        </div>
-    
-        <div id="navLog">
-            <a href="login.html"><img src="/Ícones/usuario.svg" alt="Ícone de Usuário"></a>
-            <p><a href="login.html">Fazer login</a></p>
-        </div>
-    
-    </div><!--Fim nav-->
+include("parts/header.php");
+
+
+?>
     
     <div class="login-container">
         <!-- Seção de boas-vindas -->
