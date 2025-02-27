@@ -158,3 +158,13 @@ align-items: center;
 input[type=file]{
     display: none;
 }
+
+
+#imagemEmpresa{
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 50px;
+  
+}
