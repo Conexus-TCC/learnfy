@@ -110,7 +110,18 @@ input:focus-visible,input:focus{
 input:disabled{
     cursor: not-allowed;
 }
-
+label:has(#bairro){
+    flex: inherit;
+    width: 45%;
+}
+label:has(#cidade){
+    flex: inherit;
+    width: 45%;
+}
+label:has(#estado){
+    flex: inherit;
+    width: 5%;
+}
 button {
     flex: inherit !important;
     justify-content: center;
