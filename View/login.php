@@ -4,15 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../Css/login.css">
-    <link rel="stylesheet" href="../Css/nav.css">
-    <link rel="stylesheet" href="../Css/rodape.css">
-    <link rel="stylesheet" href="../Css/geral.css">
-
+    <?php include("parts/head.php") ?>  
 </head>
 <body>
+   
+<?php 
 
+include("parts/header.php");
+
+?>
 <p class="message">
         <?php
 
@@ -26,28 +27,6 @@
         ?>
     </p>
 
-    <div id="nav"> <!--Nav-->
-
-        <div>
-                <a href="../index.html"><img src="../Imagens/LogoLearnFy.png" alt="Logo LearnFy" id="logo"></a>
-        </div>
-    
-        <div id="botoesNav">
-            <ul>
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="#">Cursos</a></li>
-                <li><a href="sobre.html">Sobre</a></li>
-                <li><a href="contato.html">Contato</a></li>
-            </ul>
-        </div>
-    
-        <div id="navLog">
-            <a href="login.html"><img src="../Ícones/usuario.svg" alt="Ícone de Usuário"></a>
-            <p><a href="login.html">Fazer login</a></p>
-        </div>
-    
-    </div><!--Fim nav-->
-    
     <div class="login-container">
         <!-- Seção de boas-vindas -->
         <div class="welcome-section">
