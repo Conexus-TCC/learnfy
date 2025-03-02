@@ -1,47 +1,37 @@
 <?php 
-
     extract($_POST);
-
     require("../model/connect.php");
-
-   
 
     session_start();
     $destino = "";
     $msg = "";
+
     $busca = mysqli_query($con, "SELECT * FROM `empresa` WHERE `email` = '$email'");
-    if($busca->num_rows == 1){
-    
-        $empresa = mysqli_fetch_assoc($busca);
-        var_dump($empresa['senha']);
-        echo password_verify($senha,$empresa['senha']);
-        if(password_verify($senha,$empresa['senha'])){
-            //senha correta
+    var_dump($busca);
+
+    if($busca->num_rows > 0){
+        $empresa = mysqli_fetch_assoc($busca); 
+
+     
+        var_dump($empresa['senha']); 
+
+        if(password_verify($senha, $empresa['senha'])){ // Verifica se a senha está correta
             $_SESSION["logado"] = true;
             $_SESSION["nome"] = $empresa['nome'];
-            $_SESSION["email"] =$empresa["email"];
+            $_SESSION["email"] = $empresa["email"];
             $_SESSION["foto"] = $empresa["foto"];
             $destino = "../View/gerenciamento.php";
-            $msg = "Bem vindo " . $_SESSION["nome"];
-        }else{  
+            $msg = "Bem-vindo, " . $_SESSION["nome"];
+        } else {  
             $destino = "../View/login.php";
-            $msg = "Email ou senha incorretos1";
-           
-
+            $msg = "Email ou senha incorretos!";
         }
-
-
-    }else{
+    } else {
         $destino = "../View/login.php";
-         $msg = "Email ou senha incorretos2";
-
-
+        $msg = "Email ou senha incorretos!" ; 
     }
-        echo $msg;
-        $_SESSION["msg"] = $msg;
-        header("location:$destino");
 
-
-
-
+    $_SESSION["msg"] = $msg;
+    header("location:$destino");
+    exit; 
 ?>
