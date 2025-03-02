@@ -10,6 +10,19 @@
     <script src="../js/main.js"> </script>
   </head>
 
+  <p class="message">
+        <?php
+
+    @session_start();
+        if (isset($_SESSION["msg"])) {
+            echo $_SESSION["msg"];
+            unset($_SESSION["msg"]);
+        }
+
+
+        ?>
+    </p>
+
   <body>
     <div id="telaCadastro">
       <!-- Coluna do Ícone -->
@@ -18,14 +31,14 @@
         <img src="../Imagens/imagemEmpresa.png" alt="Ícone" id="imagemEmpresa">
       </div>
       <!-- Coluna do Formulário -->
-      <form id="cadastro">
-
+      <form id="cadastro" action="../Controller/cadastroEmpresa.act.php" method="post" enctype="multipart/form-data" name="cadastroEmpresa">
+      <input type="hidden" name="cadastroEmpresa" value="value">
         <div class="container">
 
           <div class="row">
           <label for="nome">
             Nome Empresa
-            <input type="text" id="nome" name="nome" />
+            <input type="text" id="nome" name="nome" required>
           </label>
 
            <label for="cnpj">
@@ -81,12 +94,12 @@
           <div class="row">
           <label for="email">
             Email
-            <input type="email" id="email" name="email" placeholder="digite seu email"/>
+            <input type="email" id="email" name="email" placeholder="digite seu email" required>
           </label>
 
           <label for="senha">
             Senha
-            <input type="password" id="senha" name="senha" />
+            <input type="password" id="senha" name="senha" required>
           </label>
 
         </div>
@@ -97,7 +110,7 @@
            <img src="../Ícones/file.svg" alt="">
           </div>
             <p>Inserir Arquivo</p>
-            <input type="file" name="logo" id="file">
+            <input type="file" name="logo" id="file" required>
           </label>
 
           <button class="enviar" type="submit"> 

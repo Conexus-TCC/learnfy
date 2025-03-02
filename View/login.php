@@ -13,6 +13,19 @@
 </head>
 <body>
 
+<p class="message">
+        <?php
+
+    @session_start();
+        if (isset($_SESSION["msg"])) {
+            echo $_SESSION["msg"];
+            unset($_SESSION["msg"]);
+        }
+
+
+        ?>
+    </p>
+
     <div id="nav"> <!--Nav-->
 
         <div>
@@ -43,7 +56,7 @@
                 <p class="welcome-text">
                     Faça seu cadastro, crie cursos para sua empresa e qualifique seus colaboradores.
                 </p>
-                <button class="signup-button"><a href="cadastroEmpresa.html">Cadastre-se </a></button>
+                <button class="signup-button"><a href="cadastroEmpresa.php">Cadastre-se </a></button>
             </div>
         </div>
 
@@ -51,7 +64,7 @@
         <div class="login-section">
             <div class="login-form">
                 <h2 class="login-title">Faça login</h2>
-                <form>
+                <form enctype="multipart/form-data" method="post" action="../controller/login.act.php">
                     <div class="form-group">
                         <label class="form-label">Email</label>
                         <div class="input-container">
