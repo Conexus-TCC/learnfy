@@ -1,3 +1,2 @@
-# ignorar o  conteúdo da pasta fotosSite"
 fotosSite/*
-!fotosSite
+!fotosSite/
