@@ -6,85 +6,119 @@
     <title>Cadastro</title>
     <?php include("parts/head.php") ?>
     <script src="../js/jquery.mask.js"></script>
-    
+    <link rel="stylesheet" href="../Css/geral.css">
+    <title>Cadastro</title>
+    <script src="../js/jquery.mask.js"></script>
+    <script src="../js/main.js"> </script>
   </head>
+
+  <p class="message">
+        <?php
+
+    @session_start();
+        if (isset($_SESSION["msg"])) {
+            echo $_SESSION["msg"];
+            unset($_SESSION["msg"]);
+        }
+
+
+        ?>
+    </p>
 
   <body>
     <div id="telaCadastro">
       <!-- Coluna do Ícone -->
       <div id="iconeCadastro">
         <p>Faça seu cadastro</p>
-        <img src="../Imagens/imagemEmpresa.png" alt="Ícone" />
+        <img src="../Imagens/imagemEmpresa.png" alt="Ícone" id="imagemEmpresa">
       </div>
       <!-- Coluna do Formulário -->
-      <form id="cadastro">
-       
+      <form id="cadastro" action="../Controller/cadastroEmpresa.act.php" method="post" enctype="multipart/form-data" name="cadastroEmpresa">
+      <input type="hidden" name="cadastroEmpresa" value="value">
         <div class="container">
-          <div class="column">
-            <label for="cep">Nome Empresa</label>
-            <input type="text" id="nome" name="nome" />
 
-            <label for="ie">IE (Inscrição Estadual)</label>
-            <input
-              type="text"
-              id="ie"
-              name="ie"
-              placeholder="000.000.000.000"
-            />
+          <div class="row">
+          <label for="nome">
+            Nome Empresa
+            <input type="text" id="nome" name="nome" required>
+          </label>
 
-            <label for="cep">CEP</label>
-            <input type="text" id="cep" name="cep" placeholder="00000-000" />
-
-            <label for="bairro">Bairro</label>
-            <input type="text" id="bairro" name="bairro" />
-
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="digite seu email"/>
-
-            <label for="senha">Senha</label>
-            <input type="password" id="senha" name="senha" />
+           <label for="cnpj">
+            CNPJ
+            <input type="text" id="cnpj" name="cnpj" placeholder="00.000.000.0000-00"/>
+          </label>
           </div>
 
-          <div class="divider"></div>
+          <div class="row">
+          <label for="ie">
+            IE (Inscrição Estadual)
+            <input type="text" id="ie" name="ie" placeholder="000.000.000.000"/>
+          </label>
+ 
+          <label for="telefone">
+            Telefone
+            <input type="text" id="telefone" name="telefone" placeholder="(00) 0000-0000"/>
+          </label> 
+        </div>
 
-          <div class="column">
-            <label for="cep">CNPJ</label>
-            <input
-              type="text"
-              id="cnpj"
-              name="cnpj"
-              placeholder="00.000.000.0000-00"
-            />
-
-            <label for="telefone">Telefone</label>
-            <input
-              type="text"
-              id="telefone"
-              name="telefone"
-              placeholder="(00) 0000-0000"
-            />
-
-            <label for="rua">Rua</label>
-            <input type="text" id="rua" name="rua" />
-
-            <label for="cidade">Cidade</label>
-            <input type="text" id="cidade" name="cidade" />
-
-            <label for="estado">Estado</label>
-            <input type="text" id="estado" name="estado" />
-
-            <div class="escolheArquivo">
-              <h1>Logo</h1>
-              <div class="arquivo">
-                <!-- Label personalizado para o input de arquivo -->
-                <input type="file" id="file" name="file" />
-                <div class="selecionar" id="selecionar">
-                  Nenhuma logo selecionada
-                </div>
-              </div>
-            </div>
-            <button type="submit">Cadastrar</button>
+          <div class="row">
+          <div class="cep">
+            <label for="cep">
+              CEP
+              <input type="text" id="cep" name="cep" placeholder="00000-000" />
+            </label>
+            <a href="https://buscacepinter.correios.com.br/app/endereco/index.php" target="_blank" rel="noopener noreferrer">Não sabe o CEP?</a>
           </div>
+
+          <label for="rua">
+            Rua
+            <input type="text" id="rua" disabled />
+          </label>
+          </div>
+
+          <div class="row">
+          <label for="bairro">
+            Bairro
+            <input type="text" id="bairro" disabled />
+          </label>
+
+          <label for="cidade">
+            Cidade
+            <input type="text" id="cidade" disabled />
+          </label>
+
+          <label for="estado">
+            Estado
+            <input type="text" id="estado" disabled />
+          </label>
+          </div>
+
+          <div class="row">
+          <label for="email">
+            Email
+            <input type="email" id="email" name="email" placeholder="digite seu email" required>
+          </label>
+
+          <label for="senha">
+            Senha
+            <input type="password" id="senha" name="senha" required>
+          </label>
+
+        </div>
+        <div class="row">
+
+          <label for="file" class="file">
+            <div class="icone">
+           <img src="../Ícones/file.svg" alt="">
+          </div>
+            <p>Inserir Arquivo</p>
+            <input type="file" name="logo" id="file" required>
+          </label>
+
+          <button class="enviar" type="submit"> 
+            <img src="../Ícones/Send.svg" alt="">
+            Cadastrar</button>
+        </div>
         </div>
       </form>
     </div>
@@ -97,12 +131,9 @@
         $("#cnpj").mask("00.000.000/0000-00", { reverse: true });
         $("#cep").mask("00000-000");
         $("#ie").mask("000.000.000.000");
-        $("#email").mask("A", {
-          translation: {
-            A: { pattern: /[\w@\-.+]/, recursive: true },
-          },
-        });
-      });
+        })
     </script>
+    <script src="../js/cep.js"></script>
+    <script src="../js/file.js"></script>
   </body>
 </html>

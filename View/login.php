@@ -13,9 +13,20 @@
 
 include("parts/header.php");
 
-
 ?>
-    
+<p class="message">
+        <?php
+
+    @session_start();
+        if (isset($_SESSION["msg"])) {
+            echo $_SESSION["msg"];
+            unset($_SESSION["msg"]);
+        }
+
+
+        ?>
+    </p>
+
     <div class="login-container">
         <!-- Seção de boas-vindas -->
         <div class="welcome-section">
@@ -24,7 +35,7 @@ include("parts/header.php");
                 <p class="welcome-text">
                     Faça seu cadastro, crie cursos para sua empresa e qualifique seus colaboradores.
                 </p>
-                <button class="signup-button">Cadastre-se</button>
+                <button class="signup-button"><a href="cadastroEmpresa.php">Cadastre-se </a></button>
             </div>
         </div>
 
@@ -32,7 +43,7 @@ include("parts/header.php");
         <div class="login-section">
             <div class="login-form">
                 <h2 class="login-title">Faça login</h2>
-                <form>
+                <form enctype="multipart/form-data" method="post" action="../controller/login.act.php">
                     <div class="form-group">
                         <label class="form-label">Email</label>
                         <div class="input-container">
@@ -67,7 +78,7 @@ include("parts/header.php");
         <div id="rodape"><!--Rodape-->
         
             <div>
-                <img src="/Imagens/LogoLearnFy.png" alt="">
+                <img src="../Imagens/LogoLearnFy.png" alt="">
             </div>
         
             <div>
@@ -87,10 +98,10 @@ include("parts/header.php");
                 <p>R. Virgínia Ferni, 400 - Itaquera, São Paulo - SP, 08253-000</p>
             <a href=""><p style="color: black;">contato@learnfy.com.br</p></a>
                 <ul id="icones">
-                    <li><a href="#"><img class="icon" src="/Ícones/facebook.svg" alt=""></a></li>
-                    <li><a href="#"><img class="icon" src="/Ícones/instagram.svg" alt=""></a></li>
-                    <li><a href="#"><img class="icon" src="/Ícones/x-twitter.svg" alt=""></a></li>
-                    <li><a href="#"><img class="icon" src="/Ícones/whatsapp.svg" alt=""></a></li>
+                    <li><a href="#"><img class="icon" src="../Ícones/facebook.svg" alt=""></a></li>
+                    <li><a href="#"><img class="icon" src="../Ícones/instagram.svg" alt=""></a></li>
+                    <li><a href="#"><img class="icon" src="../Ícones/x-twitter.svg" alt=""></a></li>
+                    <li><a href="#"><img class="icon" src="../Ícones/whatsapp.svg" alt=""></a></li>
                 </ul>
         
             </div>
