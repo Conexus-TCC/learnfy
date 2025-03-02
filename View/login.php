@@ -4,15 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../Css/login.css">
-    <link rel="stylesheet" href="../Css/nav.css">
-    <link rel="stylesheet" href="../Css/rodape.css">
-    <link rel="stylesheet" href="../Css/geral.css">
-
+    <?php include("parts/head.php") ?>  
 </head>
 <body>
-
    
 <?php 
 

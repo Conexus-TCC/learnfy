@@ -1,9 +1,9 @@
-<link rel="stylesheet" href="Css/rodape.css">
+
 <footer>
 <div id="rodape"><!--Rodape-->
 
     <div>
-        <img src="Imagens/LogoLearnFy.png" alt="">
+        <img src="../Imagens/LogoLearnFy.png" alt="">
     </div>
 
     <div>
@@ -23,10 +23,10 @@
         <p>R. Virgínia Ferni, 400 - Itaquera, São Paulo - SP, 08253-000</p>
     <a href=""><p style="color: black;">contato@learnfy.com.br</p></a>
         <ul id="icones">
-            <li><a href="#"><img class="icon" src="Ícones/facebook.svg" alt=""></a></li>
-            <li><a href="#"><img class="icon" src="Ícones/instagram.svg" alt=""></a></li>
-            <li><a href="#"><img class="icon" src="Ícones/x-twitter.svg" alt=""></a></li>
-            <li><a href="#"><img class="icon" src="Ícones/whatsapp.svg" alt=""></a></li>
+            <li><a href="#"><img class="icon" src="../icones/facebook.svg" alt=""></a></li>
+            <li><a href="#"><img class="icon" src="../icones/instagram.svg" alt=""></a></li>
+            <li><a href="#"><img class="icon" src="../icones/x-twitter.svg" alt=""></a></li>
+            <li><a href="#"><img class="icon" src="../icones/whatsapp.svg" alt=""></a></li>
         </ul>
 
     </div>
@@ -38,5 +38,4 @@
         Copyright © 2025 LearnFY | Desenvolvido por Conexus Technology
     </h3>
 </div><!--Fim Direitos Reservados-->
-<script src="/js/burger.js"></script>
 </footer>

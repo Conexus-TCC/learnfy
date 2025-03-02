@@ -1,10 +1,10 @@
-<html lang="en">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../Css/cadastroEmpresa.css" />
     <title>Cadastro</title>
-    <script src="../js/jquery-3.7.1.min.js"></script>
+    <?php include("parts/head.php") ?>
     <script src="../js/jquery.mask.js"></script>
     
   </head>
