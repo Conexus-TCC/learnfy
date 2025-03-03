@@ -11,15 +11,11 @@
 
     if($busca->num_rows > 0){
         $empresa = mysqli_fetch_assoc($busca); 
-
-     
-        var_dump($empresa['senha']); 
-
+        
         if(password_verify($senha, $empresa['senha'])){ // Verifica se a senha está correta
+            
             $_SESSION["logado"] = true;
-            $_SESSION["nome"] = $empresa['nome'];
-            $_SESSION["email"] = $empresa["email"];
-            $_SESSION["foto"] = $empresa["foto"];
+            $_SESSION["empresa"]=$empresa;
             $destino = "../View/gerenciamento.php";
             $msg = "Bem-vindo, " . $_SESSION["nome"];
         } else {  

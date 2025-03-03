@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard de Cursos Corporativos</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <title>Dashboard de Cursos</title>
+  <?php include './parts/head.php' ?>
   <link rel="stylesheet" href="../Css/gerenciamento.css">
 </head>
+
 <body>
   <div class="app-container">
     <!-- Sidebar -->
@@ -83,14 +85,16 @@
           <p class="page-subtitle">Bem-vindo ao painel de gerenciamento da sua empresa</p>
         </div>
         <div class="header-actions">
-          <button class="profile-btn">
-            <span>✏️</span>
-            Editar Perfil
-          </button>
-          <button class="create-btn" id="create-course-btn">
-            <span>➕</span>
-            Novo Curso
-          </button>
+          <a href="./editarEmpresa.php">
+            <button class="profile-btn">
+              <span>✏️</span>
+              Editar Perfil
+            </button>
+            <button class="create-btn" id="create-course-btn">
+              <span>➕</span>
+              Novo Curso
+            </button>
+          </a>
         </div>
       </div>
 
@@ -454,7 +458,8 @@
     </div>
   </div>
 
-  <script>
+
+  <!-- <script>
     // Toggle sidebar
     const sidebar = document.getElementById('sidebar');
     const sidebarToggle = document.getElementById('sidebar-toggle');
@@ -498,6 +503,7 @@
         closeModal();
       }
     });
-  </script>
+  </script> -->
 </body>
+
 </html>
