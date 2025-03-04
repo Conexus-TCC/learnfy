@@ -117,7 +117,7 @@ if(!isset($_SESSION) || !$_SESSION["logado"] || $empresa==0 ){
 
           <button class="enviar" type="submit"> 
             <img src="../icones/Send.svg" alt="">
-            Cadastrar</button>
+            Editar</button>
         </div>
         </div>
       </form>
