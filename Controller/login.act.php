@@ -15,7 +15,8 @@
         if(password_verify($senha, $empresa['senha'])){ // Verifica se a senha está correta
             
             $_SESSION["logado"] = true;
-            $_SESSION["empresa"]=$empresa;
+            $_SESSION["nome"]=$empresa["nome_empresa"];
+
             $destino = "../View/gerenciamento.php";
             $msg = "Bem-vindo, " . $_SESSION["nome"];
         } else {  

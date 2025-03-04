@@ -16,7 +16,10 @@
       <div class="sidebar-header">
         <div class="sidebar-logo">
           <div class="sidebar-logo-icon"></div>
-          <h1>LearnFY</h1>
+          <h1><?php 
+          session_start();
+            echo $_SESSION["nome"];
+          ?></h1>
         </div>
         <button class="sidebar-toggle" id="sidebar-toggle">
           &#9776;
