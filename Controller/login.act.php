@@ -18,7 +18,8 @@
             $_SESSION["nome"]=$empresa["nome_empresa"];
 
             $destino = "../View/gerenciamento.php";
-            $msg = "Bem-vindo, " . $_SESSION["nome"];
+            //$msg = "Bem-vindo, " . $_SESSION["nome"];
+            //$msg = "Seja Bem-Vindo";
         } else {  
             $destino = "../View/login.php";
             $msg = "Email ou senha incorretos!";

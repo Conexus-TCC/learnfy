@@ -10,6 +10,7 @@
 </head>
 
 <body>
+
   <div class="app-container">
     <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
@@ -17,7 +18,7 @@
         <div class="sidebar-logo">
           <div class="sidebar-logo-icon"></div>
           <h1><?php 
-          session_start();
+            @session_start();
             echo $_SESSION["nome"];
           ?></h1>
         </div>
