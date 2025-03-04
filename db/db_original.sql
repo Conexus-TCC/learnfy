@@ -160,13 +160,40 @@ CREATE TABLE `opcoes_pergunta` (
 
 DROP TABLE IF EXISTS `pergunta`;
 CREATE TABLE `pergunta` (
-  `id_pergunta` int(11) NOT NULL AUTO_INCREMENT,
-  `id_quiz` int(11) NOT NULL,
-  `pergunta` varchar(50) NOT NULL,
-  PRIMARY KEY (`id_pergunta`),
-  KEY `fk_pergunta_quiz` (`id_quiz`),
-  CONSTRAINT `fk_pergunta_quiz` FOREIGN KEY (`id_quiz`) REFERENCES `quiz` (`id_quiz`)
+--
+
+DROP TABLE IF EXISTS `opcoes_pergunta`;
+CREATE TABLE `opcoes_pergunta` (
+  `id_opcoes` int(11) NOT NULL,
+  `id_pergunta` int(11) NOT NULL,
+  `texto_opcao` varchar(50) NOT NULL,
+  `correta` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- RELACIONAMENTOS PARA TABELAS `opcoes_pergunta`:
+--   `id_pergunta`
+--       `pergunta` -> `id_pergunta`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `pergunta`
+--
+
+DROP TABLE IF EXISTS `pergunta`;
+CREATE TABLE `pergunta` (
+  `id_pergunta` int(11) NOT NULL,
+  `id_quiz` int(11) NOT NULL,
+  `pergunta` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- RELACIONAMENTOS PARA TABELAS `pergunta`:
+--   `id_quiz`
+--       `quiz` -> `id_quiz`
+--
 
 -- --------------------------------------------------------
 
@@ -176,11 +203,14 @@ CREATE TABLE `pergunta` (
 
 DROP TABLE IF EXISTS `quiz`;
 CREATE TABLE `quiz` (
-  `id_quiz` int(11) NOT NULL AUTO_INCREMENT,
+  `id_quiz` int(11) NOT NULL,
   `tipo_quiz` int(11) NOT NULL,
-  `nome_quiz` varchar(50) NOT NULL,
-  PRIMARY KEY (`id_quiz`)
+  `nome_quiz` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- RELACIONAMENTOS PARA TABELAS `quiz`:
+--
 
 -- --------------------------------------------------------
 
@@ -190,22 +220,25 @@ CREATE TABLE `quiz` (
 
 DROP TABLE IF EXISTS `respostas_usuario`;
 CREATE TABLE `respostas_usuario` (
-  `id_resposta` int(11) NOT NULL AUTO_INCREMENT,
+  `id_resposta` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `id_quiz` int(11) NOT NULL,
   `Id_opcao` int(11) NOT NULL,
   `id_pergunta` int(11) NOT NULL,
-  `correta` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id_resposta`),
-  KEY `fk_resposta_usuario` (`id_usuario`),
-  KEY `fk_resposta_opcao` (`Id_opcao`),
-  KEY `fk_resposta_quiz` (`id_quiz`),
-  KEY `fk_resposta_pergunta` (`id_pergunta`),
-  CONSTRAINT `fk_resposta_opcao` FOREIGN KEY (`Id_opcao`) REFERENCES `opcoes_pergunta` (`id_opcoes`),
-  CONSTRAINT `fk_resposta_pergunta` FOREIGN KEY (`id_pergunta`) REFERENCES `pergunta` (`id_pergunta`),
-  CONSTRAINT `fk_resposta_quiz` FOREIGN KEY (`id_quiz`) REFERENCES `quiz` (`id_quiz`),
-  CONSTRAINT `fk_resposta_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`)
+  `correta` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- RELACIONAMENTOS PARA TABELAS `respostas_usuario`:
+--   `Id_opcao`
+--       `opcoes_pergunta` -> `id_opcoes`
+--   `id_pergunta`
+--       `pergunta` -> `id_pergunta`
+--   `id_quiz`
+--       `quiz` -> `id_quiz`
+--   `id_usuario`
+--       `usuario` -> `id_usuario`
+--
 
 -- --------------------------------------------------------
 
@@ -215,7 +248,7 @@ CREATE TABLE `respostas_usuario` (
 
 DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE `usuario` (
-  `id_usuario` int(11) NOT NULL AUTO_INCREMENT,
+  `id_usuario` int(11) NOT NULL AUTO_INCREMENT, -- AAAAAAAAA 
   `nome_usuario` varchar(60) NOT NULL,
   `data_nascimento` date NOT NULL,
   `sexo` char(1) NOT NULL,
@@ -229,6 +262,10 @@ CREATE TABLE `usuario` (
   PRIMARY KEY (`id_usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- RELACIONAMENTOS PARA TABELAS `usuario`:
+--
+
 -- --------------------------------------------------------
 
 --
@@ -238,12 +275,16 @@ CREATE TABLE `usuario` (
 DROP TABLE IF EXISTS `usuarios_curso`;
 CREATE TABLE `usuarios_curso` (
   `id_curso` int(11) NOT NULL,
-  `id_usuario` int(11) NOT NULL,
-  KEY `fk_usuario_curso` (`id_usuario`),
-  KEY `fk_curso_usuario` (`id_curso`),
-  CONSTRAINT `fk_curso_usuario` FOREIGN KEY (`id_curso`) REFERENCES `curso` (`id_curso`),
-  CONSTRAINT `fk_usuario_curso` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`)
+  `id_usuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- RELACIONAMENTOS PARA TABELAS `usuarios_curso`:
+--   `id_curso`
+--       `curso` -> `id_curso`
+--   `id_usuario`
+--       `usuario` -> `id_usuario`
+--
 
 -- --------------------------------------------------------
 
@@ -255,11 +296,220 @@ DROP TABLE IF EXISTS `videos_curso`;
 CREATE TABLE `videos_curso` (
   `id_curso` int(11) NOT NULL,
   `video` varchar(100) NOT NULL,
-  `capa_video` varchar(50) NOT NULL,
-  KEY `fk_video_curso` (`id_curso`),
-  CONSTRAINT `fk_video_curso` FOREIGN KEY (`id_curso`) REFERENCES `curso` (`id_curso`)
+  `capa_video` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- RELACIONAMENTOS PARA TABELAS `videos_curso`:
+--   `id_curso`
+--       `curso` -> `id_curso`
+--
+
+--
+-- Índices para tabelas despejadas
+--
+
+--
+-- Índices de tabela `categoria_curso`
+--
+ALTER TABLE `categoria_curso`
+  ADD PRIMARY KEY (`id_categoria`),
+  ADD KEY `fk_categoria_curso` (`id_empresa`);
+
+--
+-- Índices de tabela `certificado`
+--
+ALTER TABLE `certificado`
+  ADD PRIMARY KEY (`id_certificado`);
+
+--
+-- Índices de tabela `certificado_usuario`
+--
+ALTER TABLE `certificado_usuario`
+  ADD KEY `fk_usuario_certificado` (`id_usuario`),
+  ADD KEY `fk_certificado_usuario` (`id_certificado`);
+
+--
+-- Índices de tabela `curso`
+--
+ALTER TABLE `curso`
+  ADD PRIMARY KEY (`id_curso`),
+  ADD KEY `fk_curso_categoria` (`id_categoria`),
+  ADD KEY `fk_curso_certificado` (`id_certificado`),
+  ADD KEY `fk_curso` (`id_quiz`);
+
+--
+-- Índices de tabela `empresa`
+--
+ALTER TABLE `empresa`
+  ADD PRIMARY KEY (`id_empresa`);
+
+--
+-- Índices de tabela `material_curso`
+--
+ALTER TABLE `material_curso`
+  ADD KEY `fk_material_curso` (`id_curso`);
+
+--
+-- Índices de tabela `opcoes_pergunta`
+--
+ALTER TABLE `opcoes_pergunta`
+  ADD PRIMARY KEY (`id_opcoes`),
+  ADD KEY `fk_opcao_pergunta` (`id_pergunta`);
+
+--
+-- Índices de tabela `pergunta`
+--
+ALTER TABLE `pergunta`
+  ADD PRIMARY KEY (`id_pergunta`),
+  ADD KEY `fk_pergunta_quiz` (`id_quiz`);
+
+--
+-- Índices de tabela `quiz`
+--
+ALTER TABLE `quiz`
+  ADD PRIMARY KEY (`id_quiz`);
+
+--
+-- Índices de tabela `respostas_usuario`
+--
+ALTER TABLE `respostas_usuario`
+  ADD PRIMARY KEY (`id_resposta`),
+  ADD KEY `fk_resposta_usuario` (`id_usuario`),
+  ADD KEY `fk_resposta_opcao` (`Id_opcao`),
+  ADD KEY `fk_resposta_quiz` (`id_quiz`),
+  ADD KEY `fk_resposta_pergunta` (`id_pergunta`);
+
+--
+-- Índices de tabela `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`id_usuario`);
+
+--
+-- Índices de tabela `usuarios_curso`
+--
+ALTER TABLE `usuarios_curso`
+  ADD KEY `fk_usuario_curso` (`id_usuario`),
+  ADD KEY `fk_curso_usuario` (`id_curso`);
+
+--
+-- Índices de tabela `videos_curso`
+--
+ALTER TABLE `videos_curso`
+  ADD KEY `fk_video_curso` (`id_curso`);
+
+--
+-- AUTO_INCREMENT para tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `categoria_curso`
+--
+ALTER TABLE `categoria_curso`
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `certificado`
+--
+ALTER TABLE `certificado`
+  MODIFY `id_certificado` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `curso`
+--
+ALTER TABLE `curso`
+  MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `empresa`
+--
+ALTER TABLE `empresa`
+  MODIFY `id_empresa` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `opcoes_pergunta`
+--
+ALTER TABLE `opcoes_pergunta`
+  MODIFY `id_opcoes` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `pergunta`
+--
+ALTER TABLE `pergunta`
+  MODIFY `id_pergunta` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `quiz`
+--
+ALTER TABLE `quiz`
+  MODIFY `id_quiz` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Restrições para tabelas despejadas
+--
+
+--
+-- Restrições para tabelas `categoria_curso`
+--
+ALTER TABLE `categoria_curso`
+  ADD CONSTRAINT `fk_categoria_curso` FOREIGN KEY (`id_empresa`) REFERENCES `empresa` (`id_empresa`);
+
+--
+-- Restrições para tabelas `certificado_usuario`
+--
+ALTER TABLE `certificado_usuario`
+  ADD CONSTRAINT `fk_certificado_usuario` FOREIGN KEY (`id_certificado`) REFERENCES `certificado` (`id_certificado`),
+  ADD CONSTRAINT `fk_usuario_certificado` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`);
+
+--
+-- Restrições para tabelas `curso`
+--
+ALTER TABLE `curso`
+  ADD CONSTRAINT `fk_curso` FOREIGN KEY (`id_quiz`) REFERENCES `quiz` (`id_quiz`),
+  ADD CONSTRAINT `fk_curso_categoria` FOREIGN KEY (`id_categoria`) REFERENCES `categoria_curso` (`id_categoria`),
+  ADD CONSTRAINT `fk_curso_certificado` FOREIGN KEY (`id_certificado`) REFERENCES `certificado` (`id_certificado`),
+  ADD CONSTRAINT `fk_curso_quiz` FOREIGN KEY (`id_quiz`) REFERENCES `quiz` (`id_quiz`);
+
+--
+-- Restrições para tabelas `material_curso`
+--
+ALTER TABLE `material_curso`
+  ADD CONSTRAINT `fk_material_curso` FOREIGN KEY (`id_curso`) REFERENCES `curso` (`id_curso`);
+
+--
+-- Restrições para tabelas `opcoes_pergunta`
+--
+ALTER TABLE `opcoes_pergunta`
+  ADD CONSTRAINT `fk_opcao_pergunta` FOREIGN KEY (`id_pergunta`) REFERENCES `pergunta` (`id_pergunta`);
+
+--
+-- Restrições para tabelas `pergunta`
+--
+ALTER TABLE `pergunta`
+  ADD CONSTRAINT `fk_pergunta_quiz` FOREIGN KEY (`id_quiz`) REFERENCES `quiz` (`id_quiz`);
+
+--
+-- Restrições para tabelas `respostas_usuario`
+--
+ALTER TABLE `respostas_usuario`
+  ADD CONSTRAINT `fk_resposta_opcao` FOREIGN KEY (`Id_opcao`) REFERENCES `opcoes_pergunta` (`id_opcoes`),
+  ADD CONSTRAINT `fk_resposta_pergunta` FOREIGN KEY (`id_pergunta`) REFERENCES `pergunta` (`id_pergunta`),
+  ADD CONSTRAINT `fk_resposta_quiz` FOREIGN KEY (`id_quiz`) REFERENCES `quiz` (`id_quiz`),
+  ADD CONSTRAINT `fk_resposta_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`);
+
+--
+-- Restrições para tabelas `usuarios_curso`
+--
+ALTER TABLE `usuarios_curso`
+  ADD CONSTRAINT `fk_curso_usuario` FOREIGN KEY (`id_curso`) REFERENCES `curso` (`id_curso`),
+  ADD CONSTRAINT `fk_usuario_curso` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`);
+
+--
+-- Restrições para tabelas `videos_curso`
+--
+ALTER TABLE `videos_curso`
+  ADD CONSTRAINT `fk_video_curso` FOREIGN KEY (`id_curso`) REFERENCES `curso` (`id_curso`);
 SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
 
