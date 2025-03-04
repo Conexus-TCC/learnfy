@@ -7,7 +7,25 @@
   <title>Dashboard de Cursos</title>
   <?php include './parts/head.php' ?>
   <link rel="stylesheet" href="../Css/gerenciamento.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>  
 </head>
+
+<?php
+    if (isset($_SESSION["logado"])) {
+        echo "<script>
+            Swal.fire({
+                title: '{$_SESSION['msg']}',
+                text: '{$_SESSION['alertMsg']}',
+                icon: '{$_SESSION['alertIcon']}'
+            });
+        </script>";
+        unset($_SESSION["msg"]);
+        unset($_SESSION["alertMsg"]);
+        unset($_SESSION["alertIcon"]);
+    }
+    ?>
+
+
 
 <body>
 
