@@ -103,6 +103,8 @@
           <div class="row">
 
           <label for="file" class="file">
+          <p>Foto</p>
+          
             <div class="icone">
            <img src="../Ícones/file.svg" alt="">
           </div>
@@ -143,7 +145,7 @@
 
           if ($busca->num_rows > 0) {
               while ($row = $busca->fetch_assoc()) {
-                  echo '<tr data-id="' . $row['id_usuario'] . '">';
+                  echo '<tr data-id="' . $row['id_usuario'] . '" data-ddd="' . $row['ddd'] . '">';
                   echo '<td>' . $row['nome'] . '</td>';
                   echo '<td>' . $row['email'] . '</td>';
                   echo '<td>' . $row['telefone'] . '</td>';
@@ -201,12 +203,12 @@
           <div class="row">
             <label for="editar_ddd">
               DDD
-              <input type="text" id="editar_ddd" name="ddd" maxlength="3" required>
+              <input type="text" id="editar_ddd" name="ddd" maxlength="3">
             </label>
 
             <label for="editar_telefone">
               Telefone
-              <input type="text" id="editar_telefone" name="telefone" placeholder="000000000" maxlength="9" required>
+              <input type="text" id="editar_telefone" name="telefone" placeholder="0000-00000" maxlength="9" required>
             </label>
           </div> 
 
@@ -241,6 +243,7 @@
 
           <div class="row">
             <label for="editar_logo" class="file">
+            <p>Foto</p>
               <div class="icone">
                 <img src="../Ícones/file.svg" alt="">
               </div>
@@ -291,9 +294,11 @@
           document.getElementById('editar_sexo').value = cells[4].textContent === 'Masculino' ? 'M' : 'F';
           document.getElementById('editar_cpf').value = cells[5].textContent;
           document.getElementById('editar_status').value = cells[6].textContent === 'Ativo' ? '1' : '0';
-          document.getElementById('editar_ddd').value = cells[7].textContent;
+          document.getElementById('editar_ddd').value = row.getAttribute('data-ddd');
 
           editarColaborador.style.display = 'block';
+
+          alert('Colaborador selecionado para edição!');
         }
       });
     });
@@ -302,10 +307,12 @@
 </body>
 </html>
 
-<?php
-@session_start();
-if (isset($_SESSION["msg"])) {
-    echo "<p>" . $_SESSION["msg"] . "</p>";
-    unset($_SESSION["msg"]);
-}
-?>
+<!-- < ?php  -->
+  <!-- 
+    @session_start();
+    if (isset($_SESSION["msg"])) {
+        echo "<p>" . $_SESSION["msg"] . "</p>";
+        unset($_SESSION["msg"]); 
+    }
+  -->
+<!-- ?>  -->

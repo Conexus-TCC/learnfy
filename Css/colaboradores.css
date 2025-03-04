@@ -5,7 +5,7 @@
         box-sizing: border-box;
         font-family: 'Inter', sans-serif;
       }
-  
+
       :root {
         --primary: #246355;
         --primary-light: rgba(36, 99, 85, 0.1);
@@ -693,7 +693,15 @@
         opacity: 1;
         pointer-events: auto;
       }
-  
+
+      #telaCadastro {
+        border-radius: 10px;
+      }
+
+      #iconeCadastro {
+        border-radius: 10px 0 0 10px;
+      }
+
       .modal {
         background-color: var(--white);
         border-radius: var(--radius);
@@ -1048,6 +1056,24 @@ input:focus-visible,input:focus{
 input:disabled{
     cursor: not-allowed;
 }
+select {
+    background-color: #D9D9D9;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 90%;
+}
+/* comentadocomentado */
+select:focus-visible,
+select:focus {
+    outline: none;
+    border: 1px solid #38605F;
+}
+
+select:disabled {
+    cursor: not-allowed;
+}
 label:has(#bairro){
     flex: inherit;
     width: 45%;
@@ -1159,6 +1185,24 @@ input[type=file]{
   
 }
 
+/* Estilo para a seção de Editar colaboradores */
+#editarColaborador {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+#editarColaborador h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--foreground);
+    margin: 20px 0 10px;
+}
 /* Estilo para a seção de mostrar colaboradores */
 .mostrarColaboradores {
     display: flex;

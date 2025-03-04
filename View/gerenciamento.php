@@ -18,7 +18,7 @@
           <div class="sidebar-logo-icon"></div>
           <h1><?php 
           session_start();
-            echo $_SESSION["nome"];
+            echo $_SESSION["nome"]; // esse é o link da pasta, melhor se for apenas ../View/index.php
           ?></h1>
         </div>
         <button class="sidebar-toggle" id="sidebar-toggle">
@@ -28,7 +28,7 @@
 
       <ul class="sidebar-menu">
         <li class="sidebar-menu-item">
-          <a href="#" class="sidebar-menu-link active">
+          <a href="gerenciamento.php" class="sidebar-menu-link active">
             <span class="sidebar-menu-icon">📊</span>
             <span class="sidebar-menu-text">Dashboard</span>
           </a>
@@ -42,7 +42,7 @@
           <div class="tooltip">Cursos</div>
         </li>
         <li class="sidebar-menu-item">
-          <a href="#" class="sidebar-menu-link">
+          <a href="colaboradores.php" class="sidebar-menu-link">
             <span class="sidebar-menu-icon">👥</span>
             <span class="sidebar-menu-text">Colaboradores</span>
           </a>
