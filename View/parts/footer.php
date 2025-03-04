@@ -35,7 +35,7 @@
 
 <div id="direitos"><!--Direitos Reservados-->
     <h3>
-        Copyright © 2025 LearnFY | Desenvolvido por Conexus Technology
+        Copyright © <?=getdate()["year"] ?> LearnFY | Desenvolvido por Conexus Technology
     </h3>
 </div><!--Fim Direitos Reservados-->
 </footer>

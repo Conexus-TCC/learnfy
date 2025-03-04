@@ -4,7 +4,7 @@ A fazer: verificar o tipo do login
 */
 session_start();  
 require("../Model/Empresa.php");
-$empresa = pegarEmpresa($_SESSION["id"]);
+$empresa = pegarEmpresa($_SESSION["empresa"]["id_empresa"]);
 if(!isset($_SESSION) || !$_SESSION["logado"] || $empresa==0 ){
     $_SESSION["msg"]= "Você não tem permissão para acessar essa página!";
    header("location:../View/login.php");

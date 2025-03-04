@@ -69,10 +69,10 @@
       </ul>
 
       <div class="sidebar-footer">
-        <button class="logoff-btn">
+        <a href="../Controller/logout.php" class="logoff-btn">
           <span class="sidebar-menu-icon">🚪</span>
           <span class="logoff-btn-text">Sair</span>
-        </button>
+        </a>
       </div>
     </aside>
 
@@ -90,11 +90,11 @@
               <span>✏️</span>
               Editar Perfil
             </button>
-            <button class="create-btn" id="create-course-btn">
-              <span>➕</span>
-              Novo Curso
-            </button>
           </a>
+          <button class="create-btn" id="create-course-btn">
+            <span>➕</span>
+            Novo Curso
+          </button>
         </div>
       </div>
 

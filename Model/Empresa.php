@@ -45,7 +45,13 @@ function alterarEmpresa($dados)
     require("../Model/connect.php");
 
     $sql = "UPDATE empresa 
-    SET nome_empresa = '{$dados["nome_empresa"]}', cnpj = '{$dados["cnpj"]}', cep = '{$dados["cep"]}', ie = '{$dados["ie"]}',  logo = '{$dados["logo"]}' telefone = '{$dados["telefone"]}' WHERE id_empresa = {$dados["id_empresa"]}";
+    SET nome_empresa = '{$dados["nome_empresa"]}',
+    cnpj = '{$dados["cnpj"]}', cep = '{$dados["cep"]}', 
+    ie = '{$dados["ie"]}',  
+    logo = '{$dados["logo"]}',
+    telefone = '{$dados["telefone"]}'
+         WHERE id_empresa = {$dados["id_empresa"]}";
+
     $result = $con->query($sql);
 
     if ($result == true) {
