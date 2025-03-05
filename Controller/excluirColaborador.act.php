@@ -1,6 +1,4 @@
 <?php
-// filepath: /C:/xampp/htdocs/learnfy-main/Controller/excluirColaborador.act.php
-
 require("../model/connect.php");
 @session_start();
 
