@@ -7,9 +7,28 @@
   <title>Dashboard de Cursos</title>
   <?php include './parts/head.php' ?>
   <link rel="stylesheet" href="../Css/gerenciamento.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>  
 </head>
 
+<?php
+    if (isset($_SESSION["logado"])) {
+        echo "<script>
+            Swal.fire({
+                title: '{$_SESSION['msg']}',
+                text: '{$_SESSION['alertMsg']}',
+                icon: '{$_SESSION['alertIcon']}'
+            });
+        </script>";
+        unset($_SESSION["msg"]);
+        unset($_SESSION["alertMsg"]);
+        unset($_SESSION["alertIcon"]);
+    }
+    ?>
+
+
+
 <body>
+
   <div class="app-container">
     <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
@@ -17,7 +36,7 @@
         <div class="sidebar-logo">
           <div class="sidebar-logo-icon"></div>
           <h1><?php 
-          session_start();
+            @session_start();
             echo $_SESSION["nome"]; // esse é o link da pasta, melhor se for apenas ../View/index.php
           ?></h1>
         </div>

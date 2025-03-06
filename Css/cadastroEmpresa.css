@@ -122,7 +122,7 @@ label:has(#estado){
     flex: inherit;
     width: 5%;
 }
-button {
+.enviar {
     flex: inherit !important;
     justify-content: center;
     display: flex;
