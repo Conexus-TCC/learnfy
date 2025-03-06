@@ -26,6 +26,7 @@
 
             $destino = "../View/gerenciamento.php";
             $msg = "Bem-vindo, " . $_SESSION["nome"];
+           
         } else {  
             $destino = "../View/login.php";
             $msg = "Email ou senha incorretos!";

@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
     <link rel="stylesheet" href="../Css/login.css">
-    <?php include("parts/head.php") ?>  
+    <?php include("parts/head.php") ?>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>  
 </head>
 <body>
    
@@ -15,16 +16,21 @@ include("parts/header.php");
 
 ?>
 <p class="message">
-        <?php
-
-    @session_start();
-        if (isset($_SESSION["msg"])) {
-            echo $_SESSION["msg"];
-            unset($_SESSION["msg"]);
-        }
 
 
-        ?>
+<?php
+@session_start();
+if (isset($_SESSION["msg"])) {
+    echo "<script>
+        Swal.fire({
+            title: '{$_SESSION['msg']}',
+            text: 'As Crêdenciais inseridas estão inválidas',
+            icon: 'error'
+        });
+    </script>";
+    unset($_SESSION["msg"]);
+}
+?>
     </p>
 
     <div class="login-container">
