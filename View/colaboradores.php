@@ -103,17 +103,15 @@
           <div class="row">
 
           <label for="file" class="file">
-          <p>Foto</p>
-          
             <div class="icone">
-           <img src="../Ícones/file.svg" alt="">
+           <img src="../icones/file.svg" alt="">
           </div>
             <p>Inserir Arquivo</p>
             <input type="file" name="logo" id="file" required>
           </label>
 
           <button class="enviar" type="submit"> 
-            <img src="../Ícones/Send.svg" alt="">
+            <img src="../icones/Send.svg" alt="">
             Cadastrar</button>
         </div>
         </div>
