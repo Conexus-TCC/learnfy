@@ -1,7 +1,7 @@
 <?php
 require("../model/Empresa.php");
 session_start();
-$id =  $_SESSION["empresa"]["id_empresa"];
+$id =  $_SESSION["id_empresa"];
 $empresa = pegarEmpresa($id);
 $email =  $empresa["email"]; 
 $dir;

@@ -11,18 +11,19 @@
 </head>
 
 <?php
-    if (isset($_SESSION["logado"])) {
-        echo "<script>
-            Swal.fire({
-                title: '{$_SESSION['msg']}',
-                text: '{$_SESSION['alertMsg']}',
-                icon: '{$_SESSION['alertIcon']}'
-            });
-        </script>";
-        unset($_SESSION["msg"]);
-        unset($_SESSION["alertMsg"]);
-        unset($_SESSION["alertIcon"]);
-    }
+  @session_start();
+    // if (isset($_SESSION["logado"])) {
+    //     echo "<script>
+    //         Swal.fire({
+    //             title: '{$_SESSION['msg']}',
+    //             text: '{$_SESSION['alertMsg']}',
+    //             icon: '{$_SESSION['alertIcon']}'
+    //         });
+    //     </script>";
+    //     unset($_SESSION["msg"]);
+    //     unset($_SESSION["alertMsg"]);
+    //     unset($_SESSION["alertIcon"]);
+    // }
     ?>
 
 
@@ -34,9 +35,9 @@
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-header">
         <div class="sidebar-logo">
-          <div class="sidebar-logo-icon"></div>
+          <div class="sidebar-logo-icon"> <!--<img src="<=$_SESSION["logo"] ?>" alt="Logo"> !--></div> 
           <h1><?php 
-            @session_start();
+          
             echo $_SESSION["nome"]; // esse é o link da pasta, melhor se for apenas ../View/index.php
           ?></h1>
         </div>
@@ -81,13 +82,7 @@
           </a>
           <div class="tooltip">Empresa</div>
         </li>
-        <li class="sidebar-menu-item">
-          <a href="#" class="sidebar-menu-link">
-            <span class="sidebar-menu-icon">⚙️</span>
-            <span class="sidebar-menu-text">Configurações</span>
-          </a>
-          <div class="tooltip">Configurações</div>
-        </li>
+       
       </ul>
 
       <div class="sidebar-footer">

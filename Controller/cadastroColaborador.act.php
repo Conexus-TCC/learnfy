@@ -5,7 +5,7 @@ extract($_POST);
 extract($_FILES);
 @session_start();
 
-$dir = "../Imagens/" . md5(time()) . ".jpg";
+$dir = "../fotosSite/" . md5(time()) . ".jpg";
 
 $buscaCpf = mysqli_query($con, "SELECT * FROM `usuario` WHERE `cpf` = '$cpf'");
 $buscaEmail = mysqli_query($con, "SELECT * FROM `usuario` WHERE `email` = '$email'");

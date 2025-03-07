@@ -40,36 +40,30 @@
             Nome
             <input type="text" id="nome" name="nome" required>
           </label>
-          </div> 
-
-          <div class="row">
-            <label for="data_nascimento">
+          <label for="data_nascimento">
               Data de Nascimento
               <input type="date" id="data_nascimento" name="data_nascimento" required>
             </label>
-          </div>
+          </div> 
 
           <div class="row">
             <label for="sexo">
               Sexo
               <select id="sexo" name="sexo" required>
-                <option value="M">Masculino</option>
+              <option value="NULL">Selecione</option>  
+              <option value="M">Masculino</option>
                 <option value="F">Feminino</option>
+                <option value="O">Outros</option>
               </select>
             </label>
-          </div>
-
-          <div class="row">
-            <label for="ddd">
-              DDD
-              <input type="text" id="ddd" name="ddd" maxlength="3" required>
-            </label>
-
+            
             <label for="telefone">
               Telefone
               <input type="text" id="telefone" name="telefone" placeholder="000000000" maxlength="9" required>
             </label>
-          </div> 
+          </div>
+
+         
 
           <div class="row">
             <label for="email">
