@@ -131,8 +131,12 @@
 
         <tbody id="colaboradores-tbody">
           <?php
+         // @session_start();
           require("../model/connect.php");
+          
 
+          //$idEmpresa = $$_SESSION["id_empresa"];
+          //var_dump($idEmpresa);
           $busca = mysqli_query($con, "SELECT id_usuario, nome_usuario AS nome, email, telefone, data_nascimento, sexo, cpf, status, ddd FROM usuario ORDER BY id_usuario desc LIMIT 10");
 
           if ($busca->num_rows > 0) {
