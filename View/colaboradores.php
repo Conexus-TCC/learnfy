@@ -114,7 +114,7 @@
 
     <!-- Mostrar Colaboradores -->
     <div class="mostrarColaboradores">
-      <h2>Lista de Colaboradores</h2>
+      <h2>Últimos colaboradores cadastrados</h2>
       <table class="colaboradores-table">
         <thead>
           <tr>
@@ -133,7 +133,7 @@
           <?php
           require("../model/connect.php");
 
-          $busca = mysqli_query($con, "SELECT id_usuario, nome_usuario AS nome, email, telefone, data_nascimento, sexo, cpf, status, ddd FROM usuario");
+          $busca = mysqli_query($con, "SELECT id_usuario, nome_usuario AS nome, email, telefone, data_nascimento, sexo, cpf, status, ddd FROM usuario ORDER BY id_usuario desc LIMIT 10");
 
           if ($busca->num_rows > 0) {
               while ($row = $busca->fetch_assoc()) {
