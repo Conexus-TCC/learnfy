@@ -5,10 +5,6 @@ extract($_FILES);
 @session_start();
 
 $dir = "../fotosSite/" .md5(time()) . ".jpg";
-if(!file_exists("../fotosSite/empresa")){
-    mkdir("../fotosSite/empresa", 0777, true);
-}
-
 $busca = mysqli_query($con, "SELECT * FROM `empresa` WHERE `email` = '$email'");
 
 if($busca->num_rows == 0){
