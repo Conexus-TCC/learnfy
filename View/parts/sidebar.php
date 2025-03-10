@@ -1,8 +1,12 @@
+<link rel="stylesheet" href="../Css/sidebar.css">
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-header">
     <div class="sidebar-logo">
       <div class="sidebar-logo-icon"></div>
-      <h1>LearnFY</h1>
+      <h1><?php
+         @session_start();
+          echo $_SESSION["nome"];
+          ?></h1>
     </div>
     <button class="sidebar-toggle" id="sidebar-toggle">
       &#9776;
@@ -11,7 +15,7 @@
 
   <ul class="sidebar-menu">
     <li class="sidebar-menu-item">
-      <a href="gerenciamento.php" class="sidebar-menu-link ">
+      <a onclick="trocarSite('gerenciamento_index.php',this)" href="#" class="sidebar-menu-link active">
         <span class="sidebar-menu-icon">📊</span>
         <span class="sidebar-menu-text">Dashboard</span>
       </a>
@@ -25,7 +29,7 @@
       <div class="tooltip">Cursos</div>
     </li>
     <li class="sidebar-menu-item">
-      <a href="colaboradores.php" class="sidebar-menu-link active">
+      <a onclick="trocarSite('gerenciamento_colaboradores.php',this)" href="#" class="sidebar-menu-link">
         <span class="sidebar-menu-icon">👥</span>
         <span class="sidebar-menu-text">Colaboradores</span>
       </a>
@@ -55,9 +59,9 @@
   </ul>
 
   <div class="sidebar-footer">
-    <button class="logoff-btn">
+    <a href="../Controller/logout.php" class="logoff-btn">
       <span class="sidebar-menu-icon">🚪</span>
       <span class="logoff-btn-text">Sair</span>
-    </button>
+    </a>
   </div>
 </aside>

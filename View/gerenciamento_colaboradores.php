@@ -1,20 +1,4 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Colaboradores</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-  <link rel="stylesheet" href="../Css/Colaboradores.css">
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
-<body>
-  <div class="app-container">
-    
-    <!-- Sidebar --> <?php include 'sidebar.php'; ?>
-
-    <!-- Conteúdo Principal -->
-    <main class="main-content">
+    <link rel="stylesheet" href="../Css/Colaboradores.css">
       <!-- Conteúdo específico da página de colaboradores -->
       <div class="page-header">
         <div class="page-title">
@@ -259,7 +243,6 @@
     <script src="../js/file.js"></script>
 
       <!-- ---------- fim cadastro -->
-    </main>
   </div>
 
   <script>

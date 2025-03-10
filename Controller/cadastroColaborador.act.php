@@ -23,8 +23,8 @@ if($buscaCpf->num_rows == 0 && $buscaEmail->num_rows == 0){
 } else {
     $_SESSION["msg"] = "Email ou CPF já cadastrado!";
 }
-
-header("location:../View/colaboradores.php");
+$_SESSION["contexto"] = "colaboradores";
+header("location:../View/gerenciamento.php");
 
 
 

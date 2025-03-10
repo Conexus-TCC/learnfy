@@ -22,7 +22,8 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
-
+CREATE DATABASE IF NOT EXISTS `db_learnfy` DEFAULT CHARACTER SET utf8mb4 COLLATE=utf8mb4_unicode_ci;
+USE `db_learnfy`;
 --
 -- Estrutura para tabela `empresa`
 --
@@ -40,15 +41,6 @@ CREATE TABLE `empresa` (
   `ddd` varchar(3) DEFAULT NULL,
   `telefone` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Despejando dados para a tabela `empresa`
---
-
-INSERT INTO `empresa` (`id_empresa`, `nome_empresa`, `cnpj`, `ie`, `cep`, `site`, `email`, `senha`, `logo`, `ddd`, `telefone`) VALUES
-(2, 'conexus', '11.111.111/1111-11', '111.111.111.111', '03581-160', NULL, 'conexus@gmail.com', '$2y$10$BCjy7X8yP9hq5uQx5.o0qOq8RH59IcxvE127mkq9AoJYiYyPOCBJG', '../fotosSite/5855b9c87ea22529952785f29a8b5fbe.jpg', NULL, '11 1111-1111'),
-(3, 'Sodexo', '11.111.111/1111-11', '111.111.111.111', '11111-111', NULL, 'sodexo@gmail.com', '$2y$10$B3y2fld3Hsxh70Ugq/BN2.2.apW5xhKvG.HxQI8eoIUCa9si.eQZq', '../fotosSite/53a7d5230c292fda8b58ad2bc5423042.jpg', NULL, '11 1111-1111');
-
 -- --------------------------------------------------------
 
 --
@@ -71,18 +63,6 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Despejando dados para a tabela `usuario`
---
-
-INSERT INTO `usuario` (`id_usuario`, `nome_usuario`, `data_nascimento`, `sexo`, `ddd`, `telefone`, `email`, `senha`, `cpf`, `foto`, `status`, `id_Empresa`) VALUES
-(2, 'FELIPE S CERQUEIRA', '2025-02-26', 'M', '', '995937887', 'felipe@gmail.com', '$2y$10$crTeR.ToOOH6UDTpyvOSBOUbbGIm.FxSZe2MY1wQEEalr284DwT6K', '11111111111111', '../fotosSite/ae22dc144e04c7b7bb5e8f736ab49a5f.jpg', 1, 2),
-(3, 'Gustavo', '2025-02-26', 'M', '', '111111111', 'gustavo@gmail.com', '$2y$10$Ke.EnJ4pcKpPf4qu.HFGkupQuOuJaPkrzvrwnXt7FeAwQjqCIj0yy', '23454554454545', '../fotosSite/0edcb7fcfb9ebe0c58f4767104256909.jpg', 1, 3);
-
---
--- Índices para tabelas despejadas
---
-
---
 -- Índices de tabela `empresa`
 --
 ALTER TABLE `empresa`
@@ -103,13 +83,13 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `empresa`
 --
 ALTER TABLE `empresa`
-  MODIFY `id_empresa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_empresa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- Restrições para tabelas despejadas
