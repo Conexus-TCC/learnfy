@@ -52,6 +52,6 @@ if (isset($_POST['id_usuario'])) {
 } else {
     $_SESSION["msg"] = "ID do colaborador não fornecido!";
 }
-
-header("location:../View/colaboradores.php");
+$_SESSION["contexto"] ="colaboradores";
+header("location:../View/gerenciamento.php");
 ?>

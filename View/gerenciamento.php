@@ -36,7 +36,14 @@
 
     <!-- Conteúdo Principal -->
      <main class="main-content">
-   <?php   include("./gerenciamento_index.php") ?>
+
+   <?php   
+    $local = "index";
+    if(isset($_SESSION["contexto"])){
+      $local = $_SESSION["contexto"];
+    }
+   
+   include("./gerenciamento_$local.php") ?>
      </main>
    <script src="../js/sidebar.js"></script>
 </body>
