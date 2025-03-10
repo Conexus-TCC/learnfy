@@ -49,7 +49,7 @@
                 <li><img src="../icones/correto.svg" alt=""><p>Quizzes</p></li>
                 <li><img src="../icones/correto.svg" alt=""><p>Certificado</p></li> 
             </ul>
-            <a href="#"><button>Cadastre-se</button></a>
+            <a href="cadastroEmpresa.php"><button>Cadastre-se</button></a>
         </div>
     </div>
 

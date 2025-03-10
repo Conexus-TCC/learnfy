@@ -12,18 +12,19 @@
 </head>
 
 <?php
-    if (isset($_SESSION["logado"])) {
-        echo "<script>
-            Swal.fire({
-                title: '{$_SESSION['msg']}',
-                text: '{$_SESSION['alertMsg']}',
-                icon: '{$_SESSION['alertIcon']}'
-            });
-        </script>";
-        unset($_SESSION["msg"]);
-        unset($_SESSION["alertMsg"]);
-        unset($_SESSION["alertIcon"]);
-    }
+  @session_start();
+    // if (isset($_SESSION["logado"])) {
+    //     echo "<script>
+    //         Swal.fire({
+    //             title: '{$_SESSION['msg']}',
+    //             text: '{$_SESSION['alertMsg']}',
+    //             icon: '{$_SESSION['alertIcon']}'
+    //         });
+    //     </script>";
+    //     unset($_SESSION["msg"]);
+    //     unset($_SESSION["alertMsg"]);
+    //     unset($_SESSION["alertIcon"]);
+    // }
     ?>
 
 

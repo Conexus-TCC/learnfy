@@ -29,6 +29,27 @@ if (isset($_SESSION["empresa"])) {
         <a href="<?= $link ?>"><img src="<?= $img ?>" alt="Ícone de Usuário"></a>
         <p><a href="<?= $link ?>"><?= $msg ?></a></p>
     </div>
+    <div class="burger">
+        <div class="fatia"></div>
+        <div class="fatia"></div>
+        <div class="fatia"></div>
+    </div>
+    <div class="menu">
+        <div>
+            <a href="login.html">
+            <img src="../Ícones/usuario.svg" alt="Ícone de Usuário">
+            </a>
+            <div class="burger">
+                <div class="fatia"></div>
+                <div class="fatia"></div>
+                <div class="fatia"></div>
+            </div>
+        </div>
+            <a href="#">Home</a>
+            <a href="#">Cursos</a>
+            <a href="#">Sobre</a>
+            <a href="#">Contato</a>
+    </div>
 
 </header><!--Fim nav-->
 <script src="../js/burger.js"></script>

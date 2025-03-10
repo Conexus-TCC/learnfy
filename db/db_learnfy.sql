@@ -3,11 +3,10 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 07/02/2025 às 18:49
--- Versão do servidor: 10.4.32-MariaDB
--- Versão do PHP: 8.2.12
+-- Tempo de geração: 08/03/2025 às 21:54
+-- Versão do servidor: 10.4.28-MariaDB
+-- Versão do PHP: 8.2.4
 
-SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -21,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `db_learnfy`
 --
-CREATE DATABASE IF NOT EXISTS `db_learnfy` DEFAULT CHARACTER SET utf8mb4 COLLATE=utf8mb4_unicode_ci;
-USE `db_learnfy`;
 
 -- --------------------------------------------------------
 
@@ -30,9 +27,8 @@ USE `db_learnfy`;
 -- Estrutura para tabela `empresa`
 --
 
-DROP TABLE IF EXISTS `empresa`;
 CREATE TABLE `empresa` (
-  `id_empresa` int(11) NOT NULL AUTO_INCREMENT,
+  `id_empresa` int(11) NOT NULL,
   `nome_empresa` varchar(50) NOT NULL,
   `cnpj` varchar(19) DEFAULT NULL,
   `ie` varchar(15) DEFAULT NULL,
@@ -42,170 +38,16 @@ CREATE TABLE `empresa` (
   `senha` varchar(60) NOT NULL,
   `logo` varchar(100) DEFAULT NULL,
   `ddd` varchar(3) DEFAULT NULL,
-  `telefone` varchar(9) DEFAULT NULL,
-  PRIMARY KEY (`id_empresa`)
+  `telefone` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- --------------------------------------------------------
-
 --
--- Estrutura para tabela `categoria_curso`
+-- Despejando dados para a tabela `empresa`
 --
 
-DROP TABLE IF EXISTS `categoria_curso`;
-CREATE TABLE `categoria_curso` (
-  `id_categoria` int(11) NOT NULL AUTO_INCREMENT,
-  `nome_categoria` varchar(30) NOT NULL,
-  `id_empresa` int(11) NOT NULL,
-  PRIMARY KEY (`id_categoria`),
-  KEY `id_empresa` (`id_empresa`),
-  CONSTRAINT `fk_categoria_curso` FOREIGN KEY (`id_empresa`) REFERENCES `empresa` (`id_empresa`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `certificado`
---
-
-DROP TABLE IF EXISTS `certificado`;
-CREATE TABLE `certificado` (
-  `id_certificado` int(11) NOT NULL AUTO_INCREMENT,
-  `nome_certificado` int(11) NOT NULL,
-  `caminho_certificado` varchar(100) NOT NULL,
-  PRIMARY KEY (`id_certificado`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `certificado_usuario`
---
-
-DROP TABLE IF EXISTS `certificado_usuario`;
-CREATE TABLE `certificado_usuario` (
-  `id_certificado` int(11) NOT NULL,
-  `id_usuario` int(11) NOT NULL,
-  KEY `fk_usuario_certificado` (`id_usuario`),
-  KEY `fk_certificado_usuario` (`id_certificado`),
-  CONSTRAINT `fk_certificado_usuario` FOREIGN KEY (`id_certificado`) REFERENCES `certificado` (`id_certificado`),
-  CONSTRAINT `fk_usuario_certificado` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `curso`
---
-
-DROP TABLE IF EXISTS `curso`;
-CREATE TABLE `curso` (
-  `id_curso` int(11) NOT NULL AUTO_INCREMENT,
-  `id_quiz` int(11) NOT NULL,
-  `id_categoria` int(11) NOT NULL,
-  `nome_curso` varchar(50) NOT NULL,
-  `descricao` varchar(60) NOT NULL,
-  `data_criacao` date NOT NULL,
-  `data_atualizacao` date NOT NULL,
-  `id_empresa` int(11) NOT NULL,
-  `id_certificado` int(11) NOT NULL,
-  `status` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id_curso`),
-  KEY `fk_curso_categoria` (`id_categoria`),
-  KEY `fk_curso_certificado` (`id_certificado`),
-  KEY `fk_curso` (`id_quiz`),
-  CONSTRAINT `fk_curso` FOREIGN KEY (`id_quiz`) REFERENCES `quiz` (`id_quiz`),
-  CONSTRAINT `fk_curso_categoria` FOREIGN KEY (`id_categoria`) REFERENCES `categoria_curso` (`id_categoria`),
-  CONSTRAINT `fk_curso_certificado` FOREIGN KEY (`id_certificado`) REFERENCES `certificado` (`id_certificado`),
-  CONSTRAINT `fk_curso_quiz` FOREIGN KEY (`id_quiz`) REFERENCES `quiz` (`id_quiz`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `material_curso`
---
-
-DROP TABLE IF EXISTS `material_curso`;
-CREATE TABLE `material_curso` (
-  `id_curso` int(11) NOT NULL,
-  `caminho_material` varchar(100) NOT NULL,
-  `nome_material` varchar(50) NOT NULL,
-  KEY `fk_material_curso` (`id_curso`),
-  CONSTRAINT `fk_material_curso` FOREIGN KEY (`id_curso`) REFERENCES `curso` (`id_curso`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `opcoes_pergunta`
---
-
-DROP TABLE IF EXISTS `opcoes_pergunta`;
-CREATE TABLE `opcoes_pergunta` (
-  `id_opcoes` int(11) NOT NULL AUTO_INCREMENT,
-  `id_pergunta` int(11) NOT NULL,
-  `texto_opcao` varchar(50) NOT NULL,
-  `correta` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id_opcoes`),
-  KEY `fk_opcao_pergunta` (`id_pergunta`),
-  CONSTRAINT `fk_opcao_pergunta` FOREIGN KEY (`id_pergunta`) REFERENCES `pergunta` (`id_pergunta`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `pergunta`
---
-
-DROP TABLE IF EXISTS `pergunta`;
-CREATE TABLE `pergunta` (
-  `id_pergunta` int(11) NOT NULL AUTO_INCREMENT,
-  `id_quiz` int(11) NOT NULL,
-  `pergunta` varchar(50) NOT NULL,
-  PRIMARY KEY (`id_pergunta`),
-  KEY `fk_pergunta_quiz` (`id_quiz`),
-  CONSTRAINT `fk_pergunta_quiz` FOREIGN KEY (`id_quiz`) REFERENCES `quiz` (`id_quiz`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `quiz`
---
-
-DROP TABLE IF EXISTS `quiz`;
-CREATE TABLE `quiz` (
-  `id_quiz` int(11) NOT NULL AUTO_INCREMENT,
-  `tipo_quiz` int(11) NOT NULL,
-  `nome_quiz` varchar(50) NOT NULL,
-  PRIMARY KEY (`id_quiz`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `respostas_usuario`
---
-
-DROP TABLE IF EXISTS `respostas_usuario`;
-CREATE TABLE `respostas_usuario` (
-  `id_resposta` int(11) NOT NULL AUTO_INCREMENT,
-  `id_usuario` int(11) NOT NULL,
-  `id_quiz` int(11) NOT NULL,
-  `Id_opcao` int(11) NOT NULL,
-  `id_pergunta` int(11) NOT NULL,
-  `correta` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id_resposta`),
-  KEY `fk_resposta_usuario` (`id_usuario`),
-  KEY `fk_resposta_opcao` (`Id_opcao`),
-  KEY `fk_resposta_quiz` (`id_quiz`),
-  KEY `fk_resposta_pergunta` (`id_pergunta`),
-  CONSTRAINT `fk_resposta_opcao` FOREIGN KEY (`Id_opcao`) REFERENCES `opcoes_pergunta` (`id_opcoes`),
-  CONSTRAINT `fk_resposta_pergunta` FOREIGN KEY (`id_pergunta`) REFERENCES `pergunta` (`id_pergunta`),
-  CONSTRAINT `fk_resposta_quiz` FOREIGN KEY (`id_quiz`) REFERENCES `quiz` (`id_quiz`),
-  CONSTRAINT `fk_resposta_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+INSERT INTO `empresa` (`id_empresa`, `nome_empresa`, `cnpj`, `ie`, `cep`, `site`, `email`, `senha`, `logo`, `ddd`, `telefone`) VALUES
+(2, 'conexus', '11.111.111/1111-11', '111.111.111.111', '03581-160', NULL, 'conexus@gmail.com', '$2y$10$BCjy7X8yP9hq5uQx5.o0qOq8RH59IcxvE127mkq9AoJYiYyPOCBJG', '../fotosSite/5855b9c87ea22529952785f29a8b5fbe.jpg', NULL, '11 1111-1111'),
+(3, 'Sodexo', '11.111.111/1111-11', '111.111.111.111', '11111-111', NULL, 'sodexo@gmail.com', '$2y$10$B3y2fld3Hsxh70Ugq/BN2.2.apW5xhKvG.HxQI8eoIUCa9si.eQZq', '../fotosSite/53a7d5230c292fda8b58ad2bc5423042.jpg', NULL, '11 1111-1111');
 
 -- --------------------------------------------------------
 
@@ -213,9 +55,8 @@ CREATE TABLE `respostas_usuario` (
 -- Estrutura para tabela `usuario`
 --
 
-DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE `usuario` (
-  `id_usuario` int(11) NOT NULL AUTO_INCREMENT,
+  `id_usuario` int(11) NOT NULL,
   `nome_usuario` varchar(60) NOT NULL,
   `data_nascimento` date NOT NULL,
   `sexo` char(1) NOT NULL,
@@ -226,41 +67,59 @@ CREATE TABLE `usuario` (
   `cpf` varchar(14) NOT NULL,
   `foto` varchar(100) NOT NULL,
   `status` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id_usuario`)
+  `id_Empresa` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- --------------------------------------------------------
-
 --
--- Estrutura para tabela `usuarios_curso`
+-- Despejando dados para a tabela `usuario`
 --
 
-DROP TABLE IF EXISTS `usuarios_curso`;
-CREATE TABLE `usuarios_curso` (
-  `id_curso` int(11) NOT NULL,
-  `id_usuario` int(11) NOT NULL,
-  KEY `fk_usuario_curso` (`id_usuario`),
-  KEY `fk_curso_usuario` (`id_curso`),
-  CONSTRAINT `fk_curso_usuario` FOREIGN KEY (`id_curso`) REFERENCES `curso` (`id_curso`),
-  CONSTRAINT `fk_usuario_curso` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
+INSERT INTO `usuario` (`id_usuario`, `nome_usuario`, `data_nascimento`, `sexo`, `ddd`, `telefone`, `email`, `senha`, `cpf`, `foto`, `status`, `id_Empresa`) VALUES
+(2, 'FELIPE S CERQUEIRA', '2025-02-26', 'M', '', '995937887', 'felipe@gmail.com', '$2y$10$crTeR.ToOOH6UDTpyvOSBOUbbGIm.FxSZe2MY1wQEEalr284DwT6K', '11111111111111', '../fotosSite/ae22dc144e04c7b7bb5e8f736ab49a5f.jpg', 1, 2),
+(3, 'Gustavo', '2025-02-26', 'M', '', '111111111', 'gustavo@gmail.com', '$2y$10$Ke.EnJ4pcKpPf4qu.HFGkupQuOuJaPkrzvrwnXt7FeAwQjqCIj0yy', '23454554454545', '../fotosSite/0edcb7fcfb9ebe0c58f4767104256909.jpg', 1, 3);
 
 --
--- Estrutura para tabela `videos_curso`
+-- Índices para tabelas despejadas
 --
 
-DROP TABLE IF EXISTS `videos_curso`;
-CREATE TABLE `videos_curso` (
-  `id_curso` int(11) NOT NULL,
-  `video` varchar(100) NOT NULL,
-  `capa_video` varchar(50) NOT NULL,
-  KEY `fk_video_curso` (`id_curso`),
-  CONSTRAINT `fk_video_curso` FOREIGN KEY (`id_curso`) REFERENCES `curso` (`id_curso`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+--
+-- Índices de tabela `empresa`
+--
+ALTER TABLE `empresa`
+  ADD PRIMARY KEY (`id_empresa`);
 
-SET FOREIGN_KEY_CHECKS=1;
+--
+-- Índices de tabela `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`id_usuario`),
+  ADD KEY `fk_usuario_empresa` (`id_Empresa`);
+
+--
+-- AUTO_INCREMENT para tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `empresa`
+--
+ALTER TABLE `empresa`
+  MODIFY `id_empresa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de tabela `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- Restrições para tabelas despejadas
+--
+
+--
+-- Restrições para tabelas `usuario`
+--
+ALTER TABLE `usuario`
+  ADD CONSTRAINT `fk_usuario_empresa` FOREIGN KEY (`id_Empresa`) REFERENCES `empresa` (`id_empresa`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

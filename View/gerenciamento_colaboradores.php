@@ -24,36 +24,30 @@
             Nome
             <input type="text" id="nome" name="nome" required>
           </label>
-          </div> 
-
-          <div class="row">
-            <label for="data_nascimento">
+          <label for="data_nascimento">
               Data de Nascimento
               <input type="date" id="data_nascimento" name="data_nascimento" required>
             </label>
-          </div>
+          </div> 
 
           <div class="row">
             <label for="sexo">
               Sexo
               <select id="sexo" name="sexo" required>
-                <option value="M">Masculino</option>
+              <option value="NULL">Selecione</option>  
+              <option value="M">Masculino</option>
                 <option value="F">Feminino</option>
+                <option value="O">Outros</option>
               </select>
             </label>
-          </div>
-
-          <div class="row">
-            <label for="ddd">
-              DDD
-              <input type="text" id="ddd" name="ddd" maxlength="3" required>
-            </label>
-
+            
             <label for="telefone">
               Telefone
               <input type="text" id="telefone" name="telefone" placeholder="000000000" maxlength="9" required>
             </label>
-          </div> 
+          </div>
+
+         
 
           <div class="row">
             <label for="email">
@@ -104,7 +98,7 @@
 
     <!-- Mostrar Colaboradores -->
     <div class="mostrarColaboradores">
-      <h2>Lista de Colaboradores</h2>
+      <h2>Últimos colaboradores cadastrados</h2>
       <table class="colaboradores-table">
         <thead>
           <tr>
@@ -121,9 +115,13 @@
 
         <tbody id="colaboradores-tbody">
           <?php
+         // @session_start();
           require("../model/connect.php");
+          
 
-          $busca = mysqli_query($con, "SELECT id_usuario, nome_usuario AS nome, email, telefone, data_nascimento, sexo, cpf, status, ddd FROM usuario");
+          //$idEmpresa = $$_SESSION["id_empresa"];
+          //var_dump($idEmpresa);
+          $busca = mysqli_query($con, "SELECT id_usuario, nome_usuario AS nome, email, telefone, data_nascimento, sexo, cpf, status, ddd FROM usuario ORDER BY id_usuario desc LIMIT 10");
 
           if ($busca->num_rows > 0) {
               while ($row = $busca->fetch_assoc()) {

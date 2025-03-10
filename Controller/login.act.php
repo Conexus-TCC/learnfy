@@ -16,6 +16,7 @@
             
             $_SESSION["logado"] = true;
             $_SESSION["nome"]=$empresa["nome_empresa"];
+            $_SESSION["id_empresa"]=$empresa["id_empresa"];
             $_SESSION["cnpj"]=$empresa["cnpj"];
             $_SESSION["ie"]=$empresa["ie"];
             $_SESSION["cep"]=$empresa["cep"];
