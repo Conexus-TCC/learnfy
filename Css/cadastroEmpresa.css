@@ -1,11 +1,6 @@
+@import url(./geral.css);
+@import url(./gerenciamento.css);
 
-body {
-
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 #telaCadastro {
     display: flex;

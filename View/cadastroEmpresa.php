@@ -25,6 +25,8 @@
                 title: '{$_SESSION['msg']}',
                 text: '{$_SESSION['alertMsg']}',
                 icon: '{$_SESSION['alertIcon']}'
+            }).then(e=>{
+              location.href='login.php'
             });
         </script>";
         unset($_SESSION["msg"]);

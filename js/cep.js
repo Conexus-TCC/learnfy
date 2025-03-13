@@ -1,15 +1,15 @@
-const cep = $('#cep');
-const rua = $('#rua');
-const bairro = $('#bairro');
-const cidade = $('#cidade');
-const estado = $('#estado');
+ cep = $('#cep');
+ rua = $('#rua');
+ bairro = $('#bairro');
+ cidade = $('#cidade');
+ estado = $('#estado');
 cep.on("blur", async function () {
   if(cep.val().length < 9){
     cep.addClass("erro");
     return;
   }
-  const res = await fetch(`https://viacep.com.br/ws/${cep.cleanVal()}/json/`)
-  const data = await res.json();
+   res = await fetch(`https://viacep.com.br/ws/${cep.cleanVal()}/json/`)
+   data = await res.json();
   console.log(data)
   if(data.erro){
    cep.addClass("erro");

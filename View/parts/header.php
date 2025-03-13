@@ -36,19 +36,17 @@ if (isset($_SESSION["empresa"])) {
     </div>
     <div class="menu">
         <div>
-            <a href="login.html">
-            <img src="../Ícones/usuario.svg" alt="Ícone de Usuário">
-            </a>
+            <a href="<?= $link ?>"><img src="<?= $img ?>" alt="Ícone de Usuário"></a>
             <div class="burger">
                 <div class="fatia"></div>
                 <div class="fatia"></div>
                 <div class="fatia"></div>
             </div>
         </div>
-            <a href="#">Home</a>
-            <a href="#">Cursos</a>
-            <a href="#">Sobre</a>
-            <a href="#">Contato</a>
+        <a href="index.php">Home</a>
+        <a href="#">Cursos</a>
+        <a href="sobre.php">Sobre</a>
+        <a href="contato.php">Contato</a>
     </div>
 
 </header><!--Fim nav-->

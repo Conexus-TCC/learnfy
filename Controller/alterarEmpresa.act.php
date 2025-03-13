@@ -7,12 +7,14 @@ $email =  $empresa["email"];
 $dir;
 extract($_POST);
 extract($_FILES);
-$dir = $empresa['logo'];
 if($empresa==0){
-    $_SESSION["msg"]= "Empresa não encontrada!";
+    $_SESSION['msg'] = "Error!";
+    $_SESSION['alertMsg'] = "Empresa não encontrada!";
+    $_SESSION['alertIcon'] = "error";
     header("location:../View/login.php");
     exit;
 }
+$dir = $empresa['logo'];
 if($logo['size']>0){
     unlink($empresa['logo']);
     $dir = "../fotosSite/" .md5(time()) . ".jpg";
@@ -24,12 +26,24 @@ if($logo['size']>0){
   $dados = array("id_empresa"=>$id,"nome_empresa"=>$nome,"cnpj"=>$cnpj,"cep"=>$cep,"ie"=>$ie,"logo"=>$dir,"telefone"=>$telefone,"email"=>$email);
 if(alterarEmpresa($dados)){
     $_SESSION["msg"] = "Alterado com sucesso!";
-   $_SESSION["empresa"] = $dados;
+    $_SESSION["nome"] = $dados["nome_empresa"];
+    $_SESSION["id_empresa"] = $dados["id_empresa"];
+    $_SESSION["cnpj"] = $dados["cnpj"];
+    $_SESSION["ie"] = $dados["ie"];
+    $_SESSION["cep"] = $dados["cep"];
+    $_SESSION["telefone"] = $dados["telefone"];
+    $_SESSION["logo"] = $dados["logo"];
+    $_SESSION["email"] = $dados["email"];
+    $_SESSION['msg'] = "Sucesso!";
+    $_SESSION['alertMsg'] = "Empresa Alterada com sucesso!";
+    $_SESSION['alertIcon'] = "success";
     header("location:../View/gerenciamento.php");
 
     exit;
 }else{
-    $_SESSION["msg"] = "Erro ao alterar!";
-    header("location:../View/editarEmpresa.php");
+    $_SESSION['msg'] = "erro!";
+    $_SESSION['alertMsg'] = "Erro ao Alterar !";
+    $_SESSION['alertIcon'] = "success";
+    header("location:../View/gerenciamento_empresa/");
     exit;
 }

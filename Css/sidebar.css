@@ -1,28 +1,4 @@
- :root {
-      --primary: #246355;
-      --primary-light: rgba(36, 99, 85, 0.1);
-      --secondary: #D23B85;
-      --secondary-light: rgba(210, 59, 133, 0.1);
-      --background: #F8F9FC;
-      --foreground: #1A1F2C;
-      --muted: #8E9196;
-      --muted-light: #F1F0FB;
-      --border: #E2E8F0;
-      --white: #FFFFFF;
-      --success: #10B981;
-      --error: #EF4444;
-      --warning: #F59E0B;
-      --radius: 0.5rem;
-    }
-
-    body {
-      background-color: var(--background);
-      color: var(--foreground);
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      display: flex;
-    }
+@import url(./geral.css);
 /* Sidebar */
 .sidebar {
   width: 250px;

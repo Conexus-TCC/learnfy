@@ -1,7 +1,9 @@
 <?php 
+$root = str_replace( "Empresa.php","connect.php", __FILE__);
 function adicionarEmpresa($dados)
 {
-    require("../Model/connect.php");
+    $root = str_replace("Empresa.php", "connect.php", __FILE__);
+    require("$root");
 
     $busca = mysqli_query($con, "SELECT * FROM `empresa` WHERE `email` = $dados[email]");
 
@@ -27,7 +29,8 @@ function adicionarEmpresa($dados)
 }
 
 function pegarEmpresa($id){
-    require("../Model/connect.php");
+    $root = str_replace("Empresa.php", "connect.php", __FILE__);
+    require("$root");
     $sql = "SELECT * FROM empresa WHERE id_empresa = $id";
     $result = $con->query($sql);
 
@@ -42,7 +45,8 @@ function pegarEmpresa($id){
 }
 function alterarEmpresa($dados)
 {
-    require("../Model/connect.php");
+    $root = str_replace("Empresa.php", "connect.php", __FILE__);
+    require("$root");
 
     $sql = "UPDATE empresa 
     SET nome_empresa = '{$dados["nome_empresa"]}',

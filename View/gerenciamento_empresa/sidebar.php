@@ -1,10 +1,10 @@
-<link rel="stylesheet" href="../Css/sidebar.css">
+<link rel="stylesheet" href="/learnfy/Css/sidebar.css">
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-header">
     <div class="sidebar-logo">
       <div class="sidebar-logo-icon"></div>
       <h1><?php
-         @session_start();
+          @session_start();
           echo $_SESSION["nome"];
           ?></h1>
     </div>
@@ -15,7 +15,7 @@
 
   <ul class="sidebar-menu">
     <li class="sidebar-menu-item">
-      <a onclick="trocarSite('gerenciamento_index.php',this)" href="#" class="sidebar-menu-link active">
+      <a onclick="trocarSite('dashboard.php',this)" class="sidebar-menu-link active">
         <span class="sidebar-menu-icon">📊</span>
         <span class="sidebar-menu-text">Dashboard</span>
       </a>
@@ -29,7 +29,7 @@
       <div class="tooltip">Cursos</div>
     </li>
     <li class="sidebar-menu-item">
-      <a onclick="trocarSite('gerenciamento_colaboradores.php',this)" href="#" class="sidebar-menu-link">
+      <a onclick="trocarSite('colaboradores.php',this)" class="sidebar-menu-link">
         <span class="sidebar-menu-icon">👥</span>
         <span class="sidebar-menu-text">Colaboradores</span>
       </a>
@@ -43,7 +43,7 @@
       <div class="tooltip">Relatórios</div>
     </li>
     <li class="sidebar-menu-item">
-      <a href="#" class="sidebar-menu-link">
+      <a onclick="trocarSite('editarEmpresa.php',this)" class="sidebar-menu-link">
         <span class="sidebar-menu-icon">🏢</span>
         <span class="sidebar-menu-text">Empresa</span>
       </a>

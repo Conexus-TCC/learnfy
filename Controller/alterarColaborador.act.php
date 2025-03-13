@@ -45,13 +45,19 @@ if (isset($_POST['id_usuario'])) {
             mysqli_query($con, $query);
         }
 
-        $_SESSION["msg"] = "Colaborador atualizado com sucesso!";
+        $_SESSION["msg"] = "sucesso!";
+        $_SESSION['alertMsg'] = "Colaborador atualizado com sucesso";
+        $_SESSION['alertIcon'] = "succses";
     } else {
-        $_SESSION["msg"] = "Erro ao atualizar colaborador: " . mysqli_error($con);
+        $_SESSION["alertMsg"] = "Erro ao atualizar colaborador: " . mysqli_error($con);
+        $_SESSION['msg'] = "Erro ao Cadastrar!";
+        $_SESSION['alertIcon'] = "error";
     }
 } else {
-    $_SESSION["msg"] = "ID do colaborador não fornecido!";
+    $_SESSION["msg"] = "erro ao Atualizar Colaborador";
+    $_SESSION['alertMsg'] = "ID do colaborador não fornecido!";
+    $_SESSION['alertIcon'] = "error";
 }
 $_SESSION["contexto"] ="colaboradores";
-header("location:../View/gerenciamento.php");
+header("location:../View/gerenciamento_empresa/");
 ?>
