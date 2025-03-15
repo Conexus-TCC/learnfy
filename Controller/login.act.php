@@ -23,19 +23,25 @@
             $_SESSION["logo"]=$empresa["logo"];
             $_SESSION["email"]=$empresa["email"];
 
-            $destino = "../View/gerenciamento.php";
+            $destino = "../View/gerenciamento_empresa/";
             $msg = "Bem-vindo, " . $_SESSION["nome"];
-           
+            $msgType = "cadastrado";
+            $alertIcon = 'success';
         } else {  
             $destino = "../View/login.php";
             $msg = "Email ou senha incorretos!";
+            $msgType ="erro ao cadastrar";
+            $alertIcon = "error";
         }
     } else {
-        $destino = "../View/login.php";
-        $msg = "Email ou senha incorretos!" ; 
+    $destino = "../View/login.php";
+    $msg = "Email ou senha incorretos!";
+    $msgType = "erro ao cadastrar";
+    $alertIcon = "error";
     }
-
-    $_SESSION["msg"] = $msg;
+    $_SESSION['msg'] = $msgType;
+    $_SESSION['alertMsg'] = $msg;
+    $_SESSION['alertIcon'] = $alertIcon;
     header("location:$destino");
     exit; 
 ?>

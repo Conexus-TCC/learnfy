@@ -59,7 +59,7 @@
   </ul>
 
   <div class="sidebar-footer">
-    <a href="../Controller/logout.php" class="logoff-btn">
+    <a href="../../Controller/logout.php" class="logoff-btn">
       <span class="sidebar-menu-icon">🚪</span>
       <span class="logoff-btn-text">Sair</span>
     </a>

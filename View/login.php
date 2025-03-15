@@ -6,32 +6,29 @@
     <title>Login Page</title>
     <link rel="stylesheet" href="../Css/login.css">
     <?php include("parts/head.php") ?>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>  
 </head>
 <body>
-   
-<?php 
 
-include("parts/header.php");
+    <?php
 
-?>
-<p class="message">
+    include("parts/header.php");
 
-
-<?php
-@session_start();
-if (isset($_SESSION["msg"])) {
-    echo "<script>
-        Swal.fire({
-            title: '{$_SESSION['msg']}',
-            text: 'As Crêdenciais inseridas estão inválidas',
-            icon: 'error'
-        });
-    </script>";
-    unset($_SESSION["msg"]);
-}
-?>
-    </p>
+    ?>
+        <?php
+        @session_start();
+        if (isset($_SESSION["msg"])) {
+            echo "<script>
+            Swal.fire({
+                title: '{$_SESSION['msg']}',
+                text: '{$_SESSION['alertMsg']}',
+                icon: '{$_SESSION['alertIcon']}'
+            });
+        </script>";
+            unset($_SESSION["msg"]);
+            unset($_SESSION["alertMsg"]);
+            unset($_SESSION["alertIcon"]);
+        }
+        ?>
 
     <div class="login-container">
         <!-- Seção de boas-vindas -->
@@ -79,47 +76,58 @@ if (isset($_SESSION["msg"])) {
         </div>
     </div>
 
-    
+
     <footer>
         <div id="rodape"><!--Rodape-->
-        
+
             <div>
                 <img src="../Imagens/LogoLearnFy.png" alt="">
             </div>
-        
+
             <div>
-        
-                <strong><h1>Ajuda</h1></strong>
+
+                <strong>
+                    <h1>Ajuda</h1>
+                </strong>
                 <ul>
-                    <li><a href=""><p>Termos de Uso</p></a></li>
-                    <li><a href=""><p>Quem somos</p></a></li>
-                    <li><a href=""><p>Perguntas frequentes</p></a></li>
+                    <li><a href="">
+                            <p>Termos de Uso</p>
+                        </a></li>
+                    <li><a href="">
+                            <p>Quem somos</p>
+                        </a></li>
+                    <li><a href="">
+                            <p>Perguntas frequentes</p>
+                        </a></li>
                 </ul>
-        
+
             </div>
-        
+
             <div>
-        
+
                 <h1>Contate-nos</h1>
                 <p>R. Virgínia Ferni, 400 - Itaquera, São Paulo - SP, 08253-000</p>
-            <a href=""><p style="color: black;">contato@learnfy.com.br</p></a>
+                <a href="">
+                    <p style="color: black;">contato@learnfy.com.br</p>
+                </a>
                 <ul id="icones">
                     <li><a href="#"><img class="icon" src="../Ícones/facebook.svg" alt=""></a></li>
                     <li><a href="#"><img class="icon" src="../Ícones/instagram.svg" alt=""></a></li>
                     <li><a href="#"><img class="icon" src="../Ícones/x-twitter.svg" alt=""></a></li>
                     <li><a href="#"><img class="icon" src="../Ícones/whatsapp.svg" alt=""></a></li>
                 </ul>
-        
+
             </div>
-        
+
         </div><!--Fim Rodape-->
-        
+
         <div id="direitos"><!--Direitos Reservados-->
             <h3>
                 Copyright © 2025 LearnFY | Desenvolvido por Conexus Technology
             </h3>
         </div><!--Fim Direitos Reservados-->
-        </footer>
+    </footer>
 
 </body>
+
 </html>
