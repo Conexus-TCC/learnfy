@@ -49,6 +49,16 @@
       </a>
       <div class="tooltip">Empresa</div>
     </li>
+
+    <li class="sidebar-menu-item">
+      <a onclick="trocarSite('categorias.php',this)" class="sidebar-menu-link">
+        <span class="sidebar-menu-icon">🔣</span>
+        <span class="sidebar-menu-text">categoria Cursos</span>
+      </a>
+      <div class="tooltip">Empresa</div>
+    </li>
+
+
     <li class="sidebar-menu-item">
       <a href="#" class="sidebar-menu-link">
         <span class="sidebar-menu-icon">⚙️</span>
@@ -65,3 +75,12 @@
     </a>
   </div>
 </aside>
+<script>
+  // Toggle sidebar
+  const sidebar = document.getElementById('sidebar');
+  const sidebarToggle = document.getElementById('sidebar-toggle');
+
+  sidebarToggle.addEventListener('click', () => {
+    sidebar.classList.toggle('collapsed');
+  });
+</script>
