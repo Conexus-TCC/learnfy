@@ -33,15 +33,51 @@
             $msgType ="erro ao cadastrar";
             $alertIcon = "error";
         }
-    } else {
-    $destino = "../View/login.php";
-    $msg = "Email ou senha incorretos!";
-    $msgType = "erro ao cadastrar";
-    $alertIcon = "error";
     }
-    $_SESSION['msg'] = $msgType;
-    $_SESSION['alertMsg'] = $msg;
-    $_SESSION['alertIcon'] = $alertIcon;
+    else {
+        $destino = "../View/login.php";
+        $msg = "Email ou senha incorretos!" ; 
+    }
+
+    if(!isset($_SESSION["logado"])){
+        $busca = mysqli_query($con, "SELECT * FROM `usuario` WHERE `email` = '$email'");
+
+        if($busca->num_rows > 0){
+            $empresa = mysqli_fetch_assoc($busca); 
+            
+            if(password_verify($senha, $empresa['senha'])){ // Verifica se a senha está correta
+                
+                $_SESSION["logado"] = true;
+                $_SESSION["nome"]=$usuario["nome_usuario"];
+                $_SESSION["id_usuario"]=$usuario["id_usuario"];
+                $_SESSION["data_nascimento"]=$usuario["data_nascimento"];
+                $_SESSION["sexo"]=$usuario["sexo"];
+                $_SESSION["cpf"]=$usuario["cpf"];
+                $_SESSION["telefone"]=$usuario["telefone"];
+                $_SESSION["senha"]=$usuario["senha"];
+                $_SESSION["foto"]=$usuario["foto"];
+                $_SESSION["email"]=$usuario["email"];
+                $_SESSION["status"]=$usuario["status"];
+    
+                $destino = "../View/loginUsuario.php";
+                $msg = "Bem-vindo, " . $_SESSION["nome"];
+               
+            } else {  
+                $destino = "../View/login.php";
+                $msg = "Email ou senha incorretos!";
+            }
+        }
+        else {
+            $destino = "../View/login.php";
+            $msg = "Email ou senha incorretos!" ; 
+        }
+    }
+
+   
+
+    
+
+    $_SESSION["msg"] = $msg;
     header("location:$destino");
     exit; 
 ?>
