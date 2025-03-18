@@ -1,7 +1,8 @@
     <?php
     @session_start();
-      $_SESSION["contexto"] = "colaboradores"
-     ?>
+    include "../parts/head.php";
+    $_SESSION["contexto"] = "colaboradores"
+    ?>
     <link rel="stylesheet" href="/learnfy/Css/Colaboradores.css">
     <!-- Conteúdo específico da página de colaboradores -->
     <div class="page-header">
@@ -94,7 +95,7 @@
 
             <button class="enviar" type="submit">
               <img src="../../icones/Send.svg" alt="">
-              Cadastrar</button>
+              <span>Cadastrar</span></button>
           </div>
         </div>
       </form>
@@ -104,6 +105,7 @@
     <div class="mostrarColaboradores">
       <h2>Últimos colaboradores cadastrados</h2>
       <table class="colaboradores-table">
+        <input type="text" id="inputBusca" placeholder="pesquise o nome do funcionario">
         <thead>
           <tr>
             <th>Nome</th>
@@ -119,12 +121,12 @@
 
         <tbody id="colaboradores-tbody">
           <?php
-           @session_start();
+          @session_start();
           require("../../model/connect.php");
 
 
           $idEmpresa = $_SESSION["id_empresa"];
-          $busca = mysqli_query($con, "SELECT id_usuario, nome_usuario AS nome, email, telefone, data_nascimento, sexo, cpf, status, ddd FROM usuario WHERE id_empresa= $idEmpresa ORDER BY id_usuario desc LIMIT 10");
+          $busca = mysqli_query($con, "SELECT id_usuario, nome_usuario AS nome, email, telefone, data_nascimento, sexo, cpf, status, ddd,foto FROM usuario WHERE id_empresa= $idEmpresa");
 
           if ($busca->num_rows > 0) {
             while ($row = $busca->fetch_assoc()) {
@@ -137,7 +139,7 @@
               echo '<td>' . $row['cpf'] . '</td>';
               echo '<td>' . ($row['status'] ? 'Ativo' : 'Inativo') . '</td>';
               echo '<td>';
-              echo '<button class="alterar-btn">Alterar</button>';
+              echo "<button onclick=alterarColaborador(" . json_encode($row) . ") class='alterar-btn'>Alterar</button>";
               echo '<form action="/learnfy/Controller/excluirColaborador.act.php" method="post" style="display:inline;">
                           <input type="hidden" name="id_usuario" value="' . $row['id_usuario'] . '">
                           <button type="submit" class="excluir-btn">Excluir</button>
@@ -154,10 +156,50 @@
     </div>
 
     <!-- Formulário de Edição -->
-   
-
+    <script src="../../js/pesquisa_colaborador.js"></script>
     <script src="../../js/file.js"></script>
+    <script>
+      function alterarColaborador(obj) {
+        console.log(obj)
+        scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
 
+        document.querySelector("#iconeCadastro>p").innerText = "Editar Colaborador";
+        document.querySelector(".enviar>span").innerText = "Editar";
+
+        const form = document.querySelector("#cadastro");
+
+        // Atualizar os campos do formulário com os dados do colaborador
+        document.querySelector("#nome").value = obj.nome;
+        document.querySelector("#imagemEmpresa").src = obj.foto.replace("..", "../../")
+        document.querySelector("#data_nascimento").value = obj.data_nascimento;
+        document.querySelector("#sexo").value = obj.sexo;
+        document.querySelector("#file").required = false
+        document.querySelector("#senha")
+        document.querySelector("#telefone").value = obj.telefone;
+        document.querySelector("#email").value = obj.email;
+        document.querySelector("#cpf").value = obj.cpf;
+        document.querySelector("#status").value = obj.status;
+
+        // Adicionar ou atualizar o campo hidden para o ID do colaborador
+        let inputHidden = document.querySelector("#inputIdUsuario");
+        if (inputHidden) {
+          inputHidden.value = obj.id_usuario;
+        } else {
+          inputHidden = document.createElement("input");
+          inputHidden.type = "hidden";
+          inputHidden.id = "inputIdUsuario";
+          inputHidden.name = "id_usuario";
+          inputHidden.value = obj.id_usuario;
+          form.appendChild(inputHidden);
+        }
+
+        // Atualizar a ação do formulário para o endpoint de edição
+        form.action = "/learnfy/Controller/alterarColaborador.act.php";
+      }
+    </script>
     <!-- ---------- fim cadastro -->
     </div>
 
