@@ -1,0 +1,217 @@
+
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    a{
+        text-decoration: none;
+    }
+    body {
+      background-color: #FFFFFF;
+      color: #333333;
+    }
+    
+    /* Navbar */
+    .navbar {
+      background-image: linear-gradient(to right, #334F4A, #5B9A8F);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .navbar .logo {
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    
+    .navbar .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    
+    .navbar .nav-links a {
+      color: white;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      transition: background-color 0.3s;
+    }
+    
+    .navbar .nav-links a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Hero Section */
+    .hero-section {
+      background-image: linear-gradient(to right, #334F4A, #5B9A8F);
+      color: white;
+      padding: 8rem 2rem 5rem;
+      text-align: center;
+    }
+    
+    .hero-section h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .hero-section p {
+      font-size: 1.25rem;
+      max-width: 42rem;
+      margin: 0 auto;
+      opacity: 0.9;
+    }
+    
+    /* Sections comuns */
+    .section {
+      padding: 4rem 1.5rem;
+      max-width: 72rem;
+      margin: 0 auto;
+    }
+    
+    .bg-gray {
+      background-color: #F5F5F5;
+    }
+    
+    .section-title {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #5B9A8F;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      position: relative;
+    }
+    
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 5rem;
+      height: 0.25rem;
+      background-color: #a47998;
+      margin: 0.75rem auto 0;
+    }
+    
+    /* Cards */
+    .card {
+      background-color: white;
+      border-radius: 0.75rem;
+      padding: 2rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border: 1px solid #f0f0f0;
+    }
+    
+    .text-center {
+      text-align: center;
+    }
+    
+    .icon-container {
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+    }
+    
+    .bg-teal {
+      background-color: #5B9A8F;
+    }
+    
+    .bg-purple {
+      background-color: #a47998;
+    }
+    
+    .icon {
+      width: 2rem;
+      height: 2rem;
+      color: white;
+    }
+    
+    .card p {
+      line-height: 1.6;
+      color: #555;
+    }
+    
+    /* Valores grid */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 1.5rem;
+    }
+    
+    @media (min-width: 768px) {
+      .values-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    .value-card {
+      background-color: white;
+      border-radius: 0.75rem;
+      padding: 2rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border: 1px solid #f0f0f0;
+    }
+    
+    .value-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .value-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .value-title {
+      margin-left: 0.75rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #333;
+    }
+    
+    /* Footer */
+    .footer {
+      background-color: #334F4A;
+      color: white;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    
+    .footer-logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+    
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .footer-links a {
+      color: white;
+      text-decoration: none;
+    }
+    
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+    
+    .copyright {
+      opacity: 0.8;
+      font-size: 0.875rem;
+    }
+ 
