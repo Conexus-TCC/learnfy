@@ -13,7 +13,7 @@ if (isset($_SESSION["empresa"])) {
 <header id="nav"> <!--Nav-->
 
     <div>
-        <a href="login.php"><img src="../Imagens/LogoLearnFy.png" alt="Logo LearnFy" id="logo"></a>
+        <a href="login.php"><img src="../Imagens/LogoLearnFy.png" id="logo"></a>
     </div>
 
     <div id="botoesNav">
