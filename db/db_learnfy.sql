@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 08/03/2025 às 21:54
+-- Tempo de geração: 18/03/2025 às 04:48
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -20,10 +20,29 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `db_learnfy`
 --
+CREATE DATABASE IF NOT EXISTS `db_learnfy` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE `db_learnfy`;
 
 -- --------------------------------------------------------
-CREATE DATABASE IF NOT EXISTS `db_learnfy` DEFAULT CHARACTER SET utf8mb4 COLLATE=utf8mb4_unicode_ci;
-USE `db_learnfy`;
+
+--
+-- Estrutura para tabela `categoria_curso`
+--
+
+CREATE TABLE `categoria_curso` (
+  `id_categoria` int(11) NOT NULL,
+  `nome_categoria` varchar(30) NOT NULL,
+  `id_empresa` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Despejando dados para a tabela `categoria_curso`
+--
+
+
+
+-- --------------------------------------------------------
+
 --
 -- Estrutura para tabela `empresa`
 --
@@ -41,6 +60,12 @@ CREATE TABLE `empresa` (
   `ddd` varchar(3) DEFAULT NULL,
   `telefone` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Despejando dados para a tabela `empresa`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -63,6 +88,21 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- Despejando dados para a tabela `usuario`
+--
+
+--
+-- Índices para tabelas despejadas
+--
+
+--
+-- Índices de tabela `categoria_curso`
+--
+ALTER TABLE `categoria_curso`
+  ADD PRIMARY KEY (`id_categoria`),
+  ADD KEY `fk_categoriaCurso` (`id_empresa`);
+
+--
 -- Índices de tabela `empresa`
 --
 ALTER TABLE `empresa`
@@ -80,20 +120,32 @@ ALTER TABLE `usuario`
 --
 
 --
+-- AUTO_INCREMENT de tabela `categoria_curso`
+--
+ALTER TABLE `categoria_curso`
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT de tabela `empresa`
 --
 ALTER TABLE `empresa`
-  MODIFY `id_empresa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `id_empresa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restrições para tabelas despejadas
 --
+
+--
+-- Restrições para tabelas `categoria_curso`
+--
+ALTER TABLE `categoria_curso`
+  ADD CONSTRAINT `fk_categoriaCurso` FOREIGN KEY (`id_empresa`) REFERENCES `empresa` (`id_empresa`);
 
 --
 -- Restrições para tabelas `usuario`
