@@ -17,7 +17,7 @@ $idEmpresa =$_SESSION["id_empresa"];
     }
 
 $_SESSION["contexto"] = "categorias";
-header("location:../View/gerenciamento_empresa/");
+header("location:../View/gerenciamento_empresa/categorias.php");
 
 
 

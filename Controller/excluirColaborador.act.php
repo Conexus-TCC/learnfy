@@ -22,5 +22,5 @@ if (isset($_POST['id_usuario'])) {
     $_SESSION['alertIcon'] = "error";
 }
 $_SESSION["contexto"] = "colaboradores";
-header("location:../View/gerenciamento_empresa/");
+header("location:../View/gerenciamento_empresa/colaboradores.php");
 ?>

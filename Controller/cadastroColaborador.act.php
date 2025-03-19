@@ -28,7 +28,7 @@ if($buscaCpf->num_rows == 0 && $buscaEmail->num_rows == 0){
     $_SESSION['alertIcon'] = "error";
 }
 $_SESSION["contexto"] = "colaboradores";
-header("location:../View/gerenciamento_empresa/");
+header("location:../View/gerenciamento_empresa/colaboradores.php");
 
 
 

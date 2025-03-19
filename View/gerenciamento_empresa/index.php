@@ -15,21 +15,22 @@
 
 <body>
 
-<?php
-@session_start();
-if (isset($_SESSION["msg"])) {
-  echo "<script>
+  <?php
+  @session_start();
+  if (isset($_SESSION["msg"])) {
+    echo "<script>
+  
             Swal.fire({
                 title: '{$_SESSION['msg']}',
                 text: '{$_SESSION['alertMsg']}',
                 icon: '{$_SESSION['alertIcon']}'
             });
         </script>";
-  unset($_SESSION["msg"]);
-  unset($_SESSION["alertMsg"]);
-  unset($_SESSION["alertIcon"]);
-}
-?>
+    unset($_SESSION["msg"]);
+    unset($_SESSION["alertMsg"]);
+    unset($_SESSION["alertIcon"]);
+  }
+  ?>
   <div class="app-container">
     <!-- Sidebar -->
     <?php include("./sidebar.php") ?>
@@ -47,6 +48,12 @@ if (isset($_SESSION["msg"])) {
       ?>
       <iframe src="<?= "./$local.php" ?>" frameborder="0"></iframe>
     </main>
+    <script>
+      let iframe = document.querySelector("iframe")
+      iframe.addEventListener("submit", () => {
+        console.log("Submit")
+      })
+    </script>
     <script id="sidebar" src="/learnfy/js/sidebar.js"></script>
 </body>
 

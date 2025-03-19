@@ -3,6 +3,7 @@
 $_SESSION["contexto"] = "categorias";
 ?>
 <link rel="stylesheet" href="/learnfy/Css/Colaboradores.css">
+<script src="/learnfy/js/sweetalert.js"></script>
 <!-- Conteúdo específico da página de colaboradores -->
 <div class="page-header">
   <div class="page-title">
@@ -11,12 +12,24 @@ $_SESSION["contexto"] = "categorias";
   </div>
 </div>
 
+
 <?php
 
 
 @session_start();
 
-
+if (isset($_SESSION["msg"])) {
+  echo "<script>
+            Swal.fire({
+                title: '{$_SESSION['msg']}',
+                text: '{$_SESSION['alertMsg']}',
+                icon: '{$_SESSION['alertIcon']}'
+            });
+        </script>";
+  unset($_SESSION["msg"]);
+  unset($_SESSION["alertMsg"]);
+  unset($_SESSION["alertIcon"]);
+}
 
 $idEmpresa = $_SESSION["id_empresa"];
 
@@ -122,7 +135,7 @@ $idEmpresa = $_SESSION["id_empresa"];
       inputhidden.value = obj.id_categoria
     } else {
       inputhidden = document.createElement("input")
-      inputhidden.type="hidden"
+      inputhidden.type = "hidden"
       form.appendChild(inputhidden)
       inputhidden.id = "inputIdCategoria"
       inputhidden.value = obj.id_categoria

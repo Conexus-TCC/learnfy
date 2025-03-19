@@ -13,7 +13,7 @@
         $empresa = mysqli_fetch_assoc($busca); 
         
         if(password_verify($senha, $empresa['senha'])){ // Verifica se a senha está correta
-            
+             $_SESSION["logado"] = true;
             $_SESSION["nome"]=$empresa["nome_empresa"];
             $_SESSION["id_empresa"]=$empresa["id_empresa"];
             $_SESSION["cnpj"]=$empresa["cnpj"];

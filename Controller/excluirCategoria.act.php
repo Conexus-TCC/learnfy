@@ -22,4 +22,4 @@ if (isset($_POST['id_categoria'])) {
     $_SESSION['alertIcon'] = "error";
 }
 $_SESSION["contexto"] = "categorias";
-header("location:../View/gerenciamento_empresa/");
+header("location:../View/gerenciamento_empresa/categorias.php");

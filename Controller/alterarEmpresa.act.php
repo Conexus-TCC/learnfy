@@ -44,6 +44,6 @@ if(alterarEmpresa($dados)){
     $_SESSION['msg'] = "erro!";
     $_SESSION['alertMsg'] = "Erro ao Alterar !";
     $_SESSION['alertIcon'] = "success";
-    header("location:../View/gerenciamento_empresa/");
+    header("location:../View/gerenciamento_empresa/editarEmpresa.php");
     exit;
 }

@@ -1,8 +1,9 @@
     <?php
     @session_start();
-      $_SESSION["contexto"] = "colaboradores"
-     ?>
+    $_SESSION["contexto"] = "colaboradores"
+    ?>
     <link rel="stylesheet" href="/learnfy/Css/Colaboradores.css">
+    <script src="/learnfy/js/sweetalert.js"></script>
     <!-- Conteúdo específico da página de colaboradores -->
     <div class="page-header">
       <div class="page-title">
@@ -119,7 +120,7 @@
 
         <tbody id="colaboradores-tbody">
           <?php
-           @session_start();
+          @session_start();
           require("../../model/connect.php");
 
 
@@ -154,7 +155,7 @@
     </div>
 
     <!-- Formulário de Edição -->
-   
+
 
     <script src="../../js/file.js"></script>
 

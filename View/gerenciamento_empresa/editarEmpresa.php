@@ -21,6 +21,7 @@ $_SESSION["contexto"] = "editarEmpresa"
 <script src="../../js/jquery-3.7.1.min.js"></script>
 <script src="../../js/jquery.mask.js"></script>
 <link rel="stylesheet" href="../../Css/cadastroEmpresa.css">
+<script src="/learnfy/js/sweetalert.js"></script>
 <div class="page-header">
   <div class="page-title">
     <h1>Empresa</h1>
