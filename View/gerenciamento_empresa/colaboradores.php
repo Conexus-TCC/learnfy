@@ -1,7 +1,7 @@
     <?php
     @session_start();
-      $_SESSION["contexto"] = "colaboradores"
-     ?>
+    $_SESSION["contexto"] = "colaboradores"
+    ?>
     <link rel="stylesheet" href="/learnfy/Css/Colaboradores.css">
     <script src="/learnfy/js/sweetalert.js"></script>
     <!-- Conteúdo específico da página de colaboradores -->
@@ -105,7 +105,7 @@
     <div class="mostrarColaboradores">
       <h2>Últimos colaboradores cadastrados</h2>
       <table class="colaboradores-table">
-        <input type="text" id="inputBusca" placeholder="pesquise o nome do funcionario">
+        <input type="text" id="inputBusca" placeholder="Pesquise o nome do funcionario">
         <thead>
           <tr>
             <th>Nome</th>
@@ -156,9 +156,10 @@
     </div>
 
     <!-- Formulário de Edição -->
-   
+
 
     <script src="../../js/file.js"></script>
+    <script type="module" src="../../js/pesquisa_colaborador.js"></script>
     <script>
       function alterarColaborador(obj) {
         console.log(obj)

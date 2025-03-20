@@ -1,3 +1,4 @@
+import {debounce}from "./main.js"
 async function fetchPesquisa(pesquisa) { 
  try {
    const search = new URLSearchParams({nome:pesquisa})
