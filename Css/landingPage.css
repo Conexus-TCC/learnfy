@@ -1,0 +1,174 @@
+#principal{
+    display: flex;
+    justify-content: center;
+    gap: 1px;
+    width: 100%;
+}
+
+#principal>div>h1{
+    color: #985C7E;
+    width: 100%;
+    font-size: 59px;
+    font-family: Inter;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 64px;
+    line-height: 100%;
+    letter-spacing: 0%;
+
+}
+
+#principal>div{
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 50px;
+    margin-right: 5%;
+    margin: 0 10%;
+}
+
+#icn{
+    display: flex;
+    font-family: Inter;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    margin-right: 2%;
+
+}
+
+#icn>div>p{
+    width: 40%;
+    margin-top: 2%;
+}
+
+a{
+    width: 100%;
+}
+
+button{
+    width: 50%;
+    background-color:#558D8C;
+    color: white;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 15px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 100;
+    font-size: 24px;
+    line-height: 100%;
+    letter-spacing: 0%;
+
+}
+
+@media (max-width: 768px) {
+    #img>img{
+        width: 120%;
+        margin: 10%;
+    }
+
+    #principal>div{
+        gap: 5px;
+    }
+
+    #icn{
+        margin: 20%;
+        width: 100%;
+    }
+
+}
+
+#secaoDois{
+    margin-top: 8%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#secaoDois>h1{
+    color: black;
+    font-family: Inter;
+    font-weight: 900;
+    font-size: 40px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+    margin-bottom: 2%;
+}
+
+#secaoDois>h2{
+    font-family: Inter;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+    width: 60%;
+}
+
+#cards>div{
+    background-color: #558D8C87;
+    width: 20%;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    gap: 15px;
+}
+
+#cards{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10%;
+    margin-top: 3%;
+}
+
+#cards>div>h1{
+    font-family: Inter;
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+    color: black;
+}
+
+#cards>div>p{
+    font-family: Inter;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+
+}
+
+@media (max-width: 768px) {
+    #secaoDois>h1{
+        font-size: 27px;
+    }
+
+    #secaoDois>h2{
+        font-size: 20px;
+        width: 86%;
+    }
+
+    #cards{
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 5%;
+    }
+
+    #cards>div{
+        width: 50%;
+        gap: 0;
+    }
+}
