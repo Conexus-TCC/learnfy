@@ -14,6 +14,10 @@ async function fetchPesquisa(pesquisa) {
   tbody.innerHTML=""
   const data = await fetchPesquisa(pesquisa)
     tbody.innerHTML=data
+    window.scrollTo({
+      top:window.innerHeight,
+      behavior:"smooth"
+    })
   
  }
  document.querySelector("#inputBusca").addEventListener(

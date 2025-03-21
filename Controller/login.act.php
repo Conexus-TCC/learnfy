@@ -60,16 +60,22 @@
                 $_SESSION["status"]=$usuario["status"];
     
                 $destino = "../View/loginUsuario.php";
-                $msg = "Bem-vindo, " . $_SESSION["nome"];
+            $msg = "Bem-vindo, " . $_SESSION["nome"];
+            $msgType = "cadastrado";
+            $alertIcon = 'success';
                
             } else {  
                 $destino = "../View/login.php";
-                $msg = "Email ou senha incorretos!";
+            $msg = "Email ou senha incorretos!";
+            $msgType = "erro ao cadastrar";
+            $alertIcon = "error";
             }
         }
         else {
             $destino = "../View/login.php";
-            $msg = "Email ou senha incorretos!" ; 
+        $msg = "Email ou senha incorretos!";
+        $msgType = "erro ao cadastrar";
+        $alertIcon = "error";
         }
     }
 
