@@ -1,0 +1,63 @@
+#bar{
+    background-color: #558D8C;
+    height: 100px;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding-left: 2%;
+    margin-top: 2%;
+    width: 100%;
+}
+
+#principal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.pesquisar {
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 25px;
+    padding: 10px 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-icon {
+    font-weight: bold;
+    margin-right: 10px;
+    color: #000000;
+}
+
+.search-input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 16px;
+    color: #383737;
+}
+
+.search-input::placeholder {
+    color: #383737;
+}
+
+.categorias{
+    width: 100%;
+    margin-left: 2%;
+}
+
+.cursos{
+    width: 15%;
+    height: 300px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
