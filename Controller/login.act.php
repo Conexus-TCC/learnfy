@@ -13,7 +13,7 @@
         $empresa = mysqli_fetch_assoc($busca); 
         
         if(password_verify($senha, $empresa['senha'])){ // Verifica se a senha está correta
-            
+             $_SESSION["logado"] = true;
             $_SESSION["nome"]=$empresa["nome_empresa"];
             $_SESSION["id_empresa"]=$empresa["id_empresa"];
             $_SESSION["cnpj"]=$empresa["cnpj"];
@@ -60,16 +60,22 @@
                 $_SESSION["status"]=$usuario["status"];
     
                 $destino = "../View/loginUsuario.php";
-                $msg = "Bem-vindo, " . $_SESSION["nome"];
+            $msg = "Bem-vindo, " . $_SESSION["nome"];
+            $msgType = "cadastrado";
+            $alertIcon = 'success';
                
             } else {  
                 $destino = "../View/login.php";
-                $msg = "Email ou senha incorretos!";
+            $msg = "Email ou senha incorretos!";
+            $msgType = "erro ao cadastrar";
+            $alertIcon = "error";
             }
         }
         else {
             $destino = "../View/login.php";
-            $msg = "Email ou senha incorretos!" ; 
+        $msg = "Email ou senha incorretos!";
+        $msgType = "erro ao cadastrar";
+        $alertIcon = "error";
         }
     }
 
