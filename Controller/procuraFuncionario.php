@@ -20,8 +20,8 @@ $fetch = mysqli_query($con, "SELECT id_usuario,
       ORDER BY id_usuario desc $append");
       $res =array();
       if($fetch->num_rows<=0){
-      header("content-type:text/plaintext");
-      echo "nenhum colaborador encontrado";
+      header("content-type:text/html");
+      echo "<h3>nenhum colaborador encontrado</h3>";
       }else{
           while($row=$fetch->fetch_assoc()){
     echo '<tr data-id="' . $row['id_usuario'] . '" data-ddd="' . $row['ddd'] . '">';

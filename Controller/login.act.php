@@ -43,9 +43,9 @@
         $busca = mysqli_query($con, "SELECT * FROM `usuario` WHERE `email` = '$email'");
 
         if($busca->num_rows > 0){
-            $empresa = mysqli_fetch_assoc($busca); 
+            $usuario = mysqli_fetch_assoc($busca); 
             
-            if(password_verify($senha, $empresa['senha'])){ // Verifica se a senha está correta
+            if(password_verify($senha, $usuario['senha'])){ // Verifica se a senha está correta
                 
                 $_SESSION["logado"] = true;
                 $_SESSION["nome"]=$usuario["nome_usuario"];
@@ -83,7 +83,9 @@
 
     
 
-    $_SESSION["msg"] = $msg;
+    $_SESSION["msg"]=$msgType;
+    $_SESSION['alertMsg']=$msg;
+    $_SESSION['alertIcon']=$alertIcon;
     header("location:$destino");
     exit; 
 ?>

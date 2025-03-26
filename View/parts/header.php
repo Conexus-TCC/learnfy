@@ -3,10 +3,14 @@
 $img = "../icones/usuario.svg";
 $msg = "fazer login";
 $link = "login.php";
-if (isset($_SESSION["empresa"])) {
-    $img = $_SESSION["empresa"]["logo"];
-    $msg = $_SESSION["empresa"]["nome_empresa"];
-    $link = "gerenciamento.php";
+if(isset($_SESSION["id_usuario"])){
+    $img=$_SESSION["foto"];
+    $msg=$_SESSION["nome"];
+    $link="loginUsuario.php";
+}else if(isset($_SESSION["id_empresa"])){
+    $img = $_SESSION["logo"];
+    $msg = $_SESSION["nome"];
+    $link = "gerenciamento_empresa/";
 }
 ?>
 <div class="fundo"></div>
@@ -19,7 +23,7 @@ if (isset($_SESSION["empresa"])) {
     <div id="botoesNav">
         <ul>
             <li><a href="index.php">Home</a></li>
-            <li><a href="#">Cursos</a></li>
+            <li><a href="cursos.php">Cursos</a></li>
             <li><a href="sobre.php">Sobre</a></li>
             <li><a href="contato.php">Contato</a></li>
         </ul>

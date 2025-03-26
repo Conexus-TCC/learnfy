@@ -1,3 +1,18 @@
+<?php
+/* Descomentear para ativar a necessidade do login
+ */
+
+// @session_start();
+// if(!isset($_SESSION["id_usuario"])){
+//     $_SESSION["msg"] = "Você deve estar cadastrado para acessar essa pagina";
+//     $_SESSION['alertMsg'] = "Acesso negado";
+//     $_SESSION['alertIcon'] = "error";
+//     header("location:login.php");
+// }
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -13,7 +28,7 @@
 
     <div id="principal">
 
-    <div id="bar"><h1>Cursos $</h1></div>
+    <div id="bar"><h1>Cursos $nome_empresa</h1></div>
     <div class="pesquisar">
         <div class="search-box">
             <span class="search-icon">Q</span>
