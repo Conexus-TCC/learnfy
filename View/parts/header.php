@@ -19,7 +19,7 @@ if (isset($_SESSION["empresa"])) {
     <div id="botoesNav">
         <ul>
             <li><a href="index.php">Home</a></li>
-            <li><a href="#">Cursos</a></li>
+            <li><a href="cursos.php">Cursos</a></li>
             <li><a href="sobre.php">Sobre</a></li>
             <li><a href="contato.php">Contato</a></li>
         </ul>
