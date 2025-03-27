@@ -7,9 +7,8 @@
 
 #principal>div>h1{
     color: #985C7E;
-    width: 100%;
-    font-size: 59px;
-    font-family: Inter;
+    width: 90%;
+    font-size: 670px;
     font-weight: 700;
     font-style: italic;
     font-size: 64px;
@@ -20,24 +19,24 @@
 
 #principal>div{
     width: 60%;
+    height: 70vh;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: flex-start;
-    gap: 50px;
+    gap: 80px;
     margin-right: 5%;
     margin: 0 10%;
 }
 
 #icn{
     display: flex;
-    font-family: Inter;
     font-weight: 700;
     font-size: 16px;
     line-height: 100%;
     letter-spacing: 0%;
     margin-right: 2%;
-
+    width: 70%;
 }
 
 #icn>div>p{
@@ -56,7 +55,6 @@ button{
     height: 40px;
     font-size: 20px;
     border-radius: 15px;
-    font-family: 'Times New Roman', Times, serif;
     font-weight: 100;
     font-size: 24px;
     line-height: 100%;
@@ -91,7 +89,6 @@ button{
 
 #secaoDois>h1{
     color: black;
-    font-family: Inter;
     font-weight: 900;
     font-size: 40px;
     line-height: 100%;
@@ -101,7 +98,6 @@ button{
 }
 
 #secaoDois>h2{
-    font-family: Inter;
     font-weight: 400;
     font-size: 20px;
     line-height: 100%;
@@ -132,7 +128,6 @@ button{
 }
 
 #cards>div>h1{
-    font-family: Inter;
     font-weight: 800;
     font-size: 24px;
     line-height: 100%;
@@ -142,7 +137,6 @@ button{
 }
 
 #cards>div>p{
-    font-family: Inter;
     font-weight: 400;
     font-size: 20px;
     line-height: 100%;
