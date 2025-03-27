@@ -4,12 +4,15 @@
     gap: 1px;
     width: 100%;
 }
+#btn{
+    width: 100%;
+}
+
 
 #principal>div>h1{
     color: #985C7E;
-    width: 100%;
-    font-size: 59px;
-    font-family: Inter;
+    width: 90%;
+    font-size: 670px;
     font-weight: 700;
     font-style: italic;
     font-size: 64px;
@@ -20,24 +23,24 @@
 
 #principal>div{
     width: 60%;
+    height: 70vh;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: flex-start;
-    gap: 50px;
+    gap: 80px;
     margin-right: 5%;
     margin: 0 10%;
 }
 
 #icn{
     display: flex;
-    font-family: Inter;
     font-weight: 700;
     font-size: 16px;
     line-height: 100%;
     letter-spacing: 0%;
     margin-right: 2%;
-
+    width: 70%;
 }
 
 #icn>div>p{
@@ -45,9 +48,7 @@
     margin-top: 2%;
 }
 
-a{
-    width: 100%;
-}
+
 
 button{
     width: 50%;
@@ -56,7 +57,6 @@ button{
     height: 40px;
     font-size: 20px;
     border-radius: 15px;
-    font-family: 'Times New Roman', Times, serif;
     font-weight: 100;
     font-size: 24px;
     line-height: 100%;
@@ -91,7 +91,6 @@ button{
 
 #secaoDois>h1{
     color: black;
-    font-family: Inter;
     font-weight: 900;
     font-size: 40px;
     line-height: 100%;
@@ -101,7 +100,6 @@ button{
 }
 
 #secaoDois>h2{
-    font-family: Inter;
     font-weight: 400;
     font-size: 20px;
     line-height: 100%;
@@ -132,7 +130,6 @@ button{
 }
 
 #cards>div>h1{
-    font-family: Inter;
     font-weight: 800;
     font-size: 24px;
     line-height: 100%;
@@ -142,7 +139,6 @@ button{
 }
 
 #cards>div>p{
-    font-family: Inter;
     font-weight: 400;
     font-size: 20px;
     line-height: 100%;
@@ -150,6 +146,203 @@ button{
     text-align: center;
 
 }
+/* Benefits Section */
+.benefits {
+  padding: 6rem 2rem;
+  background-color: var(--gray-100);
+}
+
+.benefits h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.benefits-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.benefit-card {
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  border-radius: var(--radius);
+  text-align: center;
+  transition: all 0.3s ease;
+  flex: 1;
+  min-width: 300px;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+}
+
+.benefit-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.icon-circle {
+  width: 4rem;
+  height: 4rem;
+  background-color: rgba(71, 60, 109, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  font-size: 1.5rem;
+  color: var(--primary);
+}
+
+.benefit-card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.benefit-card p {
+  color: var(--gray-700);
+  margin-bottom: 1.5rem;
+}
+
+.benefit-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  margin-top: auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.benefit-card:hover .benefit-image {
+  transform: scale(1.05);
+}
+
+
+/* Testimonials Section */
+.testimonials {
+  padding: 6rem 2rem;
+}
+
+.testimonials h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #473c6d;
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.testimonials-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.testimonial-card {
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  transition: all 0.3s ease;
+  flex: 1;
+  min-width: 300px;
+  max-width: 350px;
+}
+
+.testimonial-card:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.avatar {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: rgba(71, 60, 109, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.person-info {
+  margin-left: 1rem;
+}
+
+.person-info h4 {
+  font-weight: 600;
+  color: #473c6d;;
+}
+
+.person-info p {
+  font-size: 0.875rem;
+  color: var(--gray-600);
+}
+
+.quote {
+  color: var(--gray-700);
+}
+
+/* Stats Section */
+.stats {
+  padding: 6rem 2rem;
+  background-color: #473c6d;;
+  color: var(--white);
+}
+
+.stats-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.stat-item {
+  flex: 1;
+  min-width: 200px;
+}
+
+.stat-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  opacity: 0.8;
+}
+
+
 
 @media (max-width: 768px) {
     #secaoDois>h1{
