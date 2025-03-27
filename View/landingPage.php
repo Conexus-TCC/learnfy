@@ -20,7 +20,7 @@
 
         <div>
             <h1>Invista no potencial dos seus colaboradores</h1>
-            <a id="btn"  href=""><button>Visitar Site!</button></a>
+            <a id="btn" href=""><button>Visitar Site!</button></a>
             <div id="icn">
                 <div>
                     <img src="../icones/users.png" alt="">
@@ -47,27 +47,29 @@
 
     <div id="secaoDois">
 
-        <h1><Strong>Tudo que sua empresa precisa para impulsionar o aprendizado</Strong></h1>
-        <h2>Nossa plataforma foi desenvolvida para facilitar o aprendizado e desenvolvimento dos seus colaboradores, com ferramentas que ajudam a potencializar resultados.</h2>
+        <section class="benefits">
+            <h2>Por que escolher nossa plataforma?</h2>
+            <div class="benefits-container">
+                <div class="benefit-card">
+                    <div class="icon-circle">✓</div>
+                    <h3>Conhecimento aprofundado</h3>
+                    <p>Crie perguntas e coloque matériais de apoio</p>
 
-        <div id="cards">
+                </div>
+                <div class="benefit-card">
+                    <div class="icon-circle">✓</div>
+                    <h3>Acompanhamento em Tempo Real</h3>
+                    <p>Monitore o progresso e engajamento dos colaboradores com análises detalhadas.</p>
 
-            <div>
-                <h1>Conhecimento aprofundado</h1>
-                <p>Crie perguntas e coloque matériais de apoio</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="icon-circle">✓</div>
+                    <h3>Certificações</h3>
+                    <p>Emita certificados para validar as competências adquiridas.</p>
+
+                </div>
             </div>
-
-            <div>
-                <h1>Dashboard </h1>
-                <p>Visualize o avanço dos colaboradores nas trilhas de aprendizado.</p>
-            </div>
-
-            <div>
-                <h1>Certificações</h1>
-                <p>Emita certificados para validar as competências adquiridas.</p>
-            </div>
-
-        </div>
+        </section>
 
     </div>
 
