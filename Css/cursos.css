@@ -1,4 +1,4 @@
-#bar{
+.bar{
     background-color: #558D8C;
     height: 100px;
     color: white;
@@ -54,10 +54,155 @@
     margin-left: 2%;
 }
 
-.cursos{
-    width: 15%;
+.categorias>div{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 2%;
+}
+
+.cursos {
+    width: 250px;
     height: 300px;
     background-color: white;
     border-radius: 15px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: translateY(0);
+    cursor: pointer;
+    margin-top: 3%;
 }
+
+.cursos:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.08);
+}
+
+.cursos:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+.cursos::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 60%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.cursos:hover::after {
+    opacity: 1;
+}
+
+.cursos::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: 2px solid transparent;
+    border-radius: 17px;
+    background: linear-gradient(45deg, #135a0e, #1a7a13) border-box;
+    -webkit-mask: linear-gradient(#ffffff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.cursos:hover::before {
+    opacity: 1;
+}
+
+.cursos>div{
+    display: flex;
+    gap: 30%;
+}
+
+.conteudoCard{
+    justify-content: flex-start;
+    margin-left: 2%;
+}
+
+.cursos>div>div{
+    display: flex;
+}
+
+.cursos>img{
+    width: 100%;
+}
+
+.barra{
+    height: 22px;
+    font-size: 10px;
+    background-color: #3BB4FF;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: white;
+    padding-left: 2%;
+    font-family: inter;
+    font-weight: 900;
+}
+
+.cursos>h1{
+    font-size: 20px;
+    margin-top: 10%;
+    margin-bottom: 12%;
+    font-weight: 900;
+    margin-left: 2%;
+}
+
+.btnSituacao{
+    width: 40%;
+    height: 25px;
+    border-radius: 30px;
+    background-color: #135a0e;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 
+                0 1px 3px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    top: 0;
+    cursor: auto;
+}
+
+#oferecidoPor{
+    margin-bottom: 6%;
+}
+
+#qtdAlunos{
+    margin-top: 8%;
+}
+
+@media (max-width: 768px) {
+    .categorias>div{
+        justify-content: center;
+    }
+
+    .cursos{
+        margin-top: 5%;
+        height: 310px;
+    }
+
+    .categorias{
+        justify-content: center;
+    }
+
+  }
+  

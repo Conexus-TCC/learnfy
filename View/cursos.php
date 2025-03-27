@@ -38,15 +38,79 @@
 
     <div class="categorias">
 
-        <h1>$categoria</h1>
+        <h1 id="tituloCategoria">$categoria</h1>
         <div>
+            
+            <div class="cursos">
+                <img src="../Imagens/image 62.png" alt="">
+                <div class="barra"><h1>$categoria</h1></div>
+
+                <h1>$nomeCurso</h1>
+                <div class="conteudoCard" id="oferecidoPor"><p>Oferecido por:</p> <img src="../fotosSite/image 53.png" alt=""></div>
+                <div class="conteudoCard"><div><img src="../icones/image 8.png" alt=""> <p id="qtdAlunos">$500</p></div> <button class="btnSituacao">$situacao</button></div>
+            </div>
 
             <div class="cursos">
-                <img src="../fotosSite/image 62.png" alt="">
-                <div><h1>$categoria</h1></div>
+                <img src="../Imagens/image 62.png" alt="">
+                <div class="barra"><h1>$categoria</h1></div>
+
                 <h1>$nomeCurso</h1>
-                <div><p>Oferecido por:</p> <img src="" alt=""></div>
-                <div><img src="../icones/image 8.png" alt=""> <p>500</p> <button>$situacao</button></div>
+                <div class="conteudoCard" id="oferecidoPor"><p>Oferecido por:</p> <img src="../fotosSite/image 53.png" alt=""></div>
+                <div class="conteudoCard"><div><img src="../icones/image 8.png" alt=""> <p id="qtdAlunos">$500</p></div> <button class="btnSituacao">$situacao</button></div>
+            </div>
+
+            <div class="cursos">
+                <img src="../Imagens/image 62.png" alt="">
+                <div class="barra"><h1>$categoria</h1></div>
+
+                <h1>$nomeCurso</h1>
+                <div class="conteudoCard" id="oferecidoPor"><p>Oferecido por:</p> <img src="../fotosSite/image 53.png" alt=""></div>
+                <div class="conteudoCard"><div><img src="../icones/image 8.png" alt=""> <p id="qtdAlunos">$500</p></div> <button class="btnSituacao">$situacao</button></div>
+            </div>
+
+            <div class="cursos">
+                <img src="../Imagens/image 62.png" alt="">
+                <div class="barra"><h1>$categoria</h1></div>
+
+                <h1>$nomeCurso</h1>
+                <div class="conteudoCard" id="oferecidoPor"><p>Oferecido por:</p> <img src="../fotosSite/image 53.png" alt=""></div>
+                <div class="conteudoCard"><div><img src="../icones/image 8.png" alt=""> <p id="qtdAlunos">$500</p></div> <button class="btnSituacao">$situacao</button></div>
+            </div>
+
+            <div class="cursos">
+                <img src="../Imagens/image 62.png" alt="">
+                <div class="barra"><h1>$categoria</h1></div>
+
+                <h1>$nomeCurso</h1>
+                <div class="conteudoCard" id="oferecidoPor"><p>Oferecido por:</p> <img src="../fotosSite/image 53.png" alt=""></div>
+                <div class="conteudoCard"><div><img src="../icones/image 8.png" alt=""> <p id="qtdAlunos">$500</p></div> <button class="btnSituacao">$situacao</button></div>
+            </div>
+
+            <div class="cursos">
+                <img src="../Imagens/image 62.png" alt="">
+                <div class="barra"><h1>$categoria</h1></div>
+
+                <h1>$nomeCurso</h1>
+                <div class="conteudoCard" id="oferecidoPor"><p>Oferecido por:</p> <img src="../fotosSite/image 53.png" alt=""></div>
+                <div class="conteudoCard"><div><img src="../icones/image 8.png" alt=""> <p id="qtdAlunos">$500</p></div> <button class="btnSituacao">$situacao</button></div>
+            </div>
+
+            <div class="cursos">
+                <img src="../Imagens/image 62.png" alt="">
+                <div class="barra"><h1>$categoria</h1></div>
+
+                <h1>$nomeCurso</h1>
+                <div class="conteudoCard" id="oferecidoPor"><p>Oferecido por:</p> <img src="../fotosSite/image 53.png" alt=""></div>
+                <div class="conteudoCard"><div><img src="../icones/image 8.png" alt=""> <p id="qtdAlunos">$500</p></div> <button class="btnSituacao">$situacao</button></div>
+            </div>
+
+            <div class="cursos">
+                <img src="../Imagens/image 62.png" alt="">
+                <div class="barra"><h1>$categoria</h1></div>
+
+                <h1>$nomeCurso</h1>
+                <div class="conteudoCard" id="oferecidoPor"><p>Oferecido por:</p> <img src="../fotosSite/image 53.png" alt=""></div>
+                <div class="conteudoCard"><div><img src="../icones/image 8.png" alt=""> <p id="qtdAlunos">$500</p></div> <button class="btnSituacao">$situacao</button></div>
             </div>
 
         </div>
