@@ -4,6 +4,10 @@
     gap: 1px;
     width: 100%;
 }
+#btn{
+    width: 100%;
+}
+
 
 #principal>div>h1{
     color: #985C7E;
@@ -44,9 +48,7 @@
     margin-top: 2%;
 }
 
-a{
-    width: 100%;
-}
+
 
 button{
     width: 50%;
@@ -144,6 +146,121 @@ button{
     text-align: center;
 
 }
+
+
+/* Testimonials Section */
+.testimonials {
+  padding: 6rem 2rem;
+}
+
+.testimonials h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #473c6d;
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.testimonials-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.testimonial-card {
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  transition: all 0.3s ease;
+  flex: 1;
+  min-width: 300px;
+  max-width: 350px;
+}
+
+.testimonial-card:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.avatar {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: rgba(71, 60, 109, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.person-info {
+  margin-left: 1rem;
+}
+
+.person-info h4 {
+  font-weight: 600;
+  color: #473c6d;;
+}
+
+.person-info p {
+  font-size: 0.875rem;
+  color: var(--gray-600);
+}
+
+.quote {
+  color: var(--gray-700);
+}
+
+/* Stats Section */
+.stats {
+  padding: 6rem 2rem;
+  background-color: #473c6d;;
+  color: var(--white);
+}
+
+.stats-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.stat-item {
+  flex: 1;
+  min-width: 200px;
+}
+
+.stat-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  opacity: 0.8;
+}
+
+
 
 @media (max-width: 768px) {
     #secaoDois>h1{
