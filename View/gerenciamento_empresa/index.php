@@ -7,7 +7,6 @@
   <title>Gerenciamento da Empresa</title>
   <?php include '../parts/head.php' ?>
   <link rel="stylesheet" href="/learnfy/Css/gerenciamento.css">
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 
