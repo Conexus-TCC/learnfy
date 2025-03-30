@@ -4,6 +4,8 @@
     ?>
     <link rel="stylesheet" href="/learnfy/Css/Colaboradores.css">
     <script src="/learnfy/js/sweetalert.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <!-- Conteúdo específico da página de colaboradores -->
     <div class="page-header">
       <div class="page-title">
@@ -240,6 +242,13 @@
             alert('Colaborador selecionado para edição!');
           }
         });
+      });
+    </script>
+    <script>
+      $(document).ready(function() {
+        $("#cpf").mask("000.000.000-00"); // Máscara para CPF
+        $("#telefone").mask("(00) 00000-0000"); // Máscara para telefone
+       
       });
     </script>
 
