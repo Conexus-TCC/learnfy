@@ -45,7 +45,7 @@ $_SESSION["contexto"] = "editarEmpresa"
 
         <label for="cnpj">
           CNPJ
-          <input type="text" id="cnpj" name="cnpj" value="<?= $empresa['cnpj'] ?>" placeholder="00.000.000.0000-00" />
+          <input type="text" id="cnpj" readonly style="background-color: gainsboro;" name="cnpj" value="<?= $empresa['cnpj'] ?>" placeholder="00.000.000.0000-00" />
         </label>
       </div>
 
