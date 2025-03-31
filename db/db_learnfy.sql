@@ -39,9 +39,6 @@ CREATE TABLE `categoria_curso` (
 -- Despejando dados para a tabela `categoria_curso`
 --
 
-INSERT INTO `categoria_curso` (`id_categoria`, `nome_categoria`, `id_empresa`) VALUES
-(4, 'Tecnologia5', 2),
-(5, 'Tecnologia4', 2);
 
 -- --------------------------------------------------------
 
@@ -67,10 +64,6 @@ CREATE TABLE `empresa` (
 -- Despejando dados para a tabela `empresa`
 --
 
-INSERT INTO `empresa` (`id_empresa`, `nome_empresa`, `cnpj`, `ie`, `cep`, `site`, `email`, `senha`, `logo`, `ddd`, `telefone`) VALUES
-(2, 'conexus', '11.111.111/1111-11', '111.111.111.111', '03581-160', NULL, 'conexus@gmail.com', '$2y$10$BCjy7X8yP9hq5uQx5.o0qOq8RH59IcxvE127mkq9AoJYiYyPOCBJG', '../fotosSite/5855b9c87ea22529952785f29a8b5fbe.jpg', NULL, '11 1111-1111'),
-(3, 'Sodexo', '11.111.111/1111-11', '111.111.111.111', '11111-111', NULL, 'sodexo@gmail.com', '$2y$10$B3y2fld3Hsxh70Ugq/BN2.2.apW5xhKvG.HxQI8eoIUCa9si.eQZq', '../fotosSite/53a7d5230c292fda8b58ad2bc5423042.jpg', NULL, '11 1111-1111'),
-(4, 'Tech', '50.809.088/0001-65', '999.999.999.999', '03581-160', NULL, 'tech@gmail.com', '$2y$10$lPzygP5T2LftcaCWw/MMoulyMtLWiaY31OgX5olOjpfK9ZKkuaVOS', '../fotosSite/28b42a2b8a790d533e327e91a4e91544.jpg', NULL, '11 1111-1111');
 
 -- --------------------------------------------------------
 
@@ -97,10 +90,6 @@ CREATE TABLE `usuario` (
 -- Despejando dados para a tabela `usuario`
 --
 
-INSERT INTO `usuario` (`id_usuario`, `nome_usuario`, `data_nascimento`, `sexo`, `ddd`, `telefone`, `email`, `senha`, `cpf`, `foto`, `status`, `id_Empresa`) VALUES
-(2, 'FELIPE S CERQUEIRA', '2025-02-26', 'M', '', '995937887', 'felipe@gmail.com', '$2y$10$crTeR.ToOOH6UDTpyvOSBOUbbGIm.FxSZe2MY1wQEEalr284DwT6K', '11111111111111', '../fotosSite/ae22dc144e04c7b7bb5e8f736ab49a5f.jpg', 1, 2),
-(3, 'Gustavo', '2025-02-26', 'M', '', '111111111', 'gustavo@gmail.com', '$2y$10$Ke.EnJ4pcKpPf4qu.HFGkupQuOuJaPkrzvrwnXt7FeAwQjqCIj0yy', '23454554454545', '../fotosSite/0edcb7fcfb9ebe0c58f4767104256909.jpg', 1, 3),
-(4, 'Felipe', '2025-03-06', 'M', '', '(11) 99593-7887', 'felipe@fivestars.com', '$2y$10$wGN9DU7rK8BAp8XCelvk0ujWp6YZN6ZNVCcZSg2DS4gCoT5GD9WVq', '439.923.060-62', '../fotosSite/89f53435361f3ac7afdf4288dbfcb493.jpg', 1, 4);
 
 --
 -- Índices para tabelas despejadas

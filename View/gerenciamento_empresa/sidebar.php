@@ -22,7 +22,7 @@
       <div class="tooltip">Dashboard</div>
     </li>
     <li class="sidebar-menu-item">
-      <a href="#" class="sidebar-menu-link">
+      <a onclick="trocarSite('cursos.php',this)" class="sidebar-menu-link">
         <span class="sidebar-menu-icon">📚</span>
         <span class="sidebar-menu-text">Cursos</span>
       </a>
