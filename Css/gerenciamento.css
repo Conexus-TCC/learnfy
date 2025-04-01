@@ -658,30 +658,13 @@
         grid-template-columns: 1fr;
       }
     }
-
-    @media (max-width: 991px) {
-      .sidebar {
-        width: 70px;
-      }
-
-      .sidebar .sidebar-logo h1,
-      .sidebar .sidebar-menu-text,
-      .sidebar .logoff-btn-text {
-        display: none;
-      }
-
-      .sidebar .sidebar-menu-link {
-        justify-content: center;
-      }
-
-      .main-content {
+ .main-content {
         margin-left: 70px;
       }
 
       .charts-grid {
         grid-template-columns: 1fr;
       }
-    }
 
     @media (max-width: 768px) {
       .main-content {

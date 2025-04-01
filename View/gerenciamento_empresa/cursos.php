@@ -14,7 +14,7 @@ require '../../Model/connect.php';
 </div>
 
 <div class="page-content">
-  <form action="" method="post" class="form-cadastro" enctype="multipart/form-data">
+  <form action="../../Controller/cadastro_curso.php" method="post" class="form-cadastro" enctype="multipart/form-data">
     <div class="row">
       <label for="titulo">
         <p>Titulo do curso</p>

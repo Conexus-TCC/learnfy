@@ -12,6 +12,9 @@
 }
 
 .sidebar.collapsed {
+  .sidebar-logo-icon {
+    display: none;
+  }
   width: 70px;
 }
 
@@ -145,7 +148,7 @@
 }
 
 .tooltip::before {
-  content: '';
+  content: "";
   position: absolute;
   left: -4px;
   top: 50%;
@@ -192,4 +195,21 @@
 
 .sidebar.collapsed .logoff-btn {
   justify-content: center;
+}
+@media (max-width: 991px) {
+  .sidebar {
+    width: 70px;
+  }
+  .sidebar-logo-icon {
+    display: none;
+  }
+  .sidebar .sidebar-logo h1,
+  .sidebar .sidebar-menu-text,
+  .sidebar .logoff-btn-text {
+    display: none;
+  }
+
+  .sidebar .sidebar-menu-link {
+    justify-content: center;
+  }
 }
