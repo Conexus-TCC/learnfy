@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 30/03/2025 às 01:01
--- Versão do servidor: 10.4.28-MariaDB
--- Versão do PHP: 8.2.4
+-- Tempo de geração: 01/04/2025 às 22:15
+-- Versão do servidor: 10.4.32-MariaDB
+-- Versão do PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -35,10 +35,20 @@ CREATE TABLE `categoria_curso` (
   `id_empresa` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- --------------------------------------------------------
+
 --
--- Despejando dados para a tabela `categoria_curso`
+-- Estrutura para tabela `curso`
 --
 
+CREATE TABLE `curso` (
+  `id_curso` int(11) NOT NULL,
+  `nome` varchar(255) NOT NULL,
+  `descricao` text NOT NULL,
+  `imagem` varchar(255) NOT NULL,
+  `categoria` int(11) NOT NULL,
+  `id_empresa` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -60,11 +70,6 @@ CREATE TABLE `empresa` (
   `telefone` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Despejando dados para a tabela `empresa`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -77,19 +82,14 @@ CREATE TABLE `usuario` (
   `data_nascimento` date NOT NULL,
   `sexo` char(1) NOT NULL,
   `ddd` varchar(3) NOT NULL,
-  `telefone` varchar(15) NOT NULL,
+  `telefone` varchar(9) NOT NULL,
   `email` varchar(60) NOT NULL,
   `senha` varchar(60) NOT NULL,
-  `cpf` varchar(15) NOT NULL,
+  `cpf` varchar(14) NOT NULL,
   `foto` varchar(100) NOT NULL,
   `status` tinyint(1) NOT NULL,
   `id_Empresa` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Despejando dados para a tabela `usuario`
---
-
 
 --
 -- Índices para tabelas despejadas
@@ -101,6 +101,14 @@ CREATE TABLE `usuario` (
 ALTER TABLE `categoria_curso`
   ADD PRIMARY KEY (`id_categoria`),
   ADD KEY `fk_categoriaCurso` (`id_empresa`);
+
+--
+-- Índices de tabela `curso`
+--
+ALTER TABLE `curso`
+  ADD PRIMARY KEY (`id_curso`),
+  ADD KEY `fk_curso_categoria` (`categoria`),
+  ADD KEY `fk_curso_empresa` (`id_empresa`);
 
 --
 -- Índices de tabela `empresa`
@@ -123,19 +131,25 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `categoria_curso`
 --
 ALTER TABLE `categoria_curso`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `curso`
+--
+ALTER TABLE `curso`
+  MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `empresa`
 --
 ALTER TABLE `empresa`
-  MODIFY `id_empresa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_empresa` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restrições para tabelas despejadas
@@ -146,6 +160,13 @@ ALTER TABLE `usuario`
 --
 ALTER TABLE `categoria_curso`
   ADD CONSTRAINT `fk_categoriaCurso` FOREIGN KEY (`id_empresa`) REFERENCES `empresa` (`id_empresa`);
+
+--
+-- Restrições para tabelas `curso`
+--
+ALTER TABLE `curso`
+  ADD CONSTRAINT `fk_curso_categoria` FOREIGN KEY (`categoria`) REFERENCES `categoria_curso` (`id_categoria`),
+  ADD CONSTRAINT `fk_curso_empresa` FOREIGN KEY (`id_empresa`) REFERENCES `empresa` (`id_empresa`);
 
 --
 -- Restrições para tabelas `usuario`
