@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 01/04/2025 às 22:15
+-- Tempo de geração: 03/04/2025 às 20:33
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -22,6 +22,20 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `db_learnfy` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE `db_learnfy`;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `aula`
+--
+
+CREATE TABLE `aula` (
+  `id_aula` int(11) NOT NULL,
+  `nome` varchar(255) NOT NULL,
+  `descricao` varchar(255) NOT NULL,
+  `video` varchar(255) NOT NULL,
+  `id_curso` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -73,6 +87,19 @@ CREATE TABLE `empresa` (
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `materiais_aula`
+--
+
+CREATE TABLE `materiais_aula` (
+  `id_material` int(11) NOT NULL,
+  `filename` varchar(255) NOT NULL,
+  `caminho` varchar(255) NOT NULL,
+  `id_aula` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `usuario`
 --
 
@@ -96,6 +123,13 @@ CREATE TABLE `usuario` (
 --
 
 --
+-- Índices de tabela `aula`
+--
+ALTER TABLE `aula`
+  ADD PRIMARY KEY (`id_aula`),
+  ADD KEY `fk_aula_curso` (`id_curso`);
+
+--
 -- Índices de tabela `categoria_curso`
 --
 ALTER TABLE `categoria_curso`
@@ -117,6 +151,13 @@ ALTER TABLE `empresa`
   ADD PRIMARY KEY (`id_empresa`);
 
 --
+-- Índices de tabela `materiais_aula`
+--
+ALTER TABLE `materiais_aula`
+  ADD PRIMARY KEY (`id_material`),
+  ADD KEY `fk_material_aula` (`id_aula`);
+
+--
 -- Índices de tabela `usuario`
 --
 ALTER TABLE `usuario`
@@ -126,6 +167,12 @@ ALTER TABLE `usuario`
 --
 -- AUTO_INCREMENT para tabelas despejadas
 --
+
+--
+-- AUTO_INCREMENT de tabela `aula`
+--
+ALTER TABLE `aula`
+  MODIFY `id_aula` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `categoria_curso`
@@ -146,6 +193,12 @@ ALTER TABLE `empresa`
   MODIFY `id_empresa` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de tabela `materiais_aula`
+--
+ALTER TABLE `materiais_aula`
+  MODIFY `id_material` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
@@ -154,6 +207,12 @@ ALTER TABLE `usuario`
 --
 -- Restrições para tabelas despejadas
 --
+
+--
+-- Restrições para tabelas `aula`
+--
+ALTER TABLE `aula`
+  ADD CONSTRAINT `fk_aula_curso` FOREIGN KEY (`id_curso`) REFERENCES `curso` (`id_curso`);
 
 --
 -- Restrições para tabelas `categoria_curso`
@@ -167,6 +226,12 @@ ALTER TABLE `categoria_curso`
 ALTER TABLE `curso`
   ADD CONSTRAINT `fk_curso_categoria` FOREIGN KEY (`categoria`) REFERENCES `categoria_curso` (`id_categoria`),
   ADD CONSTRAINT `fk_curso_empresa` FOREIGN KEY (`id_empresa`) REFERENCES `empresa` (`id_empresa`);
+
+--
+-- Restrições para tabelas `materiais_aula`
+--
+ALTER TABLE `materiais_aula`
+  ADD CONSTRAINT `fk_material_aula` FOREIGN KEY (`id_aula`) REFERENCES `aula` (`id_aula`);
 
 --
 -- Restrições para tabelas `usuario`

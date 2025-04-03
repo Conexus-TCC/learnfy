@@ -24,6 +24,7 @@ $idEmpresa=$_SESSION["id_empresa"];
   if(mysqli_query($con,$sql)){
     move_uploaded_file($imagem['tmp_name'],$caminho);
     $_SESSION["nome_curso"]=$titulo;
+    $_SESSION["id_curso"]=mysqli_insert_id($con);
     $_SESSION['contexto']="aulas";
   header("location:../View/gerenciamento_empresa/aulas.php");
 }
