@@ -132,7 +132,8 @@
 
           if ($busca->num_rows > 0) {
             while ($row = $busca->fetch_assoc()) {
-              echo '<tr data-id="' . $row['id_usuario'] . '" data-ddd="' . $row['ddd'] . '">';
+              $JSON =json_encode($row);
+            echo '<tr data-id="' . $row['id_usuario'] . '" data-ddd="' . $row['ddd'] . '">';
               echo '<td>' . $row['nome'] . '</td>';
               echo '<td>' . $row['email'] . '</td>';
               echo '<td>' . $row['telefone'] . '</td>';
@@ -141,7 +142,7 @@
               echo '<td>' . $row['cpf'] . '</td>';
               echo '<td>' . ($row['status'] ? 'Ativo' : 'Inativo') . '</td>';
               echo '<td>';
-              echo "<button onclick=alterarColaborador(" . json_encode($row) . ") class='alterar-btn'>Alterar</button>";
+              echo "<button onclick='alterarColaborador($JSON )' class='alterar-btn'>Alterar</button>";
               echo '<form action="/learnfy/Controller/excluirColaborador.act.php" method="post" style="display:inline;">
                           <input type="hidden" name="id_usuario" value="' . $row['id_usuario'] . '">
                           <button type="submit" class="excluir-btn">Excluir</button>
