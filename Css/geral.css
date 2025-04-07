@@ -20,7 +20,10 @@
       --warning: #F59E0B;
       --radius: 0.5rem;
     }
-
+.flex{
+    display: flex;
+    align-items: center;
+}
 body{
     font-family: "josefin sans", sans-serif;
     height: max-content;

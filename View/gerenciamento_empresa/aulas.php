@@ -1,6 +1,6 @@
 <?php
 @session_start();
-
+   include '../parts/head.php' 
 ?>
 <!DOCTYPE html>
 <link rel="stylesheet" href="../../Css/gerenciamento.css">
@@ -18,7 +18,20 @@
     <path d="M192 79.167V300.834M80 190H304" stroke="#92386B" stroke-width="50" stroke-linecap="round" stroke-linejoin="round" />
   </svg>
   <span>adicionar aula</span> </button>
-  <div class="aulas">
-    <button  id="enviar" type="submit">Enviar</button>
-  </div>
-  <script type="module" src="../../js/addAula.js"> </script>
+<div class="aulas">
+  <button id="enviar" type="submit">Enviar</button>
+</div>
+<script type="module" src="../../js/addAula.js"> </script>
+<script>
+  function colapsar(id, btn) {
+    console.log(btn.style);
+    const div = document.querySelector(`.campos.a${id}`);
+    div.classList.toggle("colapsed");
+    btn.style.rotate = btn.style.rotate == 0 + "deg" ? 180 + "deg" : 0 + "deg";
+    btn.style.transition = "0.5s";
+  }
+
+  function deletar(id) {
+    document.querySelector(`#form-${id}`).remove()
+  }
+</script>

@@ -2,6 +2,7 @@
 require_once "../Model/connect.php";
 @session_start();
 header("Content-Type: application/json; charset=UTF-8");
+
 $id_curso = $_SESSION["id_curso"];
 /*
 em caso de erro executar o seguinte comando no banco de dados:
@@ -12,7 +13,7 @@ extract($_POST);
 extract($_FILES);
 if(!str_contains($video_aula['type'], 'video/')){
   mysqli_query($con,$sqlErr);
-   json_encode(array("msg"=>"error","alertMsg"=>"Formato de video inválido!","alertIcon"=>"error"));
+   echo json_encode(array("msg"=>"error","alertMsg"=>"Formato de video inválido!","alertIcon"=>"error"));
     header("status: 400");
     exit();
 }
@@ -30,12 +31,12 @@ for($i=0;$i<$cont;$i++){
     $filename = $input_materiais["name"][$i];
     $sql = "INSERT INTO `materiais_aula` (`filename`, `caminho`, `id_aula`) VALUES ('$filename', '$caminhoMaterial', '$id_aula')";
     if(mysqli_query($con,$sql)){
-      move_uploaded_file($input_materiais["tmp_name"][$i],$caminhoMaterial);  
-      json_encode(array("msg"=>"success","alertMsg"=>"Aula cadastrada com sucesso!","alertIcon"=>"success"));
+      move_uploaded_file($input_materiais["tmp_name"][$i],$caminhoMaterial);
+     echo json_encode(array("msg"=>"success","alertMsg"=>"Aula cadastrada com sucesso!","alertIcon"=>"success"));
       header("status: 200");
     }else{
       mysqli_query($con,$sqlErr);
-      json_encode(array("msg"=>"error","alertMsg"=>"Erro ao cadastrar o material!","alertIcon"=>"error"));
+      echo json_encode(array("msg"=>"error","alertMsg"=>"Erro ao cadastrar o material!","alertIcon"=>"error"));
       header("status: 400");
       exit();
     }
@@ -44,7 +45,7 @@ for($i=0;$i<$cont;$i++){
 }
 }else{
   mysqli_query($con, $sqlErr);
-  json_encode(array("msg" => "error", "alertMsg" => "Erro ao cadastrar a aula!", "alertIcon" => "error"));
+ echo json_encode(array("msg" => "error", "alertMsg" => "Erro ao cadastrar a aula!", "alertIcon" => "error"));
   header("status: 400");
   exit();
 }

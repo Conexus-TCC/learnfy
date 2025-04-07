@@ -15,6 +15,7 @@
   box-shadow: 0 4px 4px 0 #00000025 ;
 }
 .campos-Curso>.cabecalho{
+  justify-content: space-between;
   align-items: center;
   gap: 5px;
   padding: 10px;
@@ -27,6 +28,15 @@ background-color: #D9D9D9;
       clip-path: circle(38% at 46.58% 50.00%);;
   border-radius: 25px;
   background-color: var(--primary);
+}
+.btn-collapse,.btn-delete{
+  background: none;
+  &:hover{
+    cursor: pointer;
+    svg>g{
+    stroke: #d489b4;
+  }
+}
 }
 }
 .campos{
@@ -87,4 +97,7 @@ background-color: #D9D9D9;
   color: white;
   display: flex;
   align-items: center;
+}
+.colapsed{
+  display: none;
 }
