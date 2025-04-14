@@ -1,7 +1,9 @@
  <?php
- @session_start();
+
+  @session_start();
   $_SESSION["contexto"] = "dashboard"
   ?>
+
  <link rel="stylesheet" href="../../Css/gerenciamento.css">
  <!-- Header da Página -->
  <div class="page-header">
@@ -421,3 +423,20 @@
       }
     });
   </script> -->
+ <script src="/learnfy/js/sweetalert.js"></script>
+ <?php
+  @session_start();
+  if (isset($_SESSION["msg"])) {
+    echo "<script>
+  
+            Swal.fire({
+                title: '{$_SESSION['msg']}',
+                text: '{$_SESSION['alertMsg']}',
+                icon: '{$_SESSION['alertIcon']}'
+            });
+        </script>";
+    unset($_SESSION["msg"]);
+    unset($_SESSION["alertMsg"]);
+    unset($_SESSION["alertIcon"]);
+  }
+  ?>
