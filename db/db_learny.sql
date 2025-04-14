@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 14/04/2025 às 02:16
+-- Tempo de geração: 14/04/2025 às 02:32
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -47,7 +47,7 @@ CREATE TABLE `categoria_curso` (
   `id_categoria` int(11) NOT NULL,
   `nome_categoria` varchar(30) NOT NULL,
   `id_empresa` int(11) NOT NULL,
-  `nivel` int(11) NOT NULL
+  `nivelAcesso` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
