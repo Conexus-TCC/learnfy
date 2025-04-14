@@ -23,13 +23,12 @@ if($logo['size']>0){
     }
     move_uploaded_file($logo['tmp_name'],$dir);
   }
-  $dados = array("id_empresa"=>$id,"nome_empresa"=>$nome,"cnpj"=>$cnpj,"cep"=>$cep,"ie"=>$ie,"logo"=>$dir,"telefone"=>$telefone,"email"=>$email);
+  $dados = array("id_empresa"=>$id,"nome_empresa"=>$nome,"cnpj"=>$cnpj,"cep"=>$cep,"logo"=>$dir,"telefone"=>$telefone,"email"=>$email);
 if(alterarEmpresa($dados)){
     $_SESSION["msg"] = "Alterado com sucesso!";
     $_SESSION["nome"] = $dados["nome_empresa"];
     $_SESSION["id_empresa"] = $dados["id_empresa"];
     $_SESSION["cnpj"] = $dados["cnpj"];
-    $_SESSION["ie"] = $dados["ie"];
     $_SESSION["cep"] = $dados["cep"];
     $_SESSION["telefone"] = $dados["telefone"];
     $_SESSION["logo"] = $dados["logo"];
@@ -43,7 +42,7 @@ if(alterarEmpresa($dados)){
 }else{
     $_SESSION['msg'] = "erro!";
     $_SESSION['alertMsg'] = "Erro ao Alterar !";
-    $_SESSION['alertIcon'] = "success";
+    $_SESSION['alertIcon'] = "error";
     header("location:../View/gerenciamento_empresa/editarEmpresa.php");
     exit;
 }

@@ -9,7 +9,7 @@ function adicionarEmpresa($dados)
 
     if($busca->num_rows == 0){
 
-    $sql = "INSERT INTO empresa (nome_empresa,cnpj, cep,email, senha, logo,ddd, telefone) VALUES ('{$dados["nome_empresa"]}', '{$dados["cnpj"]}','{$dados["cep"]}','{$dados["ie"]}','{$dados["email"]}','{$dados["senha"]}''{$foto['foto']}',null,'{$dados["telefone"]}')";
+    $sql = "INSERT INTO empresa (nome_empresa,cnpj, cep,email, senha, logo,ddd, telefone) VALUES ('{$dados["nome_empresa"]}', '{$dados["cnpj"]}','{$dados["cep"]}','{$dados["email"]}','{$dados["senha"]}''{$foto['foto']}',null,'{$dados["telefone"]}')";
     $result = $con->query($sql);
 
     if ($result == true) { 
@@ -51,7 +51,6 @@ function alterarEmpresa($dados)
     $sql = "UPDATE empresa 
     SET nome_empresa = '{$dados["nome_empresa"]}',
     cnpj = '{$dados["cnpj"]}', cep = '{$dados["cep"]}', 
-    ie = '{$dados["ie"]}',  
     logo = '{$dados["logo"]}',
     telefone = '{$dados["telefone"]}'
          WHERE id_empresa = {$dados["id_empresa"]}";

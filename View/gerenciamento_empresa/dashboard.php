@@ -17,15 +17,29 @@
    </div>
  </div>
 
+
+ <?php 
+ 
+@session_start();
+ require("../../Model/connect.php");
+ $consulta = mysqli_query($con, "SELECT *, count(id_usuario) AS totUser FROM `usuario` WHERE `id_empresa` = {$_SESSION['id_empresa']}");
+ $consulta2 = mysqli_query($con, "SELECT *, count(id_curso) AS totCurso FROM `curso` WHERE `id_empresa` = {$_SESSION['id_empresa']}");
+
+ 
+ 
+ 
+ ?>
  <!-- Cartões de Estatísticas -->
  <div class="stats-grid">
    <div class="stat-card">
      <div class="stat-info">
        <h3>Colaboradores Ativos</h3>
-       <div class="stat-value">245</div>
-       <div class="stat-trend trend-up">
+       <div class="stat-value"><?php   while($totUser = mysqli_fetch_assoc($consulta)){
+            echo $totUser["totUser"];
+          }?></div>
+       <!-- <div class="stat-trend trend-up">
          +12% <span style="color: var(--muted);">vs. último mês</span>
-       </div>
+       </div> -->
      </div>
      <div class="stat-icon">👥</div>
    </div>
@@ -33,14 +47,16 @@
    <div class="stat-card">
      <div class="stat-info">
        <h3>Cursos Publicados</h3>
-       <div class="stat-value">48</div>
+       <div class="stat-value"><?php   while($totCurso = mysqli_fetch_assoc($consulta2)){
+            echo $totCurso["totCurso"];
+          }?></div>
        <div class="stat-trend trend-up">
          +4% <span style="color: var(--muted);">vs. último mês</span>
        </div>
      </div>
      <div class="stat-icon">📚</div>
    </div>
-
+<!-- 
    <div class="stat-card">
      <div class="stat-info">
        <h3>Taxa de Conclusão</h3>
@@ -61,7 +77,7 @@
        </div>
      </div>
      <div class="stat-icon">⏱️</div>
-   </div>
+   </div> -->
  </div>
  <!-- Gráficos -->
  <div class="charts-grid">

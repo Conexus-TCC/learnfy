@@ -49,16 +49,13 @@
               <input type="text" id="nome" name="nome" required>
             </label>
 
-            <label for="cnpj">
-              CNPJ * 
-              <input type="text" id="cnpj" required name="cnpj" placeholder="00.000.000.0000-00"/>
-            </label>
+            
           </div>
 
           <div class="row">
-            <label for="ie">
-              IE (Inscrição Estadual) * 
-              <input type="text" id="ie" name="ie" required placeholder="000.000.000.000"/>
+          <label for="cnpj">
+              CNPJ * 
+              <input type="text" id="cnpj" required name="cnpj" placeholder="00.000.000.0000-00"/>
             </label>
 
             <label for="telefone">

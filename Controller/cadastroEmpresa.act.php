@@ -43,7 +43,7 @@ if($busca->num_rows == 0){
         exit();
     }
     
-    if(mysqli_query($con, "INSERT INTO empresa (nome_empresa,cnpj, cep,email, senha, logo,ddd, telefone,ie) VALUES('$nome', '$cnpj' ,'$cep','$email','$senha', '$dir', null, '$telefone','$ie');")){
+    if(mysqli_query($con, "INSERT INTO empresa (nome_empresa,cnpj, cep,email, senha, logo,ddd, telefone) VALUES('$nome', '$cnpj' ,'$cep','$email','$senha', '$dir', null, '$telefone');")){
         move_uploaded_file($logo['tmp_name'],$dir);
         $_SESSION['msg'] = "Sucesso!";
         $_SESSION['alertMsg'] = "Cadastro Realizado!";

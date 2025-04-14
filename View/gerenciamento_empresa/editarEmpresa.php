@@ -50,10 +50,7 @@ $_SESSION["contexto"] = "editarEmpresa"
       </div>
 
       <div class="row">
-        <label for="ie">
-          IE (Inscrição Estadual)
-          <input type="text" id="ie" name="ie" value="<?= $empresa['ie'] ?>" placeholder="000.000.000.000" />
-        </label>
+        
 
         <label for="telefone">
           Telefone

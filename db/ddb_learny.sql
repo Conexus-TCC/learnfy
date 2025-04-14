@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 03/04/2025 às 20:33
--- Versão do servidor: 10.4.32-MariaDB
--- Versão do PHP: 8.2.12
+-- Tempo de geração: 14/04/2025 às 02:16
+-- Versão do servidor: 10.4.28-MariaDB
+-- Versão do PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -46,7 +46,8 @@ CREATE TABLE `aula` (
 CREATE TABLE `categoria_curso` (
   `id_categoria` int(11) NOT NULL,
   `nome_categoria` varchar(30) NOT NULL,
-  `id_empresa` int(11) NOT NULL
+  `id_empresa` int(11) NOT NULL,
+  `nivel` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -74,9 +75,7 @@ CREATE TABLE `empresa` (
   `id_empresa` int(11) NOT NULL,
   `nome_empresa` varchar(50) NOT NULL,
   `cnpj` varchar(19) DEFAULT NULL,
-  `ie` varchar(15) DEFAULT NULL,
   `cep` varchar(9) DEFAULT NULL,
-  `site` varchar(60) DEFAULT NULL,
   `email` varchar(50) NOT NULL,
   `senha` varchar(60) NOT NULL,
   `logo` varchar(100) DEFAULT NULL,
@@ -115,7 +114,8 @@ CREATE TABLE `usuario` (
   `cpf` varchar(14) NOT NULL,
   `foto` varchar(100) NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `id_Empresa` int(11) NOT NULL
+  `id_Empresa` int(11) NOT NULL,
+  `nivel` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -190,7 +190,7 @@ ALTER TABLE `curso`
 -- AUTO_INCREMENT de tabela `empresa`
 --
 ALTER TABLE `empresa`
-  MODIFY `id_empresa` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_empresa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `materiais_aula`
@@ -202,7 +202,7 @@ ALTER TABLE `materiais_aula`
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restrições para tabelas despejadas
