@@ -37,7 +37,7 @@ if(alterarEmpresa($dados)){
     $_SESSION['msg'] = "Sucesso!";
     $_SESSION['alertMsg'] = "Empresa Alterada com sucesso!";
     $_SESSION['alertIcon'] = "success";
-    header("location:../View/gerenciamento.php");
+    header("location:../View/gerenciamento_empresa/dashboard.php");
 
     exit;
 }else{
