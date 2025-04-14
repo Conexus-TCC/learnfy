@@ -26,8 +26,6 @@
 }
 body{
     font-family: "josefin sans", sans-serif;
-    height: max-content;
-    width: 100%;
     overflow-x: hidden;
     font-size: 1.1rem;
      background-color: var(--background);
