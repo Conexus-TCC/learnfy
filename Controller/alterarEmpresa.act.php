@@ -25,7 +25,6 @@ if($logo['size']>0){
   }
   $dados = array("id_empresa"=>$id,"nome_empresa"=>$nome,"cnpj"=>$cnpj,"cep"=>$cep,"logo"=>$dir,"telefone"=>$telefone,"email"=>$email);
 if(alterarEmpresa($dados)){
-    $_SESSION["msg"] = "Alterado com sucesso!";
     $_SESSION["nome"] = $dados["nome_empresa"];
     $_SESSION["id_empresa"] = $dados["id_empresa"];
     $_SESSION["cnpj"] = $dados["cnpj"];
@@ -36,7 +35,7 @@ if(alterarEmpresa($dados)){
     $_SESSION['msg'] = "Sucesso!";
     $_SESSION['alertMsg'] = "Empresa Alterada com sucesso!";
     $_SESSION['alertIcon'] = "success";
-    header("location:../View/gerenciamento.php");
+    header("location:../View/gerenciamento_empresa/dashboard.php");
 
     exit;
 }else{
