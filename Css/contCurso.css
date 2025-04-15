@@ -114,7 +114,7 @@ body{
     align-items: center;
 }
 
-#video{
+#boxVideo{
     height: 450px;
     margin-top: 2%;
     background-color: white;
@@ -124,7 +124,64 @@ body{
     align-items: center;
 }
 
-#video>div{
+#boxVideo>div{
     width: 90%;
     height: 8000px;
+}
+
+#boxMateriais{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 40px;
+    margin-top: 2%;
+    background-color: white;
+    height: 450px;
+    width: 100%;
+    padding: 2%;
+}
+
+#boxMateriais>div{
+    display: flex;
+    height: 60px;
+    padding: 1%;
+    align-items: center;
+    justify-content: center;
+    gap: 68%;
+    border: 1px solid black;
+    border-radius: 7px;
+}
+
+#boxMateriais>div>section>img{
+    width: 30px;
+    height: 30px;
+}
+
+section{
+    display: flex;
+    justify-content: center;
+    gap: 5%;
+    width: 90%;
+}
+
+#boxMateriais>div>div{
+    display: flex;
+    flex-direction: column;
+}
+
+#boxMateriais>div>div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+#boxMateriais>div>div>img{
+    width: 20px;
+    height: 30px;
+}
+
+#boxMateriais>div>div>a>img{
+    width: 30px;
+    height: 30px;
 }
