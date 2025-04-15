@@ -62,7 +62,8 @@ CREATE TABLE `curso` (
   `descricao` text NOT NULL,
   `imagem` varchar(255) NOT NULL,
   `categoria` int(11) NOT NULL,
-  `id_empresa` int(11) NOT NULL
+  `id_empresa` int(11) NOT NULL,
+  `nivel` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------

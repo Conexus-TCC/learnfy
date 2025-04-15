@@ -14,7 +14,7 @@ extract($_FILES);
 if(!str_contains($video_aula['type'], 'video/')){
   mysqli_query($con,$sqlErr);
    echo json_encode(array("msg"=>"error","alertMsg"=>"Formato de video inválido!","alertIcon"=>"error"));
-    header("status: 400");
+    http_response_code("400");
     exit();
 }
 $caminhoVideo = "../fotosSite/". md5(time()) .$id_curso . ".mp4";
@@ -33,11 +33,11 @@ for($i=0;$i<$cont;$i++){
     if(mysqli_query($con,$sql)){
       move_uploaded_file($input_materiais["tmp_name"][$i],$caminhoMaterial);
      echo json_encode(array("msg"=>"success","alertMsg"=>"Aula cadastrada com sucesso!","alertIcon"=>"success"));
-      header("status: 200");
+      http_response_code("200");
     }else{
       mysqli_query($con,$sqlErr);
       echo json_encode(array("msg"=>"error","alertMsg"=>"Erro ao cadastrar o material!","alertIcon"=>"error"));
-      header("status: 400");
+      http_response_code("400");
       exit();
     }
 
@@ -46,6 +46,6 @@ for($i=0;$i<$cont;$i++){
 }else{
   mysqli_query($con, $sqlErr);
  echo json_encode(array("msg" => "error", "alertMsg" => "Erro ao cadastrar a aula!", "alertIcon" => "error"));
-  header("status: 400");
+  http_response_code("400");
   exit();
 }

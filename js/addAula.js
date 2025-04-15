@@ -91,9 +91,10 @@ btn.addEventListener("click", function () {
 enviar.addEventListener("click", async (e) => {
   e.preventDefault();
   const forms = document.querySelectorAll(".campos-Curso");
-  let i = 0;
-  forms.forEach(async (form) => {
-    i++;
+let  i =0
+let success = true;
+forms.forEach(async (form) => {
+    i++
     console.log(form);
     const formData = new FormData();
     const titulo = form.querySelector("#titulo-aula-" + i).value;
@@ -113,20 +114,34 @@ enviar.addEventListener("click", async (e) => {
       data: formData,
       processData: false,
       contentType: false,
-      success: function (response) {
-        console.log(response);
+      error:function (response) {
         Swal.fire({
           icon: response.alertIcon,
           title: response.msg,
           text: response.alertMsg,
         }).then(() => {
-          if (response.alertIcon == "success") {
-            window.location.href = "../cursos.php";
-          }
+          form.querySelector(".btn-collapse").click();
         });
+        },
+      success: function (response) {
+        console.log(response);
+        if((i-1)<forms.length&&success){
+          return
+        }
       },
     });
-  });
+  })
+  if(success){
+    Swal.fire({
+      icon: "success",
+      title: "Aulas cadastradas com sucesso!",
+      text: "🎉🥳",
+    }).then(() => {
+      window.location.href = "./dashboard.php";
+    });
+  }
+  
+  ;
 });
 window.addEventListener("criar-aula", function (e) {
   const { index: i } = e.detail;
@@ -163,6 +178,7 @@ window.addEventListener("criar-aula", function (e) {
     }
   });
 });
+
 window.addEventListener("criar-aula", function (e) {
   console.log(e);
   const { index: i } = e.detail;

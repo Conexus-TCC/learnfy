@@ -26,8 +26,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Curso $nome_curso</title>
+  <?php require "./parts/head.php" ?>
 </head>
-<?php require "./parts/head.php" ?>
 
 <body>
   <?php require "./parts/header.php" ?>
