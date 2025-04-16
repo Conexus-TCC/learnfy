@@ -62,8 +62,7 @@
 }
 
 .cursos {
-    width: 250px;
-    height: 300px;
+    width: 300px;
     background-color: white;
     border-radius: 15px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
@@ -75,6 +74,7 @@
     transform: translateY(0);
     cursor: pointer;
     margin-top: 3%;
+    padding: 5px 5px ;
 }
 
 .cursos:hover {
@@ -113,6 +113,7 @@
     border: 2px solid transparent;
     border-radius: 17px;
     background: linear-gradient(45deg, #135a0e, #1a7a13) border-box;
+     mask:  linear-gradient(#ffffff 0 0) padding-box, linear-gradient(#fff 0 0);
     -webkit-mask: linear-gradient(#ffffff 0 0) padding-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: destination-out;
     mask-composite: exclude;
@@ -130,8 +131,7 @@
 }
 
 .conteudoCard{
-    justify-content: flex-start;
-    margin-left: 2%;
+    justify-content: space-between;
 }
 
 .cursos>div>div{
@@ -145,7 +145,7 @@
 .barra{
     height: 22px;
     font-size: 10px;
-    background-color: #3BB4FF;
+    background-color: var(--CorCurso);
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -164,26 +164,29 @@
 }
 
 .btnSituacao{
+    text-align: center;
     width: 40%;
-    height: 25px;
     border-radius: 30px;
     background-color: #135a0e;
     color: white;
     border: none;
     cursor: pointer;
-    font-family: inherit;
-    font-size: 0.9rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 
                 0 1px 3px rgba(0, 0, 0, 0.08),
                 inset 0 1px 0 rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
-    position: relative;
-    top: 0;
-    cursor: auto;
 }
 
 #oferecidoPor{
     margin-bottom: 6%;
+}
+#oferecidoPor>img{ 
+ background-color: #fff;
+width: 154px;
+ height: 50px;
+ object-position: left;
+ object-fit: contain;
+
 }
 
 #qtdAlunos{
@@ -197,7 +200,6 @@
 
     .cursos{
         margin-top: 5%;
-        height: 310px;
     }
 
     .categorias{

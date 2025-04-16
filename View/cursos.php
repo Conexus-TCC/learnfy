@@ -30,8 +30,10 @@ while (($a = $query->fetch_assoc()) != null) {
     <title>LearnFY</title>
     <?php include("parts/head.php") ?>
     <link rel="stylesheet" href="../Css/cursos.css">
+</head>
 
 <body>
+    <script src="../js/color-thief.umd.js"></script>
     <?php
     include("parts/header.php");
     ?>
@@ -48,42 +50,68 @@ while (($a = $query->fetch_assoc()) != null) {
             </div>
         </div>
         <?php
-        foreach ($categorias as $key => $categoria) { 
-        $query= "SELECT * FROM `cursos`
-         WHERE id_empresa = $idEmpresa AND categoria = $categoria[id_categoria] "
-          
-            ?>
+        foreach ($categorias as $key => $categoria) {
+            $query = mysqli_query($con, "SELECT empresa.nome_empresa, empresa.logo,curso.* FROM `curso`
+         INNER JOIN `empresa` on empresa.id_empresa = curso.id_empresa
+         WHERE curso.id_empresa = $idEmpresa AND categoria = $categoria[id_categoria] 
+         ")
+
+        ?>
 
             <div class="categorias">
-
-                <h1 id="tituloCategoria"><?=$categoria["nome_categoria"] ?></h1>
+                <h1 id="tituloCategoria"><?= $categoria["nome_categoria"] ?></h1>
                 <div>
-                    <div class="cursos">
-                        <img src="../Imagens/image 62.png" alt="">
-                        <div class="barra">
-                            <h1>$categoria</h1>
+                    <?php
+                    while (($curso = $query->fetch_assoc()) != null) { ?>
+                        <div class="cursos">
+                            <img src="<?= $curso["imagem"] ?>" alt="">
+                            <div class="barra">
+                                <h1><?= $categoria["nome_categoria"] ?></h1>
+                            </div>
+
+                            <h1><?= $curso["nome"] ?></h1>
+                            <div class="conteudoCard" id="oferecidoPor">
+                                <p>Oferecido por: <?= $curso["nome_empresa"] ?></p> <img style="" src="<?= $curso["logo"] ?>" alt="">
+                            </div>
+                            <div class="conteudoCard">
+                                <div>
+                                    <img src="../icones/image 8.png" alt="">
+                                    <p id="qtdAlunos">$500</p>
+                                </div>
+                                <a href="conteudoCurso.php?=curso=<?= $curso["id_curso"] ?>" class="btnSituacao">Assistir</a>
+                            </div>
                         </div>
 
-                        <h1>$nomeCurso</h1>
-                        <div class="conteudoCard" id="oferecidoPor">
-                            <p>Oferecido por:</p> <img src="../fotosSite/image 53.png" alt="">
-                        </div>
-                        <div class="conteudoCard">
-                            <div>
-                                <img src="../icones/image 8.png" alt="">
-                                <p id="qtdAlunos">$500</p>
-                            </div>
-                            <button class="btnSituacao">$situacao</button>
-                        </div>
-                    </div>
+                    <?php }  ?>
+
 
                 </div>
 
             </div>
 
-        <?php } ?>
+            
+            <?php } ?>
+            
+        </div>
+            
+            <?php
+include("parts/footer.php");
+?>
+<script>
+    const colorThief = new ColorThief();
+    document.querySelectorAll(".cursos").forEach(divCurso => {
+        const imgCurso = divCurso.querySelector("img");
+        if (imgCurso.complete) {
+            const colors = colorThief.getColor(imgCurso);
+            divCurso.setAttribute("style", `--CorCurso:rgb(${colors[ 0 ]},${colors[ 1 ]},${colors[ 2 ]})`)
+        } else {
+            imgCurso.addEventListener("load", () => {
+                const colors = colorThief.getColor(imgCurso);
+                divCurso.setAttribute("style", `--CorCurso:rgb(${colors[ 0 ]},${colors[ 1 ]},${colors[ 2 ]})`)
+            })
+        }
+    })
+</script>
+</body>
 
-
-        <?php
-        include("parts/footer.php");
-        ?>
+</html>
