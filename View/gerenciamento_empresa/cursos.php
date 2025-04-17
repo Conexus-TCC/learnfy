@@ -26,7 +26,7 @@ require '../../Model/connect.php';
         <select name="categoria" id="categoria">
           <option value="">Selecione uma categoria</option>
           <?php
-          $sql = "SELECT * FROM categoria_curso WHERE id_empresa = $_SESSION[id_empresa]";
+          $sql = "SELECT * FROM categoria_curso WHERE id_empresa = $_SESSION[id_empresa] ";
           $result = mysqli_query($con, $sql);
           while ($row = mysqli_fetch_assoc($result)) {
             echo "<option value='$row[id_categoria]'>$row[nome_categoria] </option>";
@@ -40,11 +40,24 @@ require '../../Model/connect.php';
       <textarea name="descricao" id="descricao" cols="30" rows="10"></textarea>
     </label>
 
+    <label for="">
+      <p>Nivel do Curso</p>
+      <select name="nivel" id="">
+        <option value="NULL">insira o nivel do curso</option>
+        <option value="0">Para todos</option>
+        <option value="1">Para alguns</option>
+        <option value="2">Para Poucos </option>
+      </select>
+    </label>
+    
     <label for="imagem" class="label-imagem">
       <p>Clique ou arraste o banner da imagem</p>
       <img src="" alt="" id="preview" style="display: none;">
       <input type="file" name="imagem" id="imagem">
     </label>
+
+
+
     <button class="enviar" type="submit">Enviar</button>
   </form>
 </div>

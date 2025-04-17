@@ -16,7 +16,15 @@
         <?= $_SESSION["nome"]; ?>
         <img style="width: 10%;" src="<?= $_SESSION['foto'] ?>" alt="">
     </div>
-
+    <?php
+     foreach ($_SESSION as $key => $value) {
+        if($key=="sla"){
+            var_dump($value);
+            continue;
+        }
+        echo "$key:$value <hr>";
+     }
+     ?>
     <a href="../Controller/logout.php" style="background-color:red;padding:5px 20px;border-radius: 5px;" class="logoff-btn">Sair</a>
 </body>
 

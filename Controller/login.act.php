@@ -15,6 +15,7 @@
         if(password_verify($senha, $empresa['senha'])){ // Verifica se a senha está correta
              $_SESSION["logado"] = true;
             $_SESSION["nome"]=$empresa["nome_empresa"];
+        $_SESSION["nivel"] = 99999999999999;
             $_SESSION["id_empresa"]=$empresa["id_empresa"];
             $_SESSION["cnpj"]=$empresa["cnpj"];
             $_SESSION["cep"]=$empresa["cep"];
@@ -39,14 +40,17 @@
     }
 
     if(!isset($_SESSION["logado"])){
-        $busca = mysqli_query($con, "SELECT * FROM `usuario` WHERE `email` = '$email'");
+        $busca = mysqli_query($con, "SELECT usuario.*, empresa.nome_empresa FROM `usuario`
+        LEFT JOIN `empresa` on empresa.id_empresa = usuario.id_empresa 
+         WHERE usuario.email = '$email'");
 
         if($busca->num_rows > 0){
             $usuario = mysqli_fetch_assoc($busca); 
             
             if(password_verify($senha, $usuario['senha'])){ // Verifica se a senha está correta
-                
-                $_SESSION["logado"] = true;
+                $_SESSION["nivel"] = $usuario["nivel"];
+                $_SESSION["nome_empresa"] = $usuario["nome_empresa"];
+                $_SESSION["id_empresa"] = $usuario["id_Empresa"];
                 $_SESSION["nome"]=$usuario["nome_usuario"];
                 $_SESSION["id_usuario"]=$usuario["id_usuario"];
                 $_SESSION["data_nascimento"]=$usuario["data_nascimento"];

@@ -51,7 +51,9 @@ if(!validaCPF($cpf)) {
 
 if($buscaCpf->num_rows == 0 && $buscaEmail->num_rows == 0){
     $senha = password_hash($senha, PASSWORD_DEFAULT);
-    $query = "INSERT INTO usuario (nome_usuario, data_nascimento, sexo, ddd, telefone, email, senha, cpf, foto, status , id_empresa) VALUES ('$nome', '$data_nascimento', '$sexo', '$ddd', '$telefone', '$email', '$senha', '$cpf', '$dir', $status ,$idEmpresa)";
+    $query = "INSERT INTO usuario 
+    (nome_usuario, data_nascimento, sexo, ddd, telefone, email, senha, cpf, foto, status , id_empresa,nivel) 
+    VALUES ('$nome', '$data_nascimento', '$sexo', '$ddd', '$telefone', '$email', '$senha', '$cpf', '$dir', $status ,$idEmpresa,$nivel)";
     if(mysqli_query($con, $query)){
         move_uploaded_file($logo['tmp_name'], $dir);
         $_SESSION['msg'] = "Sucesso!";

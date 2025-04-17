@@ -53,7 +53,7 @@ while (($a = $query->fetch_assoc()) != null) {
         foreach ($categorias as $key => $categoria) {
             $query = mysqli_query($con, "SELECT empresa.nome_empresa, empresa.logo,curso.* FROM `curso`
          INNER JOIN `empresa` on empresa.id_empresa = curso.id_empresa
-         WHERE curso.id_empresa = $idEmpresa AND categoria = $categoria[id_categoria] 
+         WHERE curso.id_empresa = $idEmpresa AND categoria = $categoria[id_categoria] AND nivel <=$_SESSION[nivel] 
          ")
 
         ?>

@@ -6,6 +6,7 @@ require("../model/connect.php");
 
 if (isset($_POST['id_usuario'])) {
     $id_usuario = $_POST['id_usuario'];
+    $nivel = $_POST["nivel"];
     $nome = $_POST['nome'];
     $data_nascimento = $_POST['data_nascimento'];
     $sexo = $_POST['sexo'];
@@ -20,6 +21,7 @@ if (isset($_POST['id_usuario'])) {
     $query = "UPDATE usuario SET 
                 nome_usuario = '$nome', 
                 data_nascimento = '$data_nascimento', 
+                nivel ='$nivel',
                 sexo = '$sexo', 
                 ddd = '$ddd', 
                 telefone = '$telefone', 

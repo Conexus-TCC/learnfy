@@ -19,8 +19,8 @@ $idEmpresa=$_SESSION["id_empresa"];
   require_once "../Model/connect.php";
   $descricao = mysqli_real_escape_string($con, $descricao);
   $caminho = "../fotosSite/". md5(time()) .$idEmpresa . ".jpg";
-  $sql = "insert into `curso` (`nome`, `descricao`, `imagem`, `categoria`, `id_empresa`) 
-  values ('$titulo', '$descricao', '$caminho', '$categoria', '$idEmpresa')";
+  $sql = "insert into `curso` (`nome`, `descricao`, `imagem`, `categoria`, `id_empresa`,`nivel`) 
+  values ('$titulo', '$descricao', '$caminho', '$categoria', '$idEmpresa',$nivel)";
   if(mysqli_query($con,$sql)){
     move_uploaded_file($imagem['tmp_name'],$caminho);
     $_SESSION["nome_curso"]=$titulo;

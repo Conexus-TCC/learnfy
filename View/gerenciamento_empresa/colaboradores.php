@@ -83,6 +83,16 @@
                 <option value="0">Inativo</option>
               </select>
             </label>
+
+            <label for="">
+              <p>Nivel do usuario</p>
+              <select name="nivel" id="nivel">
+                <option value="NULL">insira o nivel do usuario</option>
+                <option value="0">Baixo</option>
+                <option value="1">Medio</option>
+                <option value="2">Alto</option>
+              </select>
+            </label>
           </div>
 
           <div class="row">
@@ -128,7 +138,7 @@
 
 
           $idEmpresa = $_SESSION["id_empresa"];
-          $busca = mysqli_query($con, "SELECT id_usuario, nome_usuario AS nome, email, telefone, data_nascimento, sexo, cpf, status, ddd,foto FROM usuario WHERE id_empresa= $idEmpresa");
+          $busca = mysqli_query($con, "SELECT id_usuario, nome_usuario AS nome, email, telefone, data_nascimento, sexo, cpf, status, ddd,foto,nivel FROM usuario WHERE id_empresa= $idEmpresa");
 
           if ($busca->num_rows > 0) {
             while ($row = $busca->fetch_assoc()) {
@@ -142,7 +152,7 @@
               echo '<td>' . $row['cpf'] . '</td>';
               echo '<td>' . ($row['status'] ? 'Ativo' : 'Inativo') . '</td>';
               echo '<td>';
-              echo "<button onclick='alterarColaborador($JSON )' class='alterar-btn'>Alterar</button>";
+              echo "<button onclick='alterarColaborador($JSON)' class='alterar-btn'>Alterar</button>";
               echo '<form action="/learnfy/Controller/excluirColaborador.act.php" method="post" style="display:inline;">
                           <input type="hidden" name="id_usuario" value="' . $row['id_usuario'] . '">
                           <button type="submit" class="excluir-btn">Excluir</button>
@@ -177,6 +187,7 @@
         const form = document.querySelector("#cadastro");
 
         // Atualizar os campos do formulário com os dados do colaborador
+        document.querySelector("#nivel").value= obj.nivel
         document.querySelector("#nome").value = obj.nome;
         document.querySelector("#imagemEmpresa").src = obj.foto.replace("..", "../../")
         document.querySelector("#data_nascimento").value = obj.data_nascimento;
