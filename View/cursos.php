@@ -74,10 +74,10 @@ while (($a = $query->fetch_assoc()) != null) {
                                 <p>Oferecido por: <?= $curso["nome_empresa"] ?></p> <img style="" src="<?= $curso["logo"] ?>" alt="">
                             </div>
                             <div class="conteudoCard">
-                                <div>
+                                <!-- <div>
                                     <img src="../icones/image 8.png" alt="">
                                     <p id="qtdAlunos">$500</p>
-                                </div>
+                                </div> -->
                                 <a href="conteudoCurso.php?=curso=<?= $curso["id_curso"] ?>" class="btnSituacao">Assistir</a>
                             </div>
                         </div>

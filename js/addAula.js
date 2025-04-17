@@ -90,10 +90,11 @@ btn.addEventListener("click", function () {
 });
 enviar.addEventListener("click", async (e) => {
   e.preventDefault();
+  e.target.disable=true;
   const forms = document.querySelectorAll(".campos-Curso");
 let  i =0
 let success = true;
-forms.forEach(async (form) => {
+  for (const form of forms) {
     i++
     console.log(form);
     const formData = new FormData();
@@ -115,31 +116,44 @@ forms.forEach(async (form) => {
       processData: false,
       contentType: false,
       error:function (response) {
-        Swal.fire({
-          icon: response.alertIcon,
-          title: response.msg,
-          text: response.alertMsg,
-        }).then(() => {
-          form.querySelector(".btn-collapse").click();
-        });
-        },
+        success= false
+        console.log( response)
+        const {responseJSON} = response 
+        if(responseJSON){
+          Swal.fire({
+            icon: responseJSON.alertIcon,
+            title: responseJSON.msg,
+            text: responseJSON.alertMsg,
+          }).then(() => {
+            form.querySelector(".btn-collapse").click();
+          });
+        }else{
+          Swal.fire({
+            icon: "error",
+            title:"Arquivos muito grande ",
+            text: "O video e/ou  os materias superam o limite de 40MB",
+          }).then(() => {
+            form.querySelector(".btn-collapse").click();
+          });
+        }
+      e.target.disable = true;  
+      },
       success: function (response) {
         console.log(response);
         if((i-1)<forms.length&&success){
+           Swal.fire({
+             icon: "success",
+             title: "Aulas cadastradas com sucesso!",
+             text: "🎉🥳",
+           }).then(() => {
+             window.location.href = "./dashboard.php";
+           });
           return
         }
       },
     });
-  })
-  if(success){
-    Swal.fire({
-      icon: "success",
-      title: "Aulas cadastradas com sucesso!",
-      text: "🎉🥳",
-    }).then(() => {
-      window.location.href = "./dashboard.php";
-    });
-  }
+     if(success==false ) break
+}
   
   ;
 });
