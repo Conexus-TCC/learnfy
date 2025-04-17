@@ -19,8 +19,8 @@
   </svg>
   <span>adicionar aula</span> </button>
 <div class="aulas">
-  <button id="enviar" type="submit">Enviar</button>
-</div>
+  </div>
+  <button id="enviar" type="submit">Próximo</button>
 <script type="module" src="../../js/addAula.js"> </script>
 <script>
   function colapsar(id, btn) {
