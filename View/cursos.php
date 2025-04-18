@@ -1,6 +1,12 @@
 <?php
 require "../Model/connect.php";
 @session_start();
+if(!isset($_SESSION["id_usuario"])){
+    $_SESSION["msg"] = "Você deve estar cadastrado para acessar essa pagina";
+    $_SESSION['alertMsg'] = "Acesso negado";
+    $_SESSION['alertIcon'] = "error";
+    header("location:login.php");
+}
 $idEmpresa = $_SESSION["id_empresa"];
 $nome_empresa = $_SESSION["nome"];
 $query = mysqli_query($con, "Select * from categoria_curso where id_empresa = $idEmpresa ");
@@ -11,12 +17,6 @@ while (($a = $query->fetch_assoc()) != null) {
 /* Descomentear para ativar a necessidade do login
  */
 
-// if(!isset($_SESSION["id_usuario"])){
-//     $_SESSION["msg"] = "Você deve estar cadastrado para acessar essa pagina";
-//     $_SESSION['alertMsg'] = "Acesso negado";
-//     $_SESSION['alertIcon'] = "error";
-//     header("location:login.php");
-// }
 ?>
 
 
