@@ -1,7 +1,7 @@
 <?php
 require "../Model/connect.php";
 @session_start();
-if(!isset($_SESSION["id_usuario"])){
+if (!isset($_SESSION["id_usuario"]) && !isset($_SESSION["id_empresa"])) {
     $_SESSION["msg"] = "Você deve estar cadastrado para acessar essa pagina";
     $_SESSION['alertMsg'] = "Acesso negado";
     $_SESSION['alertIcon'] = "error";
@@ -63,7 +63,7 @@ while (($a = $query->fetch_assoc()) != null) {
                 <div>
                     <?php
                     while (($curso = $query->fetch_assoc()) != null) { ?>
-                        <div class="cursos">
+                        <a href="conteudoCurso.php?curso=<?= $curso["id_curso"] ?>"  class="cursos">
                             <img src="<?= $curso["imagem"] ?>" alt="">
                             <div class="barra">
                                 <h1><?= $categoria["nome_categoria"] ?></h1>
@@ -74,13 +74,9 @@ while (($a = $query->fetch_assoc()) != null) {
                                 <p>Oferecido por: <?= $curso["nome_empresa"] ?></p> <img style="" src="<?= $curso["logo"] ?>" alt="">
                             </div>
                             <div class="conteudoCard">
-                                <!-- <div>
-                                    <img src="../icones/image 8.png" alt="">
-                                    <p id="qtdAlunos">$500</p>
-                                </div> -->
-                                <a href="conteudoCurso.php?=curso=<?= $curso["id_curso"] ?>" class="btnSituacao">Assistir</a>
+                                <button href="conteudoCurso.php?curso=<?= $curso["id_curso"] ?>" class="btnSituacao">Assistir</button>
                             </div>
-                        </div>
+                        </a>
 
                     <?php }  ?>
 
@@ -89,29 +85,29 @@ while (($a = $query->fetch_assoc()) != null) {
 
             </div>
 
-            
-            <?php } ?>
-            
-        </div>
-            
-            <?php
-include("parts/footer.php");
-?>
-<script>
-    const colorThief = new ColorThief();
-    document.querySelectorAll(".cursos").forEach(divCurso => {
-        const imgCurso = divCurso.querySelector("img");
-        if (imgCurso.complete) {
-            const colors = colorThief.getColor(imgCurso);
-            divCurso.setAttribute("style", `--CorCurso:rgb(${colors[ 0 ]},${colors[ 1 ]},${colors[ 2 ]})`)
-        } else {
-            imgCurso.addEventListener("load", () => {
+
+        <?php } ?>
+
+    </div>
+
+    <?php
+    include("parts/footer.php");
+    ?>
+    <script>
+        const colorThief = new ColorThief();
+        document.querySelectorAll(".cursos").forEach(divCurso => {
+            const imgCurso = divCurso.querySelector("img");
+            if (imgCurso.complete) {
                 const colors = colorThief.getColor(imgCurso);
                 divCurso.setAttribute("style", `--CorCurso:rgb(${colors[ 0 ]},${colors[ 1 ]},${colors[ 2 ]})`)
-            })
-        }
-    })
-</script>
+            } else {
+                imgCurso.addEventListener("load", () => {
+                    const colors = colorThief.getColor(imgCurso);
+                    divCurso.setAttribute("style", `--CorCurso:rgb(${colors[ 0 ]},${colors[ 1 ]},${colors[ 2 ]})`)
+                })
+            }
+        })
+    </script>
 </body>
 
 </html>

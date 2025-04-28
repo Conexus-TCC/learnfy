@@ -54,7 +54,7 @@
     margin-left: 2%;
 }
 
-.categorias>div{
+.categorias>div,.categorias>a{
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
@@ -85,44 +85,6 @@
 .cursos:active {
     transform: translateY(0) scale(0.98);
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
-}
-
-.cursos::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 60%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.cursos:hover::after {
-    opacity: 1;
-}
-
-.cursos::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    border: 2px solid transparent;
-    border-radius: 17px;
-    background: linear-gradient(45deg, #135a0e, #1a7a13) border-box;
-     mask:  linear-gradient(#ffffff 0 0) padding-box, linear-gradient(#fff 0 0);
-    -webkit-mask: linear-gradient(#ffffff 0 0) padding-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: destination-out;
-    mask-composite: exclude;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.cursos:hover::before {
-    opacity: 1;
 }
 
 .cursos>div{

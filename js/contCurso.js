@@ -4,7 +4,7 @@ const btnVideo = document.getElementById("btnVideo");
 const btnMateriais = document.getElementById("btnMateriais");
 const boxQuiz = document.getElementById("boxQuiz");
 const btnQuiz = document.getElementById("btnQuiz");
-
+console.log(boxQuiz)
 boxMateriais.style.display = "none";
 boxQuiz.style.display="none";
 btnVideo.classList.add("ativo");

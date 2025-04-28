@@ -26,8 +26,8 @@ body{
     justify-content: flex-start;
     gap: 10px;
     width: 90%;
-    height: 300px;
     padding: 3%;
+    height: fit-content;
     border-radius: 15px;
     background-color: white
 }
@@ -94,6 +94,7 @@ body{
 }
 
 #cont{
+     cursor: pointer;
     display: flex;
     margin-top: 2%;
     width: 100%;
@@ -103,11 +104,12 @@ body{
     border-radius: 7px;
 }
 
-#cont>a>img{
+#cont>div>img{
     width: 30px;
 }
 
-#cont>a{
+#cont>div{
+   
     display: flex;
     justify-content: center;
     gap: 3px;

@@ -12,6 +12,19 @@ if(isset($_SESSION["id_usuario"])){
     $msg = $_SESSION["nome"];
     $link = "gerenciamento_empresa/";
 }
+
+if (isset($_SESSION["msg"])) {
+    echo "<script>
+            Swal.fire({
+                title: '{$_SESSION['msg']}',
+                text: '{$_SESSION['alertMsg']}',
+                icon: '{$_SESSION['alertIcon']}'
+            });
+        </script>";
+    unset($_SESSION["msg"]);
+    unset($_SESSION["alertMsg"]);
+    unset($_SESSION["alertIcon"]);
+}
 ?>
 <div class="fundo"></div>
 <header id="nav"> <!--Nav-->
