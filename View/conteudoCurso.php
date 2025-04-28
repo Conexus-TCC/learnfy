@@ -77,7 +77,7 @@ while (($a = $q->fetch_assoc()) != null) {
                     $sql = $sql . " AND id_aula = $_GET[aula]";
                 }
                 $aula  = mysqli_query($con, $sql)->fetch_assoc();
-                $materiais =array();
+                $materiais = array();
                 $q = mysqli_query($con, "SELECT * FROM materiais_aula WHERE id_aula = $aula[id_aula]");
                 while (($a = $q->fetch_assoc()) != null) {
                     array_push($materiais, $a);
@@ -127,7 +127,9 @@ while (($a = $q->fetch_assoc()) != null) {
                             <img src="../icones/pdf.png" alt="">
                             <div>
                                 <h1><?= $material["filename"] ?> <!--$nomeArquivo--></h1>
-                                <!---TODO: ADICIONAR DETECTAR O FILE TYPE -->
+                                <!---TODO: ADICIONAR DETECTAR O FILE TYPE 
+                                https://pt.stackoverflow.com/questions/38877/extrair-informa%C3%A7%C3%B5es-de-um-v%C3%ADdeo-no-momento-do-upload
+                                -->
                                 <p>Documento PDF <!--$tipoArquivo--></p>
                             </div>
                         </section>
