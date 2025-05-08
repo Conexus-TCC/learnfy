@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 14/04/2025 às 02:32
--- Versão do servidor: 10.4.28-MariaDB
--- Versão do PHP: 8.2.4
+-- Tempo de geração: 08/05/2025 às 20:31
+-- Versão do servidor: 10.4.32-MariaDB
+-- Versão do PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -37,6 +37,15 @@ CREATE TABLE `aula` (
   `id_curso` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Despejando dados para a tabela `aula`
+--
+
+INSERT INTO `aula` (`id_aula`, `nome`, `descricao`, `video`, `id_curso`) VALUES
+(1, 'Introdução', 'conceitos basicos do node', '../fotosSite/7caf86d07bc9fb173a2f69aafe57dff01.mp4', 1),
+(2, 'API REST', 'Conceitos sobre API REST', '../fotosSite/e1dcec1ceb872f695961d884f0bedf281.mp4', 1),
+(6, 'Aula 1', '54656', '../fotosSite/64bb536d081dc8ce651411d478fbb87b3.mp4', 3);
+
 -- --------------------------------------------------------
 
 --
@@ -49,6 +58,14 @@ CREATE TABLE `categoria_curso` (
   `id_empresa` int(11) NOT NULL,
   `nivelAcesso` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Despejando dados para a tabela `categoria_curso`
+--
+
+INSERT INTO `categoria_curso` (`id_categoria`, `nome_categoria`, `id_empresa`, `nivelAcesso`) VALUES
+(1, 'Programação', 2, 0),
+(2, 'office', 2, 0);
 
 -- --------------------------------------------------------
 
@@ -65,6 +82,14 @@ CREATE TABLE `curso` (
   `id_empresa` int(11) NOT NULL,
   `nivel` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Despejando dados para a tabela `curso`
+--
+
+INSERT INTO `curso` (`id_curso`, `nome`, `descricao`, `imagem`, `categoria`, `id_empresa`, `nivel`) VALUES
+(1, 'Node JS', 'Curso completo sobre o interpretador de javascript', '../fotosSite/e867a0750f38278be432a2c150f5ad2e2.jpg', 1, 2, 0),
+(3, 'Word', 'Curso sobre a ferramenta Word', '../fotosSite/b666d36383aab2563174938d94be29cc2.jpg', 2, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -84,6 +109,13 @@ CREATE TABLE `empresa` (
   `telefone` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Despejando dados para a tabela `empresa`
+--
+
+INSERT INTO `empresa` (`id_empresa`, `nome_empresa`, `cnpj`, `cep`, `email`, `senha`, `logo`, `ddd`, `telefone`) VALUES
+(2, 'conexus', '93.232.438/0001-86', '03590-070', 'conexus@mail.com', '$2y$10$5UfNxWqi9tmkKb7gftb0p.sedcTfjE1p/bfIhwyyv7zneI3eR.kTW', '../fotosSite/f03944384a0cbdf43de15d9fd0f4dea1.jpg', NULL, '36 5-6456');
+
 -- --------------------------------------------------------
 
 --
@@ -96,6 +128,15 @@ CREATE TABLE `materiais_aula` (
   `caminho` varchar(255) NOT NULL,
   `id_aula` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Despejando dados para a tabela `materiais_aula`
+--
+
+INSERT INTO `materiais_aula` (`id_material`, `filename`, `caminho`, `id_aula`) VALUES
+(1, 'material.txt', '../fotosSite/7caf86d07bc9fb173a2f69aafe57dff01.txt', 1),
+(2, 'matertial.txt', '../fotosSite/e1dcec1ceb872f695961d884f0bedf281.txt', 2),
+(6, 'material.docx', '../fotosSite/64bb536d081dc8ce651411d478fbb87b3.docx', 6);
 
 -- --------------------------------------------------------
 
@@ -118,6 +159,22 @@ CREATE TABLE `usuario` (
   `id_Empresa` int(11) NOT NULL,
   `nivel` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Despejando dados para a tabela `usuario`
+--
+
+INSERT INTO `usuario` (`id_usuario`, `nome_usuario`, `data_nascimento`, `sexo`, `ddd`, `telefone`, `email`, `senha`, `cpf`, `foto`, `status`, `id_Empresa`, `nivel`) VALUES
+(12, 'Ana', '1990-01-01', 'F', '11', '999999999', 'ana@email.com', '$2y$10$M04zuxGA6al9Qc6zfxxjJOvZ/a4t65dsD.h12QEHHmuNHXYCYuKNm', '12345678901', '../fotosSite/pessoa.jpg', 1, 2, 1),
+(13, 'Bruno', '1985-05-15', 'M', '21', '988888888', 'bruno@email.com', '$2y$10$reXsISWcuhtQ4mhA7q3.OOmlgQUnA0VZMCAWS.VCZedvQLQYWqeGu', '23456789012', '../fotosSite/pessoa.jpg', 1, 2, 2),
+(14, 'Carlos', '1992-03-10', 'M', '31', '977777777', 'carlos@email.com', '$2y$10$Bo0zS4n7rslhy92zayGEfOX9BA5M7lZUBA4rLNUqIuGkoI.pcAyta', '34567890123', '../fotosSite/pessoa.jpg', 1, 2, 1),
+(15, 'Daniela', '1995-07-20', 'F', '41', '966666666', 'daniela@email.com', '$2y$10$0GrcYkGjdj/Uz7tPGALeKOsuONbvzmEMLH3rcELca8JYU9UhZDgAC', '45678901234', '../fotosSite/pessoa.jpg', 1, 2, 2),
+(16, 'Eduardo', '1988-11-25', 'M', '51', '955555555', 'eduardo@email.com', '$2y$10$96.cJIB9AfMQxa38movfuOSIJFNJeJEAzBjSAdwHk2aOiWQKbNiGy', '56789012345', '../fotosSite/pessoa.jpg', 1, 2, 1),
+(17, 'Fernanda', '1993-09-12', 'F', '61', '944444444', 'fernanda@email.com', '$2y$10$m9sxtlMYQgG1/ZX0eII41ONWvGK7G/hTNDR3hMrPoFn8JuxbWYCKK', '67890123456', '../fotosSite/pessoa.jpg', 1, 2, 2),
+(18, 'Gabriel', '1990-04-18', 'M', '71', '933333333', 'gabriel@email.com', '$2y$10$knB7JfIjxms.1bi2ei.MIuRa4X2NtleyCVvXAdhVTfeKsyL1XU4Ui', '78901234567', '../fotosSite/pessoa.jpg', 1, 2, 1),
+(19, 'Helena', '1997-06-30', 'F', '81', '922222222', 'helena@email.com', '$2y$10$N9Xx4INlmlJrfZUh4ETQ0e9XJtO2EjmQC/26fGS0ySo7Ctw8omaMO', '89012345678', '../fotosSite/pessoa.jpg', 1, 2, 2),
+(20, 'Igor', '1989-02-14', 'M', '91', '911111111', 'igor@email.com', '$2y$10$AZrJX22FnCjPrxMHHYyt7uMsGr60OrzJS8ASLYQ6UUDcmQ9LL7rqW', '90123456789', '../fotosSite/pessoa.jpg', 1, 2, 1),
+(21, 'Juliana', '1994-08-05', 'F', '71', '900000000', 'juliana@email.com', '$2y$10$kPdWsO8bBJHppNJVRVm/zOJ8K4OJ3BzyS.mXvXsH3IbUxQBXrjIlu', '01234567890', '../fotosSite/pessoa.jpg', 1, 2, 2);
 
 --
 -- Índices para tabelas despejadas
@@ -173,37 +230,37 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `aula`
 --
 ALTER TABLE `aula`
-  MODIFY `id_aula` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_aula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `categoria_curso`
 --
 ALTER TABLE `categoria_curso`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `curso`
 --
 ALTER TABLE `curso`
-  MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `empresa`
 --
 ALTER TABLE `empresa`
-  MODIFY `id_empresa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_empresa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `materiais_aula`
 --
 ALTER TABLE `materiais_aula`
-  MODIFY `id_material` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_material` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Restrições para tabelas despejadas

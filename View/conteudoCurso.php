@@ -129,8 +129,8 @@ while (($a = $q->fetch_assoc()) != null) {
                                 <h1><?= $material["filename"] ?> <!--$nomeArquivo--></h1>
                                 <!---TODO: ADICIONAR DETECTAR O FILE TYPE 
                                 https://pt.stackoverflow.com/questions/38877/extrair-informa%C3%A7%C3%B5es-de-um-v%C3%ADdeo-no-momento-do-upload
-                                -->
-                                <p>Documento PDF <!--$tipoArquivo--></p>
+                            -->
+                            <p>Documento PDF <!--$tipoArquivo--></p>
                             </div>
                         </section>
 
