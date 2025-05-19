@@ -29,13 +29,17 @@
                     <div class="profile-company"><?=$_SESSION['nome_empresa']?></div>
                 </div>
             </div>
+            <?php 
+            
+            $dataFormatada = date("d/m/Y", strtotime($_SESSION['data_nascimento']));
+            ?>
             
             <div class="profile-details">
                 <h3 class="section-title">Informações Pessoais</h3>
                 <div class="detail-group">
                     <div class="detail-item">
                         <div class="detail-label">Data de Nascimento</div>
-                        <div class="detail-value"><?=$_SESSION['data_nascimento']?></div>
+                        <div class="detail-value"><?=$dataFormatada?></div>
                     </div>
                     <div class="detail-item">
                         <div class="detail-label">CPF</div>
