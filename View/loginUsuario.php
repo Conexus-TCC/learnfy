@@ -16,6 +16,7 @@
     <div class="container">
         <header class="header">
             <h1>Perfil do Usuário</h1>
+            
         </header>
         
         <div class="profile-card">
