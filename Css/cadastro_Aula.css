@@ -7,6 +7,14 @@
   padding: 10px;
   background-color: #92386B;
 }
+.bola{
+  color: white;
+  text-align: center;
+  padding: 14px;
+      clip-path: circle(38% at 46.58% 50.00%);
+  border-radius: 25px;
+  background-color: var(--primary);
+}
 .btn-Add-Aula>svg>path{
   stroke: white !important;
 }
@@ -21,14 +29,6 @@
   padding: 10px;
   display: flex;
 background-color: #D9D9D9;
-.bola{
-  color: white;
-  text-align: center;
-  padding: 14px;
-      clip-path: circle(38% at 46.58% 50.00%);;
-  border-radius: 25px;
-  background-color: var(--primary);
-}
 .btn-collapse,.btn-delete{
   background: none;
   &:hover{
@@ -116,3 +116,87 @@ background-color: #D9D9D9;
     scale: 1.1;
   }
 }
+
+.quiz{
+
+}
+.container{
+  width: 100%;
+}
+
+.header{
+  padding:  0 20px ;
+  display: flex;
+  justify-content: space-evenly;
+  gap: 20px;
+  .bola{
+    align-self: center;
+  }
+  input{
+    margin-bottom: 0;
+    flex: 1;
+  }
+}
+.caixaAdicionar{
+  font-size: 0.9em;
+  cursor: pointer;
+  color: white;
+  display: flex;
+  justify-content: right;
+  padding: 12px;
+  background: var(--primary);
+  width: fit-content;
+  float: right;
+  margin-bottom: 21px;
+}
+.questao{
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+.resposta{
+  padding: 10px;
+  gap: 05px;
+display: flex;
+align-items: center;
+
+}
+.resposta>input[type=radio]{
+  background: inherit;
+  width: fit-content;
+  padding: 0;
+  margin: 0;
+appearance: none;
+display: flex;
+  outline: none;
+  border: none;
+&:focus{
+  outline: none;
+  border: none;
+}
+}
+.resposta>input[type=radio]::before{
+  display: block;
+  content: "";
+  align-self: center;
+      width: 10px;
+      border: solid 1px #558D8C;
+      background-color: transparent;
+      height: 10px;
+}
+.resposta>input[type=radio]:checked:before{
+  display: block;
+  content: "";
+      width: 10px;
+      background-color: #558D8C;
+      height: 10px;
+      animation: fill 0.5s ;
+}
+
+
+.resposta>input[type=text]{
+  padding: 10px;
+  margin-bottom: 0;
+  flex: 2;
+}
+

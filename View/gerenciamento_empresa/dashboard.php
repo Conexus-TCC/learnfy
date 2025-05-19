@@ -11,12 +11,6 @@
      <h1>Dashboard</h1>
      <p class="page-subtitle">Bem-vindo ao painel de gerenciamento da sua empresa</p>
    </div>
-   <div class="header-actions">
-     <button class="create-btn" id="create-course-btn">
-       <span>➕</span>
-       Novo Curso
-     </button>
-   </div>
  </div>
 
 
