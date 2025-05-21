@@ -29,14 +29,15 @@
   padding: 10px;
   display: flex;
 background-color: #D9D9D9;
+}
 .btn-collapse,.btn-delete{
   background: none;
   &:hover{
+    background: none;
     cursor: pointer;
     svg>g{
     stroke: #d489b4;
   }
-}
 }
 }
 .campos{
@@ -192,7 +193,6 @@ display: flex;
       height: 10px;
       animation: fill 0.5s ;
 }
-
 
 .resposta>input[type=text]{
   padding: 10px;
