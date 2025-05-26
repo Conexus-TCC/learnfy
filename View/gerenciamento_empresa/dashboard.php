@@ -47,7 +47,7 @@
             echo $totCurso["totCurso"];
           }?></div>
        <div class="stat-trend trend-up">
-         +4% <span style="color: var(--muted);">vs. último mês</span>
+         <!-- +4% <span style="color: var(--muted);">vs. último mês</span> -->
        </div>
      </div>
      <div class="stat-icon">📚</div>

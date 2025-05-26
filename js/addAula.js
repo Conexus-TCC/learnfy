@@ -128,18 +128,11 @@ enviar.addEventListener("click", async (e) => {
       const respostaCorretaIndex = Array.from(
         questao.querySelectorAll(`input[name='respostaCheck${j}']`)
       ).findIndex((input) => input.checked);
-
       formData.append(`questoes[${index}][pergunta]`, pergunta);
       respostas.forEach((resposta, respostaIndex) => {
         formData.append(`questoes[${index}][respostas][${respostaIndex}]`, resposta);
       });
       formData.append(`questoes[${index}][respostaCorreta]`, respostaCorretaIndex);
-      console.log(j)
-      console.log(questao)
-      console.log(respostas)
-      console.log(pergunta)
-      console.log(respostaCorretaIndex)
-    
     });
 
     $.ajax({
@@ -179,7 +172,7 @@ enviar.addEventListener("click", async (e) => {
             title: "Aulas cadastradas com sucesso!",
             text: "🎉🥳",
           }).then(() => {
-           // window.location.href = "./dashboard.php";
+          //  window.location.href = "./dashboard.php";
           });
           return;
         }
