@@ -1,11 +1,11 @@
 <?php
 @session_start();
-   include '../parts/head.php' 
+include '../parts/head.php'
 ?>
 <!DOCTYPE html>
 <link rel="stylesheet" href="../../Css/gerenciamento.css">
-<link rel="stylesheet" href="../../Css/cadastro_Aula.css">
 <link rel="stylesheet" href="../../Css/colaboradores.css">
+<link rel="stylesheet" href="../../Css/cadastro_Aula.css">
 <script src="../../js/jquery-3.7.1.min.js"></script>
 <div class="page-header">
   <div class="page-title">
@@ -19,8 +19,9 @@
   </svg>
   <span>adicionar aula</span> </button>
 <div class="aulas">
-  </div>
-  <button id="enviar" type="submit">Próximo</button>
+  
+</div>
+<button id="enviar" type="submit">Próximo</button>
 <script type="module" src="../../js/addAula.js"> </script>
 <script>
   function colapsar(id, btn) {
@@ -32,6 +33,6 @@
   }
 
   function deletar(id) {
-    document.querySelector(`#form-${id}`).remove()
+    document.querySelector(`${id}`).remove()
   }
 </script>

@@ -29,6 +29,7 @@ USE `db_learnfy`;
 -- Estrutura para tabela `aula`
 --
 
+DROP TABLE IF EXISTS `aula`;
 CREATE TABLE `aula` (
   `id_aula` int(11) NOT NULL,
   `nome` varchar(255) NOT NULL,
@@ -52,6 +53,7 @@ INSERT INTO `aula` (`id_aula`, `nome`, `descricao`, `video`, `id_curso`) VALUES
 -- Estrutura para tabela `categoria_curso`
 --
 
+DROP TABLE IF EXISTS `categoria_curso`;
 CREATE TABLE `categoria_curso` (
   `id_categoria` int(11) NOT NULL,
   `nome_categoria` varchar(30) NOT NULL,
@@ -73,6 +75,7 @@ INSERT INTO `categoria_curso` (`id_categoria`, `nome_categoria`, `id_empresa`, `
 -- Estrutura para tabela `curso`
 --
 
+DROP TABLE IF EXISTS `curso`;
 CREATE TABLE `curso` (
   `id_curso` int(11) NOT NULL,
   `nome` varchar(255) NOT NULL,
@@ -97,6 +100,7 @@ INSERT INTO `curso` (`id_curso`, `nome`, `descricao`, `imagem`, `categoria`, `id
 -- Estrutura para tabela `empresa`
 --
 
+DROP TABLE IF EXISTS `empresa`;
 CREATE TABLE `empresa` (
   `id_empresa` int(11) NOT NULL,
   `nome_empresa` varchar(50) NOT NULL,
@@ -122,6 +126,7 @@ INSERT INTO `empresa` (`id_empresa`, `nome_empresa`, `cnpj`, `cep`, `email`, `se
 -- Estrutura para tabela `materiais_aula`
 --
 
+DROP TABLE IF EXISTS `materiais_aula`;
 CREATE TABLE `materiais_aula` (
   `id_material` int(11) NOT NULL,
   `filename` varchar(255) NOT NULL,
@@ -141,9 +146,49 @@ INSERT INTO `materiais_aula` (`id_material`, `filename`, `caminho`, `id_aula`) V
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `pergunta`
+--
+
+DROP TABLE IF EXISTS `pergunta`;
+CREATE TABLE `pergunta` (
+  `id_pergunta` int(11) NOT NULL,
+  `pergunta` varchar(190) NOT NULL,
+  `id_quiz` int(11) NOT NULL,
+  `id_res_certa` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `quiz`
+--
+
+DROP TABLE IF EXISTS `quiz`;
+CREATE TABLE `quiz` (
+  `id_quiz` int(11) NOT NULL,
+  `id_aula` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `resposta`
+--
+
+DROP TABLE IF EXISTS `resposta`;
+CREATE TABLE `resposta` (
+  `id_resposta` int(11) NOT NULL,
+  `resposta` varchar(190) NOT NULL,
+  `id_pergunta` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `usuario`
 --
 
+DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE `usuario` (
   `id_usuario` int(11) NOT NULL,
   `nome_usuario` varchar(60) NOT NULL,
@@ -216,6 +261,28 @@ ALTER TABLE `materiais_aula`
   ADD KEY `fk_material_aula` (`id_aula`);
 
 --
+-- Índices de tabela `pergunta`
+--
+ALTER TABLE `pergunta`
+  ADD PRIMARY KEY (`id_pergunta`),
+  ADD KEY `fk_pergunta_quiz` (`id_quiz`),
+  ADD KEY `fk_pergunta_resposta` (`id_res_certa`);
+
+--
+-- Índices de tabela `quiz`
+--
+ALTER TABLE `quiz`
+  ADD PRIMARY KEY (`id_quiz`),
+  ADD KEY `fk_quiz-aula` (`id_aula`);
+
+--
+-- Índices de tabela `resposta`
+--
+ALTER TABLE `resposta`
+  ADD PRIMARY KEY (`id_resposta`),
+  ADD KEY `fk_resposta_pergunta` (`id_pergunta`);
+
+--
 -- Índices de tabela `usuario`
 --
 ALTER TABLE `usuario`
@@ -248,7 +315,7 @@ ALTER TABLE `curso`
 -- AUTO_INCREMENT de tabela `empresa`
 --
 ALTER TABLE `empresa`
-  MODIFY `id_empresa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_empresa` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `materiais_aula`
@@ -257,10 +324,28 @@ ALTER TABLE `materiais_aula`
   MODIFY `id_material` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT de tabela `pergunta`
+--
+ALTER TABLE `pergunta`
+  MODIFY `id_pergunta` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `quiz`
+--
+ALTER TABLE `quiz`
+  MODIFY `id_quiz` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `resposta`
+--
+ALTER TABLE `resposta`
+  MODIFY `id_resposta` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restrições para tabelas despejadas
@@ -290,6 +375,24 @@ ALTER TABLE `curso`
 --
 ALTER TABLE `materiais_aula`
   ADD CONSTRAINT `fk_material_aula` FOREIGN KEY (`id_aula`) REFERENCES `aula` (`id_aula`);
+
+--
+-- Restrições para tabelas `pergunta`
+--
+ALTER TABLE `pergunta`
+  ADD CONSTRAINT `fk_pergunta_quiz` FOREIGN KEY (`id_quiz`) REFERENCES `quiz` (`id_quiz`);
+
+--
+-- Restrições para tabelas `quiz`
+--
+ALTER TABLE `quiz`
+  ADD CONSTRAINT `fk_quiz-aula` FOREIGN KEY (`id_aula`) REFERENCES `aula` (`id_aula`);
+
+--
+-- Restrições para tabelas `resposta`
+--
+ALTER TABLE `resposta`
+  ADD CONSTRAINT `fk_resposta_pergunta` FOREIGN KEY (`id_pergunta`) REFERENCES `pergunta` (`id_pergunta`);
 
 --
 -- Restrições para tabelas `usuario`

@@ -1,45 +1,47 @@
-.btn-Add-Aula{
+.btn-Add-Aula {
   text-transform: capitalize;
   gap: 6px;
   display: flex;
   align-items: center;
   color: white;
   padding: 10px;
-  background-color: #92386B;
+  background-color: #92386b;
 }
-.btn-Add-Aula>svg>path{
+.bola {
+  color: white;
+  text-align: center;
+  padding: 14px;
+  clip-path: circle(38% at 46.58% 50%);
+  border-radius: 25px;
+  background-color: var(--primary);
+}
+.btn-Add-Aula > svg > path {
   stroke: white !important;
 }
-.campos-Curso{
+.campos-Curso {
   border: solid 1px #00000025;
-  box-shadow: 0 4px 4px 0 #00000025 ;
+  box-shadow: 0 4px 4px 0 #00000025;
 }
-.campos-Curso>.cabecalho{
+.campos-Curso > .cabecalho {
   justify-content: space-between;
   align-items: center;
   gap: 5px;
   padding: 10px;
   display: flex;
-background-color: #D9D9D9;
-.bola{
-  color: white;
-  text-align: center;
-  padding: 14px;
-      clip-path: circle(38% at 46.58% 50.00%);;
-  border-radius: 25px;
-  background-color: var(--primary);
+  background-color: #d9d9d9;
 }
-.btn-collapse,.btn-delete{
+.btn-collapse,
+.btn-delete {
   background: none;
-  &:hover{
+  &:hover {
+    background: none;
     cursor: pointer;
-    svg>g{
-    stroke: #d489b4;
+    svg > g {
+      stroke: #d489b4;
+    }
   }
 }
-}
-}
-.campos{
+.campos {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -47,39 +49,39 @@ background-color: #D9D9D9;
   padding-left: 5px;
   padding-top: 10px;
 }
-.descricao-aula{
-   font-family: "josefin sans", sans-serif;
-    border: none;
-  background-color: #D9D9D9;
+.descricao-aula {
+  font-family: "josefin sans", sans-serif;
+  border: none;
+  background-color: #d9d9d9;
   padding: 5px;
   font-size: 1.2em;
-     height: 90%;
-  width:95%;
+  height: 90%;
+  width: 95%;
   resize: vertical;
 }
-.label-videos{
+.label-videos {
   gap: 5px;
   flex-direction: column;
   display: flex;
 }
-.label-videos>div{
-  padding:  55px 0;
+.label-videos > div {
+  padding: 55px 0;
   width: 95%;
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   display: flex;
   flex-direction: column;
   align-items: center;
   align-self: center;
 }
-.materiais-complementares>div{
+.materiais-complementares > div {
   gap: 25px;
-  padding:   20px 0;
+  padding: 20px 0;
   display: flex;
   justify-content: space-around;
   flex-direction: column;
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
 }
-.materiais-complementares>div>label{
+.materiais-complementares > div > label {
   align-self: center;
   padding: 10px;
   display: block;
@@ -87,32 +89,112 @@ background-color: #D9D9D9;
   width: 95%;
   background-color: white;
 }
-.materiais-selecionados{
+.materiais-selecionados {
   display: flex;
   justify-content: space-evenly;
 }
-.materiais-selecionados-item{
-  background-color:#558D8C;
+.materiais-selecionados-item {
+  background-color: #558d8c;
   padding: 10px;
   color: white;
   display: flex;
   align-items: center;
 }
-.colapsed{
+.colapsed {
   display: none;
 }
-#enviar{
+#enviar {
   margin-top: 40px;
   margin-right: 20px;
   color: white;
   float: right;
   border-radius: 10px;
-  background-color: #92386B;
+  background-color: #92386b;
   font-size: 1.3rem;
   padding: 5px 20px;
   cursor: pointer;
-  transition: .5s cubic-bezier(0.23, 1, 0.320, 1);
-  &:hover{
+  transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  &:hover {
     scale: 1.1;
   }
+}
+
+.quiz {
+}
+.container {
+  width: 100%;
+}
+
+.header {
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-evenly;
+  gap: 20px;
+  .bola {
+    align-self: center;
+  }
+  input {
+    margin-bottom: 0;
+    flex: 1;
+  }
+}
+.caixaAdicionar {
+  font-size: 0.9em;
+  cursor: pointer;
+  color: white;
+  display: flex;
+  justify-content: right;
+  padding: 12px;
+  background: var(--primary);
+  width: fit-content;
+  float: right;
+  margin-bottom: 21px;
+}
+.questao {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+.resposta {
+  padding: 10px;
+  gap: 05px;
+  display: flex;
+  align-items: center;
+}
+.resposta > input[type="radio"] {
+  background: inherit;
+  width: fit-content;
+  padding: 0;
+  margin: 0;
+  appearance: none;
+  display: flex;
+  outline: none;
+  border: none;
+  &:focus {
+    outline: none;
+    border: none;
+  }
+}
+.resposta > input[type="radio"]::before {
+  display: block;
+  content: "";
+  align-self: center;
+  width: 10px;
+  border: solid 1px #558d8c;
+  background-color: transparent;
+  height: 10px;
+}
+.resposta > input[type="radio"]:checked:before {
+  display: block;
+  content: "";
+  width: 10px;
+  background-color: #558d8c;
+  height: 10px;
+  animation: fill 0.5s;
+}
+
+.resposta > input[type="text"] {
+  padding: 10px;
+  margin-bottom: 0;
+  flex: 2;
 }
