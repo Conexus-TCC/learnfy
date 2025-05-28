@@ -197,11 +197,46 @@ section{
 }
 
 #boxQuiz{
-    height: 450px;
+    flex-direction: column;
+    gap: 25px;
     width: 100%;
     padding: 2%;
     margin-top: 2%;
     background-color: white;
+}
+#boxQuiz>form{
+    display: flex;
+    flex-direction: column;
+     box-shadow: 1px 1px 15px #00000069;
+     padding: 20px 20px;
+     border-radius: 5px;
+          background-color: rgb(219, 219, 219);
+     
+}
+
+#boxQuiz > form > label{
+    display: flex;
+    align-items: center;
+    justify-content: first baseline;
+    gap: 10px;
+    margin-top: 20px;
+     background-color: rgb(255, 250, 250);
+     width: 50%;
+     height: 45PX;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 15px #0000001f;
+}
+
+label p {
+    font-size: 25px;
+   
+}
+
+label input {
+    accent-color: #558D8C;
+    width: 23px;
+    height: 23px;
 }
 
 @media (max-width: 768px) {
