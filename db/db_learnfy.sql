@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 08/05/2025 às 20:31
+-- Tempo de geração: 29/05/2025 às 16:11
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -29,7 +29,6 @@ USE `db_learnfy`;
 -- Estrutura para tabela `aula`
 --
 
-DROP TABLE IF EXISTS `aula`;
 CREATE TABLE `aula` (
   `id_aula` int(11) NOT NULL,
   `nome` varchar(255) NOT NULL,
@@ -43,9 +42,8 @@ CREATE TABLE `aula` (
 --
 
 INSERT INTO `aula` (`id_aula`, `nome`, `descricao`, `video`, `id_curso`) VALUES
-(1, 'Introdução', 'conceitos basicos do node', '../fotosSite/7caf86d07bc9fb173a2f69aafe57dff01.mp4', 1),
-(2, 'API REST', 'Conceitos sobre API REST', '../fotosSite/e1dcec1ceb872f695961d884f0bedf281.mp4', 1),
-(6, 'Aula 1', '54656', '../fotosSite/64bb536d081dc8ce651411d478fbb87b3.mp4', 3);
+(1, ' Conceitos de API REST', 'Aula sobre o que é API REST', '../fotosSite/0932a54b62fd5ca5ce305708dde962331.mp4', 1),
+(2, 'Introdução Ao node ', 'Introdução ao conceito de node', '../fotosSite/0932a54b62fd5ca5ce305708dde962331.mp4', 1);
 
 -- --------------------------------------------------------
 
@@ -53,7 +51,6 @@ INSERT INTO `aula` (`id_aula`, `nome`, `descricao`, `video`, `id_curso`) VALUES
 -- Estrutura para tabela `categoria_curso`
 --
 
-DROP TABLE IF EXISTS `categoria_curso`;
 CREATE TABLE `categoria_curso` (
   `id_categoria` int(11) NOT NULL,
   `nome_categoria` varchar(30) NOT NULL,
@@ -66,8 +63,7 @@ CREATE TABLE `categoria_curso` (
 --
 
 INSERT INTO `categoria_curso` (`id_categoria`, `nome_categoria`, `id_empresa`, `nivelAcesso`) VALUES
-(1, 'Programação', 2, 0),
-(2, 'office', 2, 0);
+(1, 'Programação', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -75,7 +71,6 @@ INSERT INTO `categoria_curso` (`id_categoria`, `nome_categoria`, `id_empresa`, `
 -- Estrutura para tabela `curso`
 --
 
-DROP TABLE IF EXISTS `curso`;
 CREATE TABLE `curso` (
   `id_curso` int(11) NOT NULL,
   `nome` varchar(255) NOT NULL,
@@ -91,8 +86,7 @@ CREATE TABLE `curso` (
 --
 
 INSERT INTO `curso` (`id_curso`, `nome`, `descricao`, `imagem`, `categoria`, `id_empresa`, `nivel`) VALUES
-(1, 'Node JS', 'Curso completo sobre o interpretador de javascript', '../fotosSite/e867a0750f38278be432a2c150f5ad2e2.jpg', 1, 2, 0),
-(3, 'Word', 'Curso sobre a ferramenta Word', '../fotosSite/b666d36383aab2563174938d94be29cc2.jpg', 2, 2, 0);
+(1, 'Node-JS', 'Curso de prgramação de Node.Js', '../fotosSite/6e2927e4df2b83d4e5808639585f109f1.jpg', 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -100,7 +94,6 @@ INSERT INTO `curso` (`id_curso`, `nome`, `descricao`, `imagem`, `categoria`, `id
 -- Estrutura para tabela `empresa`
 --
 
-DROP TABLE IF EXISTS `empresa`;
 CREATE TABLE `empresa` (
   `id_empresa` int(11) NOT NULL,
   `nome_empresa` varchar(50) NOT NULL,
@@ -118,7 +111,7 @@ CREATE TABLE `empresa` (
 --
 
 INSERT INTO `empresa` (`id_empresa`, `nome_empresa`, `cnpj`, `cep`, `email`, `senha`, `logo`, `ddd`, `telefone`) VALUES
-(2, 'conexus', '93.232.438/0001-86', '03590-070', 'conexus@mail.com', '$2y$10$5UfNxWqi9tmkKb7gftb0p.sedcTfjE1p/bfIhwyyv7zneI3eR.kTW', '../fotosSite/f03944384a0cbdf43de15d9fd0f4dea1.jpg', NULL, '36 5-6456');
+(1, 'Conexus', '50.405.354/0001-94', '03590-070', 'conexus@mail.com', '$2y$10$GmoWw6KvOW..CSUeBVENGOaOIBzND8.aNZzIiMHpbR7rcSxgFdtla', '../fotosSite/d24b530a6fcf7c9d0da4c061f626532f.jpg', NULL, '47 8978-9789');
 
 -- --------------------------------------------------------
 
@@ -126,7 +119,6 @@ INSERT INTO `empresa` (`id_empresa`, `nome_empresa`, `cnpj`, `cep`, `email`, `se
 -- Estrutura para tabela `materiais_aula`
 --
 
-DROP TABLE IF EXISTS `materiais_aula`;
 CREATE TABLE `materiais_aula` (
   `id_material` int(11) NOT NULL,
   `filename` varchar(255) NOT NULL,
@@ -139,9 +131,8 @@ CREATE TABLE `materiais_aula` (
 --
 
 INSERT INTO `materiais_aula` (`id_material`, `filename`, `caminho`, `id_aula`) VALUES
-(1, 'material.txt', '../fotosSite/7caf86d07bc9fb173a2f69aafe57dff01.txt', 1),
-(2, 'matertial.txt', '../fotosSite/e1dcec1ceb872f695961d884f0bedf281.txt', 2),
-(6, 'material.docx', '../fotosSite/64bb536d081dc8ce651411d478fbb87b3.docx', 6);
+(1, 'matertial.txt', '../fotosSite/0932a54b62fd5ca5ce305708dde962331.txt', 1),
+(2, 'matertial.txt', '../fotosSite/0932a54b62fd5ca5ce305708dde962331.txt', 2);
 
 -- --------------------------------------------------------
 
@@ -149,7 +140,6 @@ INSERT INTO `materiais_aula` (`id_material`, `filename`, `caminho`, `id_aula`) V
 -- Estrutura para tabela `pergunta`
 --
 
-DROP TABLE IF EXISTS `pergunta`;
 CREATE TABLE `pergunta` (
   `id_pergunta` int(11) NOT NULL,
   `pergunta` varchar(190) NOT NULL,
@@ -157,17 +147,32 @@ CREATE TABLE `pergunta` (
   `id_res_certa` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Despejando dados para a tabela `pergunta`
+--
+
+INSERT INTO `pergunta` (`id_pergunta`, `pergunta`, `id_quiz`, `id_res_certa`) VALUES
+(1, ' Em uma API RESTful, qual das opções abaixo corresponde corretamente à função do verbo HTTP GET?', 1, 3),
+(2, 'O Que é Node?', 2, 6);
+
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `quiz`
 --
 
-DROP TABLE IF EXISTS `quiz`;
 CREATE TABLE `quiz` (
   `id_quiz` int(11) NOT NULL,
   `id_aula` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Despejando dados para a tabela `quiz`
+--
+
+INSERT INTO `quiz` (`id_quiz`, `id_aula`) VALUES
+(1, 1),
+(2, 2);
 
 -- --------------------------------------------------------
 
@@ -175,12 +180,25 @@ CREATE TABLE `quiz` (
 -- Estrutura para tabela `resposta`
 --
 
-DROP TABLE IF EXISTS `resposta`;
 CREATE TABLE `resposta` (
   `id_resposta` int(11) NOT NULL,
   `resposta` varchar(190) NOT NULL,
   `id_pergunta` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Despejando dados para a tabela `resposta`
+--
+
+INSERT INTO `resposta` (`id_resposta`, `resposta`, `id_pergunta`) VALUES
+(1, 'Atualizar um recurso existente no servidor.', 1),
+(2, 'Excluir um recurso do servidor.', 1),
+(3, 'Consultar ou recuperar informações de um recurso.', 1),
+(4, 'Criar um novo recurso no servidor.', 1),
+(5, 'Uma linguagem', 2),
+(6, 'Um Interpretador', 2),
+(7, 'Uma biblioteca ', 2),
+(8, 'Um Compilador', 2);
 
 -- --------------------------------------------------------
 
@@ -188,7 +206,6 @@ CREATE TABLE `resposta` (
 -- Estrutura para tabela `usuario`
 --
 
-DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE `usuario` (
   `id_usuario` int(11) NOT NULL,
   `nome_usuario` varchar(60) NOT NULL,
@@ -210,16 +227,16 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nome_usuario`, `data_nascimento`, `sexo`, `ddd`, `telefone`, `email`, `senha`, `cpf`, `foto`, `status`, `id_Empresa`, `nivel`) VALUES
-(12, 'Ana', '1990-01-01', 'F', '11', '999999999', 'ana@email.com', '$2y$10$M04zuxGA6al9Qc6zfxxjJOvZ/a4t65dsD.h12QEHHmuNHXYCYuKNm', '12345678901', '../fotosSite/pessoa.jpg', 1, 2, 1),
-(13, 'Bruno', '1985-05-15', 'M', '21', '988888888', 'bruno@email.com', '$2y$10$reXsISWcuhtQ4mhA7q3.OOmlgQUnA0VZMCAWS.VCZedvQLQYWqeGu', '23456789012', '../fotosSite/pessoa.jpg', 1, 2, 2),
-(14, 'Carlos', '1992-03-10', 'M', '31', '977777777', 'carlos@email.com', '$2y$10$Bo0zS4n7rslhy92zayGEfOX9BA5M7lZUBA4rLNUqIuGkoI.pcAyta', '34567890123', '../fotosSite/pessoa.jpg', 1, 2, 1),
-(15, 'Daniela', '1995-07-20', 'F', '41', '966666666', 'daniela@email.com', '$2y$10$0GrcYkGjdj/Uz7tPGALeKOsuONbvzmEMLH3rcELca8JYU9UhZDgAC', '45678901234', '../fotosSite/pessoa.jpg', 1, 2, 2),
-(16, 'Eduardo', '1988-11-25', 'M', '51', '955555555', 'eduardo@email.com', '$2y$10$96.cJIB9AfMQxa38movfuOSIJFNJeJEAzBjSAdwHk2aOiWQKbNiGy', '56789012345', '../fotosSite/pessoa.jpg', 1, 2, 1),
-(17, 'Fernanda', '1993-09-12', 'F', '61', '944444444', 'fernanda@email.com', '$2y$10$m9sxtlMYQgG1/ZX0eII41ONWvGK7G/hTNDR3hMrPoFn8JuxbWYCKK', '67890123456', '../fotosSite/pessoa.jpg', 1, 2, 2),
-(18, 'Gabriel', '1990-04-18', 'M', '71', '933333333', 'gabriel@email.com', '$2y$10$knB7JfIjxms.1bi2ei.MIuRa4X2NtleyCVvXAdhVTfeKsyL1XU4Ui', '78901234567', '../fotosSite/pessoa.jpg', 1, 2, 1),
-(19, 'Helena', '1997-06-30', 'F', '81', '922222222', 'helena@email.com', '$2y$10$N9Xx4INlmlJrfZUh4ETQ0e9XJtO2EjmQC/26fGS0ySo7Ctw8omaMO', '89012345678', '../fotosSite/pessoa.jpg', 1, 2, 2),
-(20, 'Igor', '1989-02-14', 'M', '91', '911111111', 'igor@email.com', '$2y$10$AZrJX22FnCjPrxMHHYyt7uMsGr60OrzJS8ASLYQ6UUDcmQ9LL7rqW', '90123456789', '../fotosSite/pessoa.jpg', 1, 2, 1),
-(21, 'Juliana', '1994-08-05', 'F', '71', '900000000', 'juliana@email.com', '$2y$10$kPdWsO8bBJHppNJVRVm/zOJ8K4OJ3BzyS.mXvXsH3IbUxQBXrjIlu', '01234567890', '../fotosSite/pessoa.jpg', 1, 2, 2);
+(1, 'Ana', '1990-01-01', 'F', '11', '999999999', 'ana@email.com', '$2y$10$VOfQp79gxge4PwxLJ3HqbuLcVL8f4lp15ZfCr1TadAcLBg3tPyzDW', '12345678901', '../fotosSite/pessoa.jpg', 1, 1, 1),
+(2, 'Bruno', '1985-05-15', 'M', '21', '988888888', 'bruno@email.com', '$2y$10$U9t44asLv9e/YzKKec3M6OLfJLtHHOGb31O2OfBCJsfJXfCHHrJSe', '23456789012', '../fotosSite/pessoa.jpg', 1, 1, 2),
+(3, 'Carlos', '1992-03-10', 'M', '31', '977777777', 'carlos@email.com', '$2y$10$W05CwUwTP/d4jgQEVJM4r.bZk5s2R3SP572/o2/vliMoflP7E5oF6', '34567890123', '../fotosSite/pessoa.jpg', 1, 1, 1),
+(4, 'Daniela', '1995-07-20', 'F', '41', '966666666', 'daniela@email.com', '$2y$10$ssZYiU1woDea5RBL1Q0Qye6yCzhjIZrx68LOzi2Bo7IBXzEfo50Ma', '45678901234', '../fotosSite/pessoa.jpg', 1, 1, 2),
+(5, 'Eduardo', '1988-11-25', 'M', '51', '955555555', 'eduardo@email.com', '$2y$10$U94x7ALRwAA4MbmIs70xj.hzZ.U1ofyKqurQdDZRcdnul77hLNDki', '56789012345', '../fotosSite/pessoa.jpg', 1, 1, 1),
+(6, 'Fernanda', '1993-09-12', 'F', '61', '944444444', 'fernanda@email.com', '$2y$10$vG0EqcDcKan6faE8Lax5XeJwYv/Jkl2HYjBaIOUgzSCIUL9UW5eeu', '67890123456', '../fotosSite/pessoa.jpg', 1, 1, 2),
+(7, 'Gabriel', '1990-04-18', 'M', '71', '933333333', 'gabriel@email.com', '$2y$10$05GZWxe6WHRTlupz2evnte5MK/HI7gbi6MZyHLgFWJH6qZZZ4HPoC', '78901234567', '../fotosSite/pessoa.jpg', 1, 1, 1),
+(8, 'Helena', '1997-06-30', 'F', '81', '922222222', 'helena@email.com', '$2y$10$tH10idbEBFZ.RV6RDTwK9uGVZH56KGc3ijlCghbTytI1D0KuAWMe.', '89012345678', '../fotosSite/pessoa.jpg', 1, 1, 2),
+(9, 'Igor', '1989-02-14', 'M', '91', '911111111', 'igor@email.com', '$2y$10$o8YM31ZVsHfZHt0HHXEeg.2kd4NcwsMhTBk5roCafWoO8jClG4SMe', '90123456789', '../fotosSite/pessoa.jpg', 1, 1, 1),
+(10, 'Juliana', '1994-08-05', 'F', '71', '900000000', 'juliana@email.com', '$2y$10$/bh50EB.213ZzbXxo05jGexEZrrx1YWKZKEJaP2Nbc0HmiEZmbfKW', '01234567890', '../fotosSite/pessoa.jpg', 1, 1, 2);
 
 --
 -- Índices para tabelas despejadas
@@ -297,55 +314,55 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `aula`
 --
 ALTER TABLE `aula`
-  MODIFY `id_aula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_aula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `categoria_curso`
 --
 ALTER TABLE `categoria_curso`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `curso`
 --
 ALTER TABLE `curso`
-  MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `empresa`
 --
 ALTER TABLE `empresa`
-  MODIFY `id_empresa` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_empresa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `materiais_aula`
 --
 ALTER TABLE `materiais_aula`
-  MODIFY `id_material` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_material` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `pergunta`
 --
 ALTER TABLE `pergunta`
-  MODIFY `id_pergunta` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pergunta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `quiz`
 --
 ALTER TABLE `quiz`
-  MODIFY `id_quiz` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_quiz` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `resposta`
 --
 ALTER TABLE `resposta`
-  MODIFY `id_resposta` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_resposta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Restrições para tabelas despejadas
