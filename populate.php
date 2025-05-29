@@ -36,7 +36,7 @@ foreach ($funcionarios as $funcionario) {
          '$funcionario[7]', 
          '../fotosSite/pessoa.jpg', 
            $funcionario[9],
-          $funcionario[10], 
+          1, 
           $funcionario[11])";
 
   if ($conn->query($query) === TRUE) {

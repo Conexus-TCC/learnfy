@@ -32,19 +32,26 @@ while (($a = $query->fetch_assoc()) != null) {
     <link rel="stylesheet" href="../Css/cursos.css">
     <style>
         .img-container {
-            width: 100%; /* Largura igual à do bloco */
-            height: 200px; /* Altura fixa para todas as imagens */
-            overflow: hidden; /* Garante que a imagem não ultrapasse os limites */
+            width: 100%;
+            /* Largura igual à do bloco */
+            height: 200px;
+            /* Altura fixa para todas as imagens */
+            overflow: hidden;
+            /* Garante que a imagem não ultrapasse os limites */
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #f0f0f0; /* Cor de fundo para imagens ausentes */
+            background-color: #f0f0f0;
+            /* Cor de fundo para imagens ausentes */
         }
 
         .img-container img {
-            width: 100%; /* Ajusta a largura da imagem ao container */
-            height: 100%; /* Ajusta a altura da imagem ao container */
-            object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer */
+            width: 100%;
+            /* Ajusta a largura da imagem ao container */
+            height: 100%;
+            /* Ajusta a altura da imagem ao container */
+            object-fit: cover;
+            /* Garante que a imagem preencha o espaço sem distorcer */
         }
     </style>
 </head>
@@ -89,7 +96,7 @@ while (($a = $query->fetch_assoc()) != null) {
                             </div>
                             <h1><?= $curso["nome"] ?></h1>
                             <div class="conteudoCard" id="oferecidoPor">
-                                <p>Oferecido por: <?= $curso["nome_empresa"] ?></p> 
+                                <p>Oferecido por: <?= $curso["nome_empresa"] ?></p>
                                 <img src="<?= $curso["logo"] ?>" alt="">
                             </div>
                             <div class="conteudoCard">
@@ -113,16 +120,29 @@ while (($a = $query->fetch_assoc()) != null) {
     include("parts/footer.php");
     ?>
     <script>
+        function getTextColor(r, g, b) {
+            // Cálculo de luminância relativo (fórmula padrão)
+            const luminancia = 0.299 * r + 0.587 * g + 0.114 * b;
+
+            // Se a luminância for alta, usar texto preto, senão branco
+            return luminancia > 186 ? "black" : "white";
+        }
+
+
         const colorThief = new ColorThief();
         document.querySelectorAll(".cursos").forEach(divCurso => {
             const imgCurso = divCurso.querySelector("img");
             if (imgCurso.complete) {
                 const colors = colorThief.getColor(imgCurso);
-                divCurso.setAttribute("style", `--CorCurso:rgb(${colors[ 0 ]},${colors[ 1 ]},${colors[ 2 ]})`)
+                divCurso.setAttribute("style", `
+                --CorCurso:rgb(${colors[ 0 ]},${colors[ 1 ]},${colors[ 2 ]});
+                --CorTexto:${getTextColor(colors)}`)
             } else {
                 imgCurso.addEventListener("load", () => {
                     const colors = colorThief.getColor(imgCurso);
-                    divCurso.setAttribute("style", `--CorCurso:rgb(${colors[ 0 ]},${colors[ 1 ]},${colors[ 2 ]})`)
+                    divCurso.setAttribute("style", `
+                --CorCurso:rgb(${colors[ 0 ]},${colors[ 1 ]},${colors[ 2 ]});
+                --CorTexto:${getTextColor(colors)}`)
                 })
             }
         })
