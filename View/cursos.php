@@ -123,9 +123,10 @@ while (($a = $query->fetch_assoc()) != null) {
         function getTextColor(r, g, b) {
             // Cálculo de luminância relativo (fórmula padrão)
             const luminancia = 0.299 * r + 0.587 * g + 0.114 * b;
+                console.log(luminancia)
+                // Se a luminância for alta, usar texto preto, senão branco
+            return luminancia > 180 ? "black" : "white";
 
-            // Se a luminância for alta, usar texto preto, senão branco
-            return luminancia > 186 ? "black" : "white";
         }
 
 
@@ -136,13 +137,13 @@ while (($a = $query->fetch_assoc()) != null) {
                 const colors = colorThief.getColor(imgCurso);
                 divCurso.setAttribute("style", `
                 --CorCurso:rgb(${colors[ 0 ]},${colors[ 1 ]},${colors[ 2 ]});
-                --CorTexto:${getTextColor(colors)}`)
+                --CorTexto:${getTextColor(...colors)}`)
             } else {
                 imgCurso.addEventListener("load", () => {
                     const colors = colorThief.getColor(imgCurso);
                     divCurso.setAttribute("style", `
                 --CorCurso:rgb(${colors[ 0 ]},${colors[ 1 ]},${colors[ 2 ]});
-                --CorTexto:${getTextColor(colors)}`)
+                --CorTexto:${getTextColor(...colors)}`)
                 })
             }
         })
