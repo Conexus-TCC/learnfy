@@ -8,7 +8,7 @@ if (!isset($_SESSION["id_usuario"]) && !isset($_SESSION["id_empresa"])) {
     header("location:login.php");
 }
 $idEmpresa = $_SESSION["id_empresa"];
-$nome_empresa = $_SESSION["nome"];
+$nome_empresa = $_SESSION["nome_empresa"] ??  $_SESSION["nome"];
 $query = mysqli_query($con, "Select * from categoria_curso where id_empresa = $idEmpresa ");
 $categorias = array();
 while (($a = $query->fetch_assoc()) != null) {

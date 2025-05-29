@@ -124,13 +124,13 @@ while (($a = $q->fetch_assoc()) != null) {
 
             <div id="boxQuiz">
                 <?php
-                $qeury = mysqli_query($con, "SELECT pergunta.id_pergunta,pergunta.pergunta, GROUP_CONCAT(resposta.resposta) as resp_concat  from quiz 
+                $query = mysqli_query($con, "SELECT pergunta.id_pergunta,pergunta.pergunta, GROUP_CONCAT(resposta.resposta) as resp_concat  from quiz 
                     RIGHT JOIN pergunta on pergunta.id_quiz = quiz.id_quiz
                      LEFT join resposta on resposta.id_pergunta = pergunta.id_pergunta 
                      where id_aula = $aula[id_aula]
                      GROUP BY pergunta.id_pergunta; ");
                      $i = 1;
-                while ($pergunta = $qeury->fetch_assoc()) {
+                while ($pergunta = $query->fetch_assoc()) {
                     $respostas = explode(",", $pergunta["resp_concat"]);
                 ?>
                     <form>
