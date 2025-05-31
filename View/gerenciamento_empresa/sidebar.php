@@ -59,13 +59,7 @@
     </li>
 
 
-    <li class="sidebar-menu-item">
-      <a href="#" class="sidebar-menu-link">
-        <span class="sidebar-menu-icon">⚙️</span>
-        <span class="sidebar-menu-text">Configurações</span>
-      </a>
-      <div class="tooltip">Configurações</div>
-    </li>
+    
   </ul>
 
   <div class="sidebar-footer">
