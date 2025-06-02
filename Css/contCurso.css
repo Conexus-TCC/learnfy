@@ -210,7 +210,8 @@ section{
      box-shadow: 1px 1px 15px #00000069;
      padding: 20px 20px;
      border-radius: 5px;
-          background-color: rgb(219, 219, 219);
+    background-color: rgb(219, 219, 219);
+    gap: 25px;
      
 }
 
@@ -221,16 +222,30 @@ section{
     gap: 10px;
     margin-top: 20px;
      background-color: rgb(255, 250, 250);
-     width: 50%;
+     max-width: fit-content;
+     min-width: 50%;
      height: 45PX;
     padding: 20px;
-    border-radius: 5px;
     box-shadow: 1px 1px 15px #0000001f;
 }
-
+.certo{
+    outline: 1px solid green;
+}
+.errado{
+    outline: 5px green;
+}
 label p {
     font-size: 25px;
    
+}
+.invisivel{
+    display: none;
+}
+form>p{
+    color: red;
+    background: #ffffff;
+    padding: 15px;
+    text-align: center;
 }
 
 label input {
@@ -238,7 +253,24 @@ label input {
     width: 23px;
     height: 23px;
 }
+.enviar{
+   border-radius: 5px;
+    cursor: pointer;
+    align-self: flex-end;
+    float: right;
+    width: fit-content;
+    font-size: 1.1em;
+    background-color: #558D8C;
+    color: #ffffff;
+    padding: 05px 15px ;
+    box-shadow: 1px 1px 15px #00000017;
 
+    transition: .5s;
+    &:hover{
+         box-shadow: 1px 1px 15px #00000069;
+         scale: 1.09;
+    }
+}
 @media (max-width: 768px) {
     #contCurso{
         display: none;

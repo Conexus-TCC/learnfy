@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 26/05/2025 às 21:13
+-- Tempo de geração: 02/06/2025 às 20:40
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `db_learnfy`
 --
-CREATE DATABASE IF NOT EXISTS `db_learnfy` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE `db_learnfy`;
 
 -- --------------------------------------------------------
 
@@ -29,7 +27,6 @@ USE `db_learnfy`;
 -- Estrutura para tabela `aula`
 --
 
-DROP TABLE IF EXISTS `aula`;
 CREATE TABLE `aula` (
   `id_aula` int(11) NOT NULL,
   `nome` varchar(255) NOT NULL,
@@ -44,7 +41,6 @@ CREATE TABLE `aula` (
 -- Estrutura para tabela `categoria_curso`
 --
 
-DROP TABLE IF EXISTS `categoria_curso`;
 CREATE TABLE `categoria_curso` (
   `id_categoria` int(11) NOT NULL,
   `nome_categoria` varchar(30) NOT NULL,
@@ -58,7 +54,6 @@ CREATE TABLE `categoria_curso` (
 -- Estrutura para tabela `curso`
 --
 
-DROP TABLE IF EXISTS `curso`;
 CREATE TABLE `curso` (
   `id_curso` int(11) NOT NULL,
   `nome` varchar(255) NOT NULL,
@@ -75,7 +70,6 @@ CREATE TABLE `curso` (
 -- Estrutura para tabela `empresa`
 --
 
-DROP TABLE IF EXISTS `empresa`;
 CREATE TABLE `empresa` (
   `id_empresa` int(11) NOT NULL,
   `nome_empresa` varchar(50) NOT NULL,
@@ -94,7 +88,6 @@ CREATE TABLE `empresa` (
 -- Estrutura para tabela `materiais_aula`
 --
 
-DROP TABLE IF EXISTS `materiais_aula`;
 CREATE TABLE `materiais_aula` (
   `id_material` int(11) NOT NULL,
   `filename` varchar(255) NOT NULL,
@@ -108,7 +101,6 @@ CREATE TABLE `materiais_aula` (
 -- Estrutura para tabela `pergunta`
 --
 
-DROP TABLE IF EXISTS `pergunta`;
 CREATE TABLE `pergunta` (
   `id_pergunta` int(11) NOT NULL,
   `pergunta` varchar(190) NOT NULL,
@@ -119,10 +111,22 @@ CREATE TABLE `pergunta` (
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `progresso`
+--
+
+CREATE TABLE `progresso` (
+  `id_usuario` int(11) NOT NULL,
+  `id_pergunta` int(11) NOT NULL,
+  `id_quiz` int(11) NOT NULL,
+  `Data` date NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `quiz`
 --
 
-DROP TABLE IF EXISTS `quiz`;
 CREATE TABLE `quiz` (
   `id_quiz` int(11) NOT NULL,
   `id_aula` int(11) NOT NULL
@@ -134,7 +138,6 @@ CREATE TABLE `quiz` (
 -- Estrutura para tabela `resposta`
 --
 
-DROP TABLE IF EXISTS `resposta`;
 CREATE TABLE `resposta` (
   `id_resposta` int(11) NOT NULL,
   `resposta` varchar(190) NOT NULL,
@@ -147,7 +150,6 @@ CREATE TABLE `resposta` (
 -- Estrutura para tabela `usuario`
 --
 
-DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE `usuario` (
   `id_usuario` int(11) NOT NULL,
   `nome_usuario` varchar(60) NOT NULL,
@@ -210,6 +212,14 @@ ALTER TABLE `pergunta`
   ADD PRIMARY KEY (`id_pergunta`),
   ADD KEY `fk_pergunta_quiz` (`id_quiz`),
   ADD KEY `fk_pergunta_resposta` (`id_res_certa`);
+
+--
+-- Índices de tabela `progresso`
+--
+ALTER TABLE `progresso`
+  ADD KEY `fk_progresso_usuario` (`id_usuario`),
+  ADD KEY `fk_progresso_quiz` (`id_quiz`),
+  ADD KEY `progresso_pergunta` (`id_pergunta`);
 
 --
 -- Índices de tabela `quiz`
@@ -324,6 +334,14 @@ ALTER TABLE `materiais_aula`
 --
 ALTER TABLE `pergunta`
   ADD CONSTRAINT `fk_pergunta_quiz` FOREIGN KEY (`id_quiz`) REFERENCES `quiz` (`id_quiz`);
+
+--
+-- Restrições para tabelas `progresso`
+--
+ALTER TABLE `progresso`
+  ADD CONSTRAINT `fk_progresso_quiz` FOREIGN KEY (`id_quiz`) REFERENCES `quiz` (`id_quiz`),
+  ADD CONSTRAINT `fk_progresso_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`),
+  ADD CONSTRAINT `progresso_pergunta` FOREIGN KEY (`id_pergunta`) REFERENCES `pergunta` (`id_pergunta`);
 
 --
 -- Restrições para tabelas `quiz`

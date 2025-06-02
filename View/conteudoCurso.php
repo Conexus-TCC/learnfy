@@ -124,31 +124,47 @@ while (($a = $q->fetch_assoc()) != null) {
 
             <div id="boxQuiz">
                 <?php
-                $qeury = mysqli_query($con, "SELECT pergunta.id_pergunta,pergunta.pergunta, GROUP_CONCAT(resposta.resposta) as resp_concat  from quiz 
+                $qeury = mysqli_query($con, "SELECT pergunta.id_pergunta,pergunta.pergunta,
+                quiz.id_quiz,
+                 GROUP_CONCAT(resposta.resposta) as resp_concat ,
+                 GROUP_CONCAT(resposta.id_resposta) as ids_resposta,
+                 pergunta.id_res_certa
+                  from quiz 
                     RIGHT JOIN pergunta on pergunta.id_quiz = quiz.id_quiz
                      LEFT join resposta on resposta.id_pergunta = pergunta.id_pergunta 
                      where id_aula = $aula[id_aula]
                      GROUP BY pergunta.id_pergunta; ");
-                     $i = 1;
+                $i = 1;
                 while ($pergunta = $qeury->fetch_assoc()) {
+                    $nums = mysqli_query($con, "SELECT id_pergunta from progresso where id_pergunta = $pergunta[id_pergunta]")->num_rows;
+                    $repondido = $nums > 0 ? true : false;
+
                     $respostas = explode(",", $pergunta["resp_concat"]);
+                    $idsResposta = explode(",", $pergunta["ids_resposta"])
                 ?>
-                    <form>
-                        <h1> <?= $i . ") " . $pergunta["pergunta"] ?></h1>
+                    <?= $repondido ?
+                        '<form method="post" action="">'
+                        :   '<form method="post" action="../Controller/responder.php">'
+                    ?>
+                    <input type="hidden" name="idQuiz" value="<?= $pergunta["id_quiz"] ?>">
+                    <input type="hidden" name="idPergunta" value="<?= $pergunta["id_pergunta"] ?>">
+                    <h1> <?= $i . ") " . $pergunta["pergunta"] ?></h1>
 
-                        <?php
-                        foreach ($respostas as $resposta) { ?>
-                            <label for="">
-                                <input type="radio" name="reposta" id="" value="<?= $resposta ?>">
-                                <p><?= $resposta ?></p>
-                            </label>
-                    
-            <?php }
-                        $i++;
-            echo "</form>";
-            // echo "<hr>"
-                    } ?>
+                    <?php
+                    foreach ($respostas  as $key => $resposta) { ?>
+                        <label id="lb<?= $idsResposta[$key] ?>" class="<?= $idsResposta[$key] == $pergunta["id_res_certa"] && $repondido ? "certo" : "" ?>" for="">
+                            <input type="radio" name="resposta" id="" value="<?= $idsResposta[$key] ?>" <?= $idsResposta[$key] == $pergunta["id_res_certa"] && $repondido ? "checked" : "" ?>>
+                            <p><?= $resposta ?></p>
+                        </label>
 
+                <?php }
+
+                    $i++;
+                    echo "<p class='invisivel'></p>";
+                    echo "</form>";
+                    // echo "<hr>"
+                } ?>
+                <button class="enviar">Enviar</button>
             </div>
 
             <div id="boxMateriais" class="boxMateriais">
@@ -185,5 +201,33 @@ while (($a = $q->fetch_assoc()) != null) {
         </div>
 
     </div>
-
+    <script>
+        const Forms = document.querySelectorAll("form")
+        /**
+         * @type HTMLButtonElement
+         */
+        const btnEnviar = document.querySelector(".enviar")
+        const statuss = [];
+        btnEnviar.addEventListener("click", e => {
+            // e.preventDefault()
+            Forms.forEach(async form => {
+                const bodyForm = new FormData(form)
+                const res = await fetch(form.action, {
+                    method: form.method,
+                    body: bodyForm
+                })
+                const data = await res.json();
+                if (data.status) {
+                    statuss.push(true);
+                    document.querySelector("#lb" + data.resp).classList.add("certo")
+                } else {
+                    statuss.push(false);
+                    document.querySelector("#lb" + data.resp).classList.add("errado")
+                    const p = form.querySelector("form>p")
+                    p.classList.remove("invisivel")
+                    p.innerText = data.motivo
+                }
+            })
+        })
+    </script>
 </body>
