@@ -232,7 +232,7 @@ section{
     outline: 1px solid green;
 }
 .errado{
-    outline: 5px green;
+    outline: 1px solid rgb(128, 0, 0);
 }
 label p {
     font-size: 25px;
