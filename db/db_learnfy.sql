@@ -105,6 +105,16 @@ CREATE TABLE `empresa` (
 --
 -- Despejando dados para a tabela `empresa`
 --
+ INSERT INTO `empresa` (`id_empresa`, `nome_empresa`, `cnpj`, `cep`, `email`, `senha`, `logo`, `ddd`, `telefone`) VALUES
+(1, 
+'Conexus', 
+'50.405.354/0001-94', 
+'03590-070', -- 123  
+'conexus@mail.com', 
+'$2y$10$GmoWw6KvOW..CSUeBVENGOaOIBzND8.aNZzIiMHpbR7rcSxgFdtla', 
+'https://github.com/Conexus-TCC/Site-Conexus/raw/main/media/imgs/contato/technologyBranco.png',
+ NULL, 
+ '47 8978-9789');
 
 -- --------------------------------------------------------
 
