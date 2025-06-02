@@ -124,7 +124,7 @@ while (($a = $q->fetch_assoc()) != null) {
 
             <div id="boxQuiz">
                 <?php
-                $qeury = mysqli_query($con, "SELECT pergunta.id_pergunta,pergunta.pergunta,
+                $query = mysqli_query($con, "SELECT pergunta.id_pergunta,pergunta.pergunta,
                 quiz.id_quiz,
                  GROUP_CONCAT(resposta.resposta) as resp_concat ,
                  GROUP_CONCAT(resposta.id_resposta) as ids_resposta,
@@ -135,7 +135,7 @@ while (($a = $q->fetch_assoc()) != null) {
                      where id_aula = $aula[id_aula]
                      GROUP BY pergunta.id_pergunta; ");
                 $i = 1;
-                while ($pergunta = $qeury->fetch_assoc()) {
+                while ($pergunta = $query->fetch_assoc()) {
                     $nums = mysqli_query($con, "SELECT id_pergunta from progresso where id_pergunta = $pergunta[id_pergunta]")->num_rows;
                     $repondido = $nums > 0 ? true : false;
 
@@ -178,8 +178,8 @@ while (($a = $q->fetch_assoc()) != null) {
                                 <h1><?= $material["filename"] ?> <!--$nomeArquivo--></h1>
                                 <!---TODO: ADICIONAR DETECTAR O FILE TYPE 
                                 https://pt.stackoverflow.com/questions/38877/extrair-informa%C3%A7%C3%B5es-de-um-v%C3%ADdeo-no-momento-do-upload
-                                -->
-                                <p>Documento PDF <!--$tipoArquivo--></p>
+                            -->
+                            <p>Documento PDF <!--$tipoArquivo--></p>
                             </div>
                         </section>
 

@@ -1,0 +1,192 @@
+   
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .header {
+            background: linear-gradient(to right, #334F4A, #5B9A8F);
+            color: white;
+            padding: 2rem 0;
+            border-radius: 10px 10px 0 0;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .profile-card {
+            background-color: var(--card-bg);
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .profile-header {
+            display: flex;
+            align-items: center;
+            padding: 2rem;
+            border-bottom: 1px solid #355D5C;
+        }
+        
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            background-color: #355D5C;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 2rem;
+            color: white;
+            font-size: 3rem;
+            font-weight: bold;
+        }
+        
+        .profile-name {
+            flex: 1;
+        }
+        
+        #fotoUser{
+            width: 120px;
+            height: 120px;
+            border-radius: 100%;
+            overflow: hidden;
+            background-color: #355D5C;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+       
+        }
+    
+        
+        .profile-name h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .profile-company {
+            display: inline-block;
+            background-color:#355D5C;
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .profile-details {
+            padding: 2rem;
+        }
+        
+        .detail-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .detail-item {
+            margin-bottom: 1rem;
+        }
+        
+        .detail-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.3rem;
+        }
+        
+        .detail-value {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .section-title {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #355D5C;
+            display: inline-block;
+        }
+        
+        .courses-section {
+            padding: 2rem;
+            background-color: #f8f9fa;
+            border-radius: 0 0 10px 10px;
+        }
+        
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .course-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.2s ease-in-out;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .course-image {
+            height: 140px;
+            background: #355D5C;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+        
+        .course-content {
+            padding: 1.2rem;
+        }
+        
+        .course-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #355D5C;
+        }
+        
+        .course-info {
+            font-size: 0.9rem;
+            color: #666;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .course-completion {
+            display: flex;
+            align-items: center;
+            margin-top: 0.5rem;
+        }
+        
+        .progress-bar {
+            flex: 1;
+            height: 6px;
+            background-color: #e0e0e0;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-right: 0.5rem;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background-color: var(--primary-color);
+        }
+        
+        .certificate-badge {
+            display: inline-block;
+            padding: 0.3rem 0.6rem;
+            background-color:#985C7E;
+            color: white;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-top: 0.8rem;
+        }
+    

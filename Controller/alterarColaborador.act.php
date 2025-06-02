@@ -39,7 +39,7 @@ if (isset($_POST['id_usuario'])) {
     if (mysqli_query($con, $query)) {
         // Verifica se um novo arquivo de logo foi enviado
         if (isset($_FILES['logo']) && $_FILES['logo']['error'] == UPLOAD_ERR_OK) {
-            $dir = "../imagens/" . md5(time()) . ".jpg";
+            $dir = "../fotosSite/" . md5(time()) . ".jpg";
             move_uploaded_file($_FILES['logo']['tmp_name'], $dir);
 
             // Atualiza o caminho da foto no banco de dados
