@@ -6,6 +6,7 @@ if (!isset($_GET["curso"])) {
     $_SESSION['alertMsg'] = "Acesso negado";
     $_SESSION['alertIcon'] = "error";
     header("location:cursos.php");
+    exit();
 }
 $id_empresa = $_SESSION["id_empresa"];
 $nivel = $_SESSION["nivel"];
@@ -19,12 +20,14 @@ if (!isset($curso)) {
     $_SESSION['alertMsg'] = "Acesso negado";
     $_SESSION['alertIcon'] = "error";
     header("location:cursos.php");
+    exit();
 }
 $aulas = array();
 $q = mysqli_query($con, "SELECT nome,id_aula as id from aula where id_curso= $id_curso");
 while (($a = $q->fetch_assoc()) != null) {
     array_push($aulas, $a);
 }
+
 ?>
 
 
@@ -53,7 +56,12 @@ while (($a = $q->fetch_assoc()) != null) {
 
                 <?php
                 foreach ($aulas as $aula) { ?>
-                    <div class="aulas">
+                    <div class="aulas <?php
+                                        if (isset($_GET["aula"]) && $aula["id"] == $_GET["aula"]) {
+                                            echo "selecionado";
+                                        }
+
+                                        ?>">
                         <a href="<?= "$_SERVER[PHP_SELF]?curso=$id_curso&aula=$aula[id]" ?>"><!--$LinkOutraAula-->
                             <div><img src="../icones/play.png" alt=""></div> <!--$icone-->
                             <div>
@@ -115,7 +123,32 @@ while (($a = $q->fetch_assoc()) != null) {
             </div>
 
             <div id="boxQuiz">
-                <h2>AQUI ESTARA O QUIZ 😀😀</h2>
+                <?php
+                $query = mysqli_query($con, "SELECT pergunta.id_pergunta,pergunta.pergunta, GROUP_CONCAT(resposta.resposta) as resp_concat  from quiz 
+                    RIGHT JOIN pergunta on pergunta.id_quiz = quiz.id_quiz
+                     LEFT join resposta on resposta.id_pergunta = pergunta.id_pergunta 
+                     where id_aula = $aula[id_aula]
+                     GROUP BY pergunta.id_pergunta; ");
+                     $i = 1;
+                while ($pergunta = $query->fetch_assoc()) {
+                    $respostas = explode(",", $pergunta["resp_concat"]);
+                ?>
+                    <form>
+                        <h1> <?= $i . ") " . $pergunta["pergunta"] ?></h1>
+
+                        <?php
+                        foreach ($respostas as $resposta) { ?>
+                            <label for="">
+                                <input type="radio" name="reposta" id="" value="<?= $resposta ?>">
+                                <p><?= $resposta ?></p>
+                            </label>
+                    
+            <?php }
+                        $i++;
+            echo "</form>";
+            // echo "<hr>"
+                    } ?>
+
             </div>
 
             <div id="boxMateriais" class="boxMateriais">
@@ -129,8 +162,8 @@ while (($a = $q->fetch_assoc()) != null) {
                                 <h1><?= $material["filename"] ?> <!--$nomeArquivo--></h1>
                                 <!---TODO: ADICIONAR DETECTAR O FILE TYPE 
                                 https://pt.stackoverflow.com/questions/38877/extrair-informa%C3%A7%C3%B5es-de-um-v%C3%ADdeo-no-momento-do-upload
-                                -->
-                                <p>Documento PDF <!--$tipoArquivo--></p>
+                            -->
+                            <p>Documento PDF <!--$tipoArquivo--></p>
                             </div>
                         </section>
 

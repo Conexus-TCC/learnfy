@@ -28,7 +28,7 @@ function err($id_curso,$con){
     mysqli_error($con);
   }
 }
-json_encode($_FILES);
+// json_encode($_FILES);
 extract($_POST);
 extract($_FILES);
 
@@ -56,7 +56,25 @@ $caminhoVideo = "../fotosSite/". md5(time()) .$id_curso . ".mp4";
 
 if(mysqli_query($con,"INSERT INTO `aula` (`nome`, `descricao`, `id_curso`, `video`) 
 VALUES ('$titulo_aula', '$descricao_aula', '$id_curso','$caminhoVideo') ")){
-$id_aula= mysqli_insert_id($con);
+$idAula= mysqli_insert_id($con);
+  mysqli_query($con,"INSERT INTO `quiz` (`id_aula`) values ($idAula)");
+ $idQuiz = mysqli_insert_id($con);
+ 
+ foreach ($questoes as $questao) {
+   $index = $questao["respostaCorreta"];
+  //  echo "INSERT INTO `pergunta` (`pergunta`,`id_quiz`) values('$questao[pergunta]',$idQuiz";
+    mysqli_query($con, "INSERT INTO `pergunta` (`pergunta`,`id_quiz`) values('$questao[pergunta]',$idQuiz)");
+   $idPergunta = mysqli_insert_id($con);
+  $respostas =array();
+  foreach($questao["respostas"] as $resposta){
+    mysqli_query($con,"INSERT INTO `resposta` (`resposta`,`id_pergunta`) values('$resposta',$idPergunta)");
+    array_push($respostas,mysqli_insert_id($con));
+  }
+ mysqli_query($con,"UPDATE `pergunta` set `id_res_certa` = $respostas[$index] WHERE `id_pergunta`= $idPergunta;" );
+ 
+
+}
+
 @move_uploaded_file($video_aula['tmp_name'],$caminhoVideo);
 $cont = count($input_materiais["name"]);
 for($i=0;$i<$cont;$i++){
@@ -64,7 +82,7 @@ for($i=0;$i<$cont;$i++){
     $ext = pathinfo($input_materiais["full_path"][$i], PATHINFO_EXTENSION);
     $caminhoMaterial = "../fotosSite/". md5(time()) .$id_curso . ".".$ext;
     $filename = $input_materiais["name"][$i];
-    $sql = "INSERT INTO `materiais_aula` (`filename`, `caminho`, `id_aula`) VALUES ('$filename', '$caminhoMaterial', '$id_aula')";
+    $sql = "INSERT INTO `materiais_aula` (`filename`, `caminho`, `id_aula`) VALUES ('$filename', '$caminhoMaterial', '$idAula')";
     if(mysqli_query($con,$sql)){
       @move_uploaded_file($input_materiais["tmp_name"][$i],$caminhoMaterial);
     }else{
@@ -84,3 +102,4 @@ for($i=0;$i<$cont;$i++){
   http_response_code("400");
   exit();
 }
+
