@@ -3,7 +3,7 @@
   @session_start();
   $_SESSION["contexto"] = "dashboard"
   ?>
-
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
  <link rel="stylesheet" href="../../Css/gerenciamento.css">
  <!-- Header da Página -->
  <div class="page-header">
@@ -14,25 +14,25 @@
  </div>
 
 
- <?php 
- 
-@session_start();
- require("../../Model/connect.php");
- $consulta = mysqli_query($con, "SELECT *, count(id_usuario) AS totUser FROM `usuario` WHERE `id_empresa` = {$_SESSION['id_empresa']}");
- $consulta2 = mysqli_query($con, "SELECT *, count(id_curso) AS totCurso FROM `curso` WHERE `id_empresa` = {$_SESSION['id_empresa']}");
+ <?php
 
- 
- 
- 
- ?>
+  @session_start();
+  require("../../Model/connect.php");
+  $consulta = mysqli_query($con, "SELECT *, count(id_usuario) AS totUser FROM `usuario` WHERE `id_empresa` = {$_SESSION['id_empresa']}");
+  $consulta2 = mysqli_query($con, "SELECT *, count(id_curso) AS totCurso FROM `curso` WHERE `id_empresa` = {$_SESSION['id_empresa']}");
+
+
+
+
+  ?>
  <!-- Cartões de Estatísticas -->
  <div class="stats-grid">
    <div class="stat-card">
      <div class="stat-info">
        <h3>Colaboradores Ativos</h3>
-       <div class="stat-value"><?php   while($totUser = mysqli_fetch_assoc($consulta)){
-            echo $totUser["totUser"];
-          }?></div>
+       <div class="stat-value"><?php while ($totUser = mysqli_fetch_assoc($consulta)) {
+                                  echo $totUser["totUser"];
+                                } ?></div>
        <!-- <div class="stat-trend trend-up">
          +12% <span style="color: var(--muted);">vs. último mês</span>
        </div> -->
@@ -43,16 +43,16 @@
    <div class="stat-card">
      <div class="stat-info">
        <h3>Cursos Publicados</h3>
-       <div class="stat-value"><?php   while($totCurso = mysqli_fetch_assoc($consulta2)){
-            echo $totCurso["totCurso"];
-          }?></div>
+       <div class="stat-value"><?php while ($totCurso = mysqli_fetch_assoc($consulta2)) {
+                                  echo $totCurso["totCurso"];
+                                } ?></div>
        <div class="stat-trend trend-up">
          <!-- +4% <span style="color: var(--muted);">vs. último mês</span> -->
        </div>
      </div>
      <div class="stat-icon">📚</div>
    </div>
-<!-- 
+   <!-- 
    <div class="stat-card">
      <div class="stat-info">
        <h3>Taxa de Conclusão</h3>
@@ -76,15 +76,42 @@
    </div> -->
  </div>
  <!-- Gráficos -->
+
+ <script type="text/javascript">
+   google.charts.load('current', {
+     'packages': ['corechart']
+   });
+   google.charts.setOnLoadCallback(drawChart);
+
+   function drawChart() {
+     var data = google.visualization.arrayToDataTable([
+       ['Mês', 'Sales', 'Expenses'],
+       ['Janeiro', 1000, 400],
+       ['Fevereiro', 1170, 460],
+       ['Março', 660, 1120],
+       ['Abril', 1030, 540]
+     ]);
+
+     var options = {
+       curveType: 'function',
+       legend: {
+         position: 'bottom'
+       }
+     };
+
+     var chart = new google.visualization.LineChart(document.getElementById('performace'));
+
+     chart.draw(data, options);
+   }
+ </script>
+
  <div class="charts-grid">
    <div class="chart-card">
      <div class="chart-header">
        <h3 class="chart-title">Performance ao Longo do Ano</h3>
      </div>
      <div class="chart-container">
-       <div class="chart-placeholder">
-         <span>Gráfico de Performance</span>
-       </div>
+       <div id="performace"></div>
      </div>
    </div>
 
@@ -93,9 +120,7 @@
        <h3 class="chart-title">Engajamento dos Colaboradores</h3>
      </div>
      <div class="chart-container">
-       <div class="chart-placeholder">
-         <span>Gráfico de Engajamento</span>
-       </div>
+       <div id="performace"></div>
      </div>
    </div>
  </div>
