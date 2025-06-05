@@ -133,136 +133,53 @@
        <h2 class="section-title">Cursos Recentes</h2>
        <a href="#" class="view-all">Ver todos &rarr;</a>
      </div>
+     <?php
+      $query = "SELECT curso.*,categoria_curso.nome_categoria as categoria, COUNT(usuario.id_usuario) as funcionarios 
+      FROM curso
+       inner join categoria_curso on categoria_curso.id_categoria = curso.categoria
+        LEFT JOIN usuario on usuario.id_Empresa = curso.id_empresa AND curso.nivel <= usuario.nivel 
+        where curso.id_empresa = 1 
+        GROUP BY curso.id_curso 
+      LIMIT 5;
+  ";
 
+
+      ?>
      <div class="courses-grid">
-       <div class="course-card">
-         <div class="course-image">
-           <img src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80" alt="Marketing Digital">
-           <div class="course-tag">Marketing</div>
-         </div>
-         <div class="course-content">
-           <h3 class="course-title">Introdução ao Marketing Digital</h3>
-           <div class="course-meta">
-             <div class="meta-item">⏱️ 4h 30min</div>
-             <div class="meta-item">👥 78 alunos</div>
-           </div>
-           <div class="progress-container">
-             <div class="progress-bar" style="width: 85%;"></div>
-           </div>
-           <div class="progress-stats">
-             <span>Progresso: 85%</span>
-           </div>
-           <div class="course-actions">
-             <button class="edit-btn" onclick="openEditModal('Introdução ao Marketing Digital')">
-               <span>✏️</span> Editar
-             </button>
-           </div>
-         </div>
-       </div>
 
-       <div class="course-card">
-         <div class="course-image">
-           <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Liderança">
-           <div class="course-tag">Liderança</div>
-         </div>
-         <div class="course-content">
-           <h3 class="course-title">Liderança e Gestão de Equipes</h3>
-           <div class="course-meta">
-             <div class="meta-item">⏱️ 6h 15min</div>
-             <div class="meta-item">👥 124 alunos</div>
-           </div>
-           <div class="progress-container">
-             <div class="progress-bar" style="width: 62%;"></div>
-           </div>
-           <div class="progress-stats">
-             <span>Progresso: 62%</span>
-           </div>
-           <div class="course-actions">
-             <button class="edit-btn" onclick="openEditModal('Liderança e Gestão de Equipes')">
-               <span>✏️</span> Editar
-             </button>
-           </div>
-         </div>
-       </div>
+       <?php
+        $res = mysqli_query($con, $query);
+        while ($curso = $res->fetch_assoc()) { ?>
 
-       <div class="course-card">
-         <div class="course-image">
-           <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Dados">
-           <div class="course-tag">Dados</div>
+         <div class="course-card">
+           <div class="course-image">
+
+             <img src="../<?= $curso["imagem"] ?>" alt="Marketing Digital">
+             <div class="course-tag"><?= $curso["categoria"] ?></div>
+           </div>
+           <div class="course-content">
+             <h3 class="course-title"><?= $curso["nome"] ?></h3>
+             <div class="course-meta">
+               <div class="meta-item">⏱️ 4h 30min</div>
+               <div class="meta-item">👥 <?=$curso["funcionarios"]?>  alunos</div>
+             </div>
+             <div class="progress-container">
+               <div class="progress-bar" style="width: 85%;"></div>
+             </div>
+             <div class="progress-stats">
+               <span>Progresso: 85%</span>
+             </div>
+             <div class="course-actions">
+             </div>
+           </div>
          </div>
-         <div class="course-content">
-           <h3 class="course-title">Fundamentos de Análise de Dados</h3>
-           <div class="course-meta">
-             <div class="meta-item">⏱️ 5h 45min</div>
-             <div class="meta-item">👥 96 alunos</div>
-           </div>
-           <div class="progress-container">
-             <div class="progress-bar" style="width: 38%;"></div>
-           </div>
-           <div class="progress-stats">
-             <span>Progresso: 38%</span>
-           </div>
-           <div class="course-actions">
-             <button class="edit-btn" onclick="openEditModal('Fundamentos de Análise de Dados')">
-               <span>✏️</span> Editar
-             </button>
-           </div>
-         </div>
-       </div>
+       <?php } ?>
+
      </div>
    </div>
 
    <!-- Progress Cards -->
-   <div>
-     <div class="section-header">
-       <h2 class="section-title">Progresso</h2>
-       <a href="#" class="view-all">Detalhes &rarr;</a>
-     </div>
 
-     <div class="progress-cards">
-       <div class="progress-card">
-         <div class="card-header">
-           <h3 class="card-title">Cursos Publicados</h3>
-           <span class="percentage">80%</span>
-         </div>
-         <div class="progress-container">
-           <div class="progress-bar" style="width: 80%;"></div>
-         </div>
-         <div class="progress-stats">
-           <span>48 concluídos</span>
-           <span>60 total</span>
-         </div>
-       </div>
-
-       <div class="progress-card">
-         <div class="card-header">
-           <h3 class="card-title">Colaboradores Treinados</h3>
-           <span class="percentage">77%</span>
-         </div>
-         <div class="progress-container">
-           <div class="progress-bar" style="width: 77%;"></div>
-         </div>
-         <div class="progress-stats">
-           <span>189 concluídos</span>
-           <span>245 total</span>
-         </div>
-       </div>
-
-       <div class="progress-card">
-         <div class="card-header">
-           <h3 class="card-title">Conteúdos Produzidos</h3>
-           <span class="percentage">78%</span>
-         </div>
-         <div class="progress-container">
-           <div class="progress-bar" style="width: 78%;"></div>
-         </div>
-         <div class="progress-stats">
-           <span>156 concluídos</span>
-           <span>200 total</span>
-         </div>
-       </div>
-     </div>
-   </div>
  </div>
 
  <!-- Tabela de Colaboradores -->
@@ -272,24 +189,34 @@
      <a href="#" class="view-all">Ver todos &rarr;</a>
    </div>
 
+   <?php
+   $sql = "SELECT COUNT(pergunta.id_pergunta) as total_de_perguntas, COUNT(progresso.id_pergunta) as respondido, usuario.nome_usuario as nome,  curso.id_curso FROM `pergunta`
+LEFT JOIN quiz on quiz.id_quiz = pergunta.id_quiz 
+LEFT JOIN aula on aula.id_aula = quiz.id_aula
+LEFT JOIN curso on curso.id_curso = aula.id_curso
+LEFT  JOIN  usuario On curso.id_empresa = usuario.id_Empresa
+left JOIN progresso on progresso.id_usuario = usuario.id_usuario
+GROUP BY usuario.id_usuario"
+   ?>
+  
    <div class="employees-table-container">
      <table class="employees-table">
        <thead>
          <tr>
            <th>Nome</th>
-           <th>Cargo</th>
-           <th>Departamento</th>
+           <th>Curso disponiveis</th>
            <th>Cursos Concluídos</th>
            <th>Progresso</th>
-           <th>Performance</th>
          </tr>
        </thead>
        <tbody>
-         <tr>
-           <td>Ana Silva</td>
-           <td>Analista de Marketing</td>
-           <td>Marketing</td>
-           <td>8</td>
+         <?php 
+          $res = mysqli_query($con,$sql);
+          while($fun = $res->fetch_assoc()){ ?>
+            <tr>
+          <td><?= $fun["nome"]?></td>
+          <td><?= $fun["total_de_perguntas"]?></td>
+          <td><?= $fun["respondido"]?></td>
            <td>
              <div class="progress-cell">
                <div class="table-progress">
@@ -298,68 +225,16 @@
                <span>92%</span>
              </div>
            </td>
-           <td><span class="performance-badge badge-up">9.4 ↗</span></td>
+           <tr>
+    <?php }?>
+    
+           
+           
          </tr>
-         <tr>
-           <td>Carlos Oliveira</td>
-           <td>Gerente de Vendas</td>
-           <td>Comercial</td>
-           <td>12</td>
-           <td>
-             <div class="progress-cell">
-               <div class="table-progress">
-                 <div class="table-progress-bar" style="width: 100%;"></div>
-               </div>
-               <span>100%</span>
-             </div>
-           </td>
-           <td><span class="performance-badge badge-up">9.8 ↗</span></td>
-         </tr>
-         <tr>
-           <td>Mariana Costa</td>
-           <td>Desenvolvedora Front-end</td>
-           <td>Tecnologia</td>
-           <td>5</td>
-           <td>
-             <div class="progress-cell">
-               <div class="table-progress">
-                 <div class="table-progress-bar" style="width: 64%;"></div>
-               </div>
-               <span>64%</span>
-             </div>
-           </td>
-           <td><span class="performance-badge badge-up">7.5 ↗</span></td>
-         </tr>
-         <tr>
-           <td>Felipe Martins</td>
-           <td>Analista Financeiro</td>
-           <td>Financeiro</td>
-           <td>3</td>
-           <td>
-             <div class="progress-cell">
-               <div class="table-progress">
-                 <div class="table-progress-bar" style="width: 28%;"></div>
-               </div>
-               <span>28%</span>
-             </div>
-           </td>
-           <td><span class="performance-badge badge-down">6.2 ↘</span></td>
-         </tr>
-         <tr>
-           <td>Juliana Ferreira</td>
-           <td>Recursos Humanos</td>
-           <td>Administrativo</td>
-           <td>9</td>
-           <td>
-             <div class="progress-cell">
-               <div class="table-progress">
-                 <div class="table-progress-bar" style="width: 85%;"></div>
-               </div>
-               <span>85%</span>
-             </div>
-           </td>
-           <td><span class="performance-badge badge-up">8.7 ↗</span></td>
-         </tr>
+         
+         
+      
+    
        </tbody>
      </table>
    </div>
