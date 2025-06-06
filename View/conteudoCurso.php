@@ -1,5 +1,6 @@
 <?php
 require "../Model/connect.php";
+require_once "../helpers/geticons.php";
 @session_start();
 if (!isset($_GET["curso"])) {
     $_SESSION["msg"] = "Nenhum curso encotrado";
@@ -11,7 +12,7 @@ if (!isset($_GET["curso"])) {
 $id_empresa = $_SESSION["id_empresa"];
 $nivel = $_SESSION["nivel"];
 $id_curso = $_GET["curso"];
-$curso = mysqli_query($con, "SELECT curso.nome,COUNT(aula.id_aula) as contagem_de_aulas from curso 
+$curso = mysqli_query($con, "SELECT curso.nome,COUNT(aula.id_aula) as contagem_de_aulas,sum(aula.tempo_em_segundos) as total_tempo from curso 
 LEFT JOIN aula on aula.id_curso = curso.id_curso 
 WHERE curso.id_curso = $id_curso
 GROUP by curso.id_curso; ")->fetch_assoc();
@@ -23,7 +24,7 @@ if (!isset($curso)) {
     exit();
 }
 $aulas = array();
-$q = mysqli_query($con, "SELECT nome,id_aula as id from aula where id_curso= $id_curso");
+$q = mysqli_query($con, "SELECT nome,id_aula as id,tempo_em_segundos from aula where id_curso= $id_curso");
 while (($a = $q->fetch_assoc()) != null) {
     array_push($aulas, $a);
 }
@@ -41,6 +42,7 @@ while (($a = $q->fetch_assoc()) != null) {
     <?php include("parts/head.php") ?>
     <link rel="stylesheet" href="../Css/contCurso.css">
     <script src="../js/contCurso.js" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
 
 <body>
     <?php
@@ -52,7 +54,8 @@ while (($a = $q->fetch_assoc()) != null) {
 
             <div id="contCurso">
                 <h1>Conteúdo do curso</h1>
-                <p><!--$Aulas--><?= $curso["contagem_de_aulas"] ?> Aulas - <!--$Minutos-->480 Minutos</p>
+                <p><!--$Aulas--><?= $curso["contagem_de_aulas"] ?> Aulas - <!--$Minutos--><?=
+                                                                                            number_format($curso["total_tempo"] / 60, 2, ":") ?> Minutos</p>
 
                 <?php
                 foreach ($aulas as $aula) { ?>
@@ -66,7 +69,7 @@ while (($a = $q->fetch_assoc()) != null) {
                             <div><img src="../icones/play.png" alt=""></div> <!--$icone-->
                             <div>
                                 <h1><?= $aula["nome"] ?> <!--$nomeAula--></h1>
-                                <p>45 min <!--$horario da aula--></p>
+                                <p><?= number_format($aula["tempo_em_segundos"] / 60, 2, ":") ?> min <!--$horario da aula--></p>
                             </div>
                         </a>
                     </div>
@@ -173,13 +176,13 @@ while (($a = $q->fetch_assoc()) != null) {
                 foreach ($materiais as $material) { ?>
                     <div>
                         <section>
-                            <img src="../icones/pdf.png" alt="">
+                            <i class="mdi <?=getFileIcon(strtolower(pathinfo($material['caminho'],PATHINFO_EXTENSION)))?>"></i>
                             <div>
                                 <h1><?= $material["filename"] ?> <!--$nomeArquivo--></h1>
                                 <!---TODO: ADICIONAR DETECTAR O FILE TYPE 
                                 https://pt.stackoverflow.com/questions/38877/extrair-informa%C3%A7%C3%B5es-de-um-v%C3%ADdeo-no-momento-do-upload
                             -->
-                            <p>Documento PDF <!--$tipoArquivo--></p>
+                                <p><?= getFileDescription(strtolower(pathinfo($material['caminho'], PATHINFO_EXTENSION))) ?><!--$tipoArquivo--></p>
                             </div>
                         </section>
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 02/06/2025 às 20:40
+-- Tempo de geração: 06/06/2025 às 21:34
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `db_learnfy`
 --
+CREATE DATABASE IF NOT EXISTS `db_learnfy` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE `db_learnfy`;
 
 -- --------------------------------------------------------
 
@@ -27,20 +29,17 @@ SET time_zone = "+00:00";
 -- Estrutura para tabela `aula`
 --
 
-
-CREATE TABLE `aula` (
-  `id_aula` int(11) NOT NULL,
+DROP TABLE IF EXISTS `aula`;
+CREATE TABLE IF NOT EXISTS `aula` (
+  `id_aula` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(255) NOT NULL,
   `descricao` varchar(255) NOT NULL,
   `video` varchar(255) NOT NULL,
-  `id_curso` int(11) NOT NULL
+  `id_curso` int(11) NOT NULL,
+  `tempo_em_segundos` double NOT NULL,
+  PRIMARY KEY (`id_aula`),
+  KEY `fk_aula_curso` (`id_curso`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Despejando dados para a tabela `aula`
---
-
-
 
 -- --------------------------------------------------------
 
@@ -48,18 +47,15 @@ CREATE TABLE `aula` (
 -- Estrutura para tabela `categoria_curso`
 --
 
-CREATE TABLE `categoria_curso` (
-  `id_categoria` int(11) NOT NULL,
+DROP TABLE IF EXISTS `categoria_curso`;
+CREATE TABLE IF NOT EXISTS `categoria_curso` (
+  `id_categoria` int(11) NOT NULL AUTO_INCREMENT,
   `nome_categoria` varchar(30) NOT NULL,
   `id_empresa` int(11) NOT NULL,
-  `nivelAcesso` int(11) NOT NULL
+  `nivelAcesso` int(11) NOT NULL,
+  PRIMARY KEY (`id_categoria`),
+  KEY `fk_categoriaCurso` (`id_empresa`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Despejando dados para a tabela `categoria_curso`
---
-
-
 
 -- --------------------------------------------------------
 
@@ -67,21 +63,19 @@ CREATE TABLE `categoria_curso` (
 -- Estrutura para tabela `curso`
 --
 
-CREATE TABLE `curso` (
-  `id_curso` int(11) NOT NULL,
+DROP TABLE IF EXISTS `curso`;
+CREATE TABLE IF NOT EXISTS `curso` (
+  `id_curso` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(255) NOT NULL,
   `descricao` text NOT NULL,
   `imagem` varchar(255) NOT NULL,
   `categoria` int(11) NOT NULL,
   `id_empresa` int(11) NOT NULL,
-  `nivel` int(11) NOT NULL
+  `nivel` int(11) NOT NULL,
+  PRIMARY KEY (`id_curso`),
+  KEY `fk_curso_categoria` (`categoria`),
+  KEY `fk_curso_empresa` (`id_empresa`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Despejando dados para a tabela `curso`
---
-
-
 
 -- --------------------------------------------------------
 
@@ -89,8 +83,9 @@ CREATE TABLE `curso` (
 -- Estrutura para tabela `empresa`
 --
 
-CREATE TABLE `empresa` (
-  `id_empresa` int(11) NOT NULL,
+DROP TABLE IF EXISTS `empresa`;
+CREATE TABLE IF NOT EXISTS `empresa` (
+  `id_empresa` int(11) NOT NULL AUTO_INCREMENT,
   `nome_empresa` varchar(50) NOT NULL,
   `cnpj` varchar(19) DEFAULT NULL,
   `cep` varchar(9) DEFAULT NULL,
@@ -98,40 +93,36 @@ CREATE TABLE `empresa` (
   `senha` varchar(60) NOT NULL,
   `logo` varchar(100) DEFAULT NULL,
   `ddd` varchar(3) DEFAULT NULL,
-  `telefone` varchar(15) DEFAULT NULL
+  `telefone` varchar(15) DEFAULT NULL,
+  PRIMARY KEY (`id_empresa`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Despejando dados para a tabela `empresa`
---
  INSERT INTO `empresa` (`id_empresa`, `nome_empresa`, `cnpj`, `cep`, `email`, `senha`, `logo`, `ddd`, `telefone`) VALUES
 (1, 
 'Conexus', 
 '50.405.354/0001-94', 
-'03590-070', -- 123  
+'03590-070',
 'conexus@mail.com', 
-'$2y$10$GmoWw6KvOW..CSUeBVENGOaOIBzND8.aNZzIiMHpbR7rcSxgFdtla', 
+'$2y$10$GmoWw6KvOW..CSUeBVENGOaOIBzND8.aNZzIiMHpbR7rcSxgFdtla',  -- 123   
 'https://github.com/Conexus-TCC/Site-Conexus/raw/main/media/imgs/contato/technologyBranco.png',
  NULL, 
- '47 8978-9789');
+ '47 8978-9789');  
 
--- --------------------------------------------------------
+
 
 --
 -- Estrutura para tabela `materiais_aula`
 --
 
-CREATE TABLE `materiais_aula` (
-  `id_material` int(11) NOT NULL,
+DROP TABLE IF EXISTS `materiais_aula`;
+CREATE TABLE IF NOT EXISTS `materiais_aula` (
+  `id_material` int(11) NOT NULL AUTO_INCREMENT,
   `filename` varchar(255) NOT NULL,
   `caminho` varchar(255) NOT NULL,
-  `id_aula` int(11) NOT NULL
+  `id_aula` int(11) NOT NULL,
+  PRIMARY KEY (`id_material`),
+  KEY `fk_material_aula` (`id_aula`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Despejando dados para a tabela `materiais_aula`
---
-
 
 -- --------------------------------------------------------
 
@@ -139,17 +130,16 @@ CREATE TABLE `materiais_aula` (
 -- Estrutura para tabela `pergunta`
 --
 
-CREATE TABLE `pergunta` (
-  `id_pergunta` int(11) NOT NULL,
+DROP TABLE IF EXISTS `pergunta`;
+CREATE TABLE IF NOT EXISTS `pergunta` (
+  `id_pergunta` int(11) NOT NULL AUTO_INCREMENT,
   `pergunta` varchar(190) NOT NULL,
   `id_quiz` int(11) NOT NULL,
-  `id_res_certa` int(11) NOT NULL
+  `id_res_certa` int(11) NOT NULL,
+  PRIMARY KEY (`id_pergunta`),
+  KEY `fk_pergunta_quiz` (`id_quiz`),
+  KEY `fk_pergunta_resposta` (`id_res_certa`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Despejando dados para a tabela `pergunta`
---
-
 
 -- --------------------------------------------------------
 
@@ -157,11 +147,15 @@ CREATE TABLE `pergunta` (
 -- Estrutura para tabela `progresso`
 --
 
-CREATE TABLE `progresso` (
+DROP TABLE IF EXISTS `progresso`;
+CREATE TABLE IF NOT EXISTS `progresso` (
   `id_usuario` int(11) NOT NULL,
   `id_pergunta` int(11) NOT NULL,
   `id_quiz` int(11) NOT NULL,
-  `Data` date NOT NULL DEFAULT current_timestamp()
+  `Data` date NOT NULL DEFAULT current_timestamp(),
+  KEY `fk_progresso_usuario` (`id_usuario`),
+  KEY `fk_progresso_quiz` (`id_quiz`),
+  KEY `progresso_pergunta` (`id_pergunta`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -170,16 +164,13 @@ CREATE TABLE `progresso` (
 -- Estrutura para tabela `quiz`
 --
 
-CREATE TABLE `quiz` (
-  `id_quiz` int(11) NOT NULL,
-  `id_aula` int(11) NOT NULL
+DROP TABLE IF EXISTS `quiz`;
+CREATE TABLE IF NOT EXISTS `quiz` (
+  `id_quiz` int(11) NOT NULL AUTO_INCREMENT,
+  `id_aula` int(11) NOT NULL,
+  PRIMARY KEY (`id_quiz`),
+  KEY `fk_quiz-aula` (`id_aula`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Despejando dados para a tabela `quiz`
---
-
-
 
 -- --------------------------------------------------------
 
@@ -187,16 +178,14 @@ CREATE TABLE `quiz` (
 -- Estrutura para tabela `resposta`
 --
 
-CREATE TABLE `resposta` (
-  `id_resposta` int(11) NOT NULL,
+DROP TABLE IF EXISTS `resposta`;
+CREATE TABLE IF NOT EXISTS `resposta` (
+  `id_resposta` int(11) NOT NULL AUTO_INCREMENT,
   `resposta` varchar(190) NOT NULL,
-  `id_pergunta` int(11) NOT NULL
+  `id_pergunta` int(11) NOT NULL,
+  PRIMARY KEY (`id_resposta`),
+  KEY `fk_resposta_pergunta` (`id_pergunta`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Despejando dados para a tabela `resposta`
---
-
 
 -- --------------------------------------------------------
 
@@ -204,8 +193,9 @@ CREATE TABLE `resposta` (
 -- Estrutura para tabela `usuario`
 --
 
-CREATE TABLE `usuario` (
-  `id_usuario` int(11) NOT NULL,
+DROP TABLE IF EXISTS `usuario`;
+CREATE TABLE IF NOT EXISTS `usuario` (
+  `id_usuario` int(11) NOT NULL AUTO_INCREMENT,
   `nome_usuario` varchar(60) NOT NULL,
   `data_nascimento` date NOT NULL,
   `sexo` char(1) NOT NULL,
@@ -217,147 +207,10 @@ CREATE TABLE `usuario` (
   `foto` varchar(100) NOT NULL,
   `status` tinyint(1) NOT NULL,
   `id_Empresa` int(11) NOT NULL,
-  `nivel` int(11) NOT NULL
+  `nivel` int(11) NOT NULL,
+  PRIMARY KEY (`id_usuario`),
+  KEY `fk_usuario_empresa` (`id_Empresa`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Despejando dados para a tabela `usuario`
---
-
-
---
--- Índices para tabelas despejadas
---
-
---
--- Índices de tabela `aula`
---
-ALTER TABLE `aula`
-  ADD PRIMARY KEY (`id_aula`),
-  ADD KEY `fk_aula_curso` (`id_curso`);
-
---
--- Índices de tabela `categoria_curso`
---
-ALTER TABLE `categoria_curso`
-  ADD PRIMARY KEY (`id_categoria`),
-  ADD KEY `fk_categoriaCurso` (`id_empresa`);
-
---
--- Índices de tabela `curso`
---
-ALTER TABLE `curso`
-  ADD PRIMARY KEY (`id_curso`),
-  ADD KEY `fk_curso_categoria` (`categoria`),
-  ADD KEY `fk_curso_empresa` (`id_empresa`);
-
---
--- Índices de tabela `empresa`
---
-ALTER TABLE `empresa`
-  ADD PRIMARY KEY (`id_empresa`);
-
---
--- Índices de tabela `materiais_aula`
---
-ALTER TABLE `materiais_aula`
-  ADD PRIMARY KEY (`id_material`),
-  ADD KEY `fk_material_aula` (`id_aula`);
-
---
--- Índices de tabela `pergunta`
---
-ALTER TABLE `pergunta`
-  ADD PRIMARY KEY (`id_pergunta`),
-  ADD KEY `fk_pergunta_quiz` (`id_quiz`),
-  ADD KEY `fk_pergunta_resposta` (`id_res_certa`);
-
---
--- Índices de tabela `progresso`
---
-ALTER TABLE `progresso`
-  ADD KEY `fk_progresso_usuario` (`id_usuario`),
-  ADD KEY `fk_progresso_quiz` (`id_quiz`),
-  ADD KEY `progresso_pergunta` (`id_pergunta`);
-
---
--- Índices de tabela `quiz`
---
-ALTER TABLE `quiz`
-  ADD PRIMARY KEY (`id_quiz`),
-  ADD KEY `fk_quiz-aula` (`id_aula`);
-
---
--- Índices de tabela `resposta`
---
-ALTER TABLE `resposta`
-  ADD PRIMARY KEY (`id_resposta`),
-  ADD KEY `fk_resposta_pergunta` (`id_pergunta`);
-
---
--- Índices de tabela `usuario`
---
-ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`id_usuario`),
-  ADD KEY `fk_usuario_empresa` (`id_Empresa`);
-
---
--- AUTO_INCREMENT para tabelas despejadas
---
-
---
--- AUTO_INCREMENT de tabela `aula`
---
-ALTER TABLE `aula`
-  MODIFY `id_aula` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `categoria_curso`
---
-ALTER TABLE `categoria_curso`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `curso`
---
-ALTER TABLE `curso`
-  MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `empresa`
---
-ALTER TABLE `empresa`
-  MODIFY `id_empresa` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `materiais_aula`
---
-ALTER TABLE `materiais_aula`
-  MODIFY `id_material` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `pergunta`
---
-ALTER TABLE `pergunta`
-  MODIFY `id_pergunta` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `quiz`
---
-ALTER TABLE `quiz`
-  MODIFY `id_quiz` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `resposta`
---
-ALTER TABLE `resposta`
-  MODIFY `id_resposta` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `usuario`
---
-ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restrições para tabelas despejadas

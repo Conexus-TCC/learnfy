@@ -155,9 +155,8 @@ body{
     border-radius: 7px;
 }
 
-#boxMateriais>div>section>img{
-    width: 40px;
-    height: 40px;
+#boxMateriais>div>section>div{
+    height: min-content;
 }
 
 section{
@@ -165,6 +164,13 @@ section{
     justify-content: center;
     gap: 5%;
     width: 90%;
+    align-items: center;
+    i{
+  font-size: 3.8rem;
+  line-height: 0.5;
+  color: var(--primary);
+
+    }
 }
 
 #boxMateriais>div>div{

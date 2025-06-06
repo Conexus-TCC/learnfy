@@ -1,5 +1,7 @@
 <?php
 require_once "../Model/connect.php";
+require_once "../helpers/getid3/getid3.php";
+$getId3 = new getID3;
 @session_start();
 // header("Content-Type: application/json; charset=UTF-8");
 
@@ -53,9 +55,11 @@ if(!str_contains($video_aula['type'], 'video/')){
     exit();
 }
 $caminhoVideo = "../fotosSite/". md5(time()) .$id_curso . ".mp4";
+@move_uploaded_file($video_aula['tmp_name'], $caminhoVideo);
+$tempoEmSegundos = $getId3->analyze($caminhoVideo)["playtime_seconds"];
 
-if(mysqli_query($con,"INSERT INTO `aula` (`nome`, `descricao`, `id_curso`, `video`) 
-VALUES ('$titulo_aula', '$descricao_aula', '$id_curso','$caminhoVideo') ")){
+if(mysqli_query($con,"INSERT INTO `aula` (`nome`, `descricao`, `id_curso`, `video`,`tempo_em_segundos`) 
+VALUES ('$titulo_aula', '$descricao_aula', '$id_curso','$caminhoVideo',$tempoEmSegundos) ")){
 $idAula= mysqli_insert_id($con);
   mysqli_query($con,"INSERT INTO `quiz` (`id_aula`) values ($idAula)");
  $idQuiz = mysqli_insert_id($con);
@@ -75,7 +79,7 @@ $idAula= mysqli_insert_id($con);
 
 }
 
-@move_uploaded_file($video_aula['tmp_name'],$caminhoVideo);
+
 $cont = count($input_materiais["name"]);
 for($i=0;$i<$cont;$i++){
   if($input_materiais["name"][$i]!=""){
