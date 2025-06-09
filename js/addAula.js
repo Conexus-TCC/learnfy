@@ -60,9 +60,6 @@ btnCriarAula.addEventListener("click", function () {
 
         </div>
         <input type="file" accept="video/*" name="video_aula" id="video-aula-${i}">
-        <script type="text/javascript">
-
-        </script>
       </label>
 
       <div id="sla${i}" class="materiais-complementares">

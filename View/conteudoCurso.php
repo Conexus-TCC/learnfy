@@ -24,11 +24,11 @@ if (!isset($curso)) {
     exit();
 }
 $aulas = array();
-$q = mysqli_query($con, "SELECT nome,id_aula as id,tempo_em_segundos from aula where id_curso= $id_curso");
+$q = mysqli_query($con, "SELECT nome,id_aula as id,tempo_em_segundos,video from aula where id_curso= $id_curso");
 while (($a = $q->fetch_assoc()) != null) {
     array_push($aulas, $a);
 }
-
+$aulaGlobal = $aulas[0];
 ?>
 
 
@@ -61,6 +61,7 @@ while (($a = $q->fetch_assoc()) != null) {
                 foreach ($aulas as $aula) { ?>
                     <div class="aulas <?php
                                         if (isset($_GET["aula"]) && $aula["id"] == $_GET["aula"]) {
+                                            $aulaGlobal = $aula;
                                             echo "selecionado";
                                         }
 
@@ -83,13 +84,9 @@ while (($a = $q->fetch_assoc()) != null) {
         <div id="dir">
             <div id="barra">
                 <?php
-                $sql = "SELECT * from aula WHERE id_curso = $id_curso ";
-                if (isset($_GET["aula"])) {
-                    $sql = $sql . " AND id_aula = $_GET[aula]";
-                }
-                $aula  = mysqli_query($con, $sql)->fetch_assoc();
+                $aula  = $aulaGlobal;
                 $materiais = array();
-                $q = mysqli_query($con, "SELECT * FROM materiais_aula WHERE id_aula = $aula[id_aula]");
+                $q = mysqli_query($con, "SELECT * FROM materiais_aula WHERE id_aula = $aula[id]");
                 while (($a = $q->fetch_assoc()) != null) {
                     array_push($materiais, $a);
                 }
@@ -117,12 +114,17 @@ while (($a = $q->fetch_assoc()) != null) {
                     <p>Quiz</p>
                 </div>
             </div>
-
+                <?php 
+                $prg = mysqli_query($con, "select tempo_assistido from progresso Where 
+                id_aula = $aula[id] AND id_usuario = $_SESSION[id_usuario]")->fetch_assoc()["tempo_assistido"]??0;
+                ?>
             <div id="boxVideo" class="boxVideo">
-                <video width="900" height="400" src="<?= $aula["video"] ?>" controls>
+                <video width="900"  height="400" src="<?= $aula["video"] ?>" controls>
                     Your browser does not support the video tag.
                 </video>
-
+                <script>
+                    document.querySelector("video").currentTime=<?=$prg?>
+                </script>
             </div>
 
             <div id="boxQuiz">
@@ -135,13 +137,14 @@ while (($a = $q->fetch_assoc()) != null) {
                   from quiz 
                     RIGHT JOIN pergunta on pergunta.id_quiz = quiz.id_quiz
                      LEFT join resposta on resposta.id_pergunta = pergunta.id_pergunta 
-                     where id_aula = $aula[id_aula]
+                     where id_aula = $aula[id]
                      GROUP BY pergunta.id_pergunta; ");
                 $i = 1;
                 while ($pergunta = $query->fetch_assoc()) {
-                    $nums = mysqli_query($con, "SELECT id_pergunta from progresso where id_pergunta = $pergunta[id_pergunta]")->num_rows;
-                    $repondido = $nums > 0 ? true : false;
-
+                    $nums = mysqli_query($con, "SELECT acertado from perguntas_respondidas where id_pergunta = $pergunta[id_pergunta]");
+                    $repondido = $nums->num_rows > 0 ? true : false;
+                    $idQuiz = $pergunta["id_quiz"];
+                    $acetado = $nums->fetch_assoc();
                     $respostas = explode(",", $pergunta["resp_concat"]);
                     $idsResposta = explode(",", $pergunta["ids_resposta"])
                 ?>
@@ -155,8 +158,8 @@ while (($a = $q->fetch_assoc()) != null) {
 
                     <?php
                     foreach ($respostas  as $key => $resposta) { ?>
-                        <label id="lb<?= $idsResposta[$key] ?>" class="<?= $idsResposta[$key] == $pergunta["id_res_certa"] && $repondido ? "certo" : "" ?>" for="">
-                            <input type="radio" name="resposta" id="" value="<?= $idsResposta[$key] ?>" <?= $idsResposta[$key] == $pergunta["id_res_certa"] && $repondido ? "checked" : "" ?>>
+                        <label id="lb<?= $idsResposta[$key] ?>" class="<?= $repondido? ($idsResposta[$key] == $pergunta["id_res_certa"]  ? "certo" : "errado ") :"" ?>" for="">
+                            <input type="radio" name="resposta"  id="" value="<?= $idsResposta[$key] ?>" <?=$repondido ? ($idsResposta[$key] == $pergunta["id_res_certa"] ? "checked disabled" : "disabled") : " " ?>>
                             <p><?= $resposta ?></p>
                         </label>
 
@@ -205,6 +208,10 @@ while (($a = $q->fetch_assoc()) != null) {
 
     </div>
     <script>
+        const data={
+            idUsuario:<?=$_SESSION["id_usuario"]?>,
+            idQuiz:<?=$aula["id"]?>
+        }
         const Forms = document.querySelectorAll("form")
         /**
          * @type HTMLButtonElement
@@ -219,6 +226,7 @@ while (($a = $q->fetch_assoc()) != null) {
                     method: form.method,
                     body: bodyForm
                 })
+                form.action ="";
                 const data = await res.json();
                 if (data.status) {
                     statuss.push(true);
@@ -233,4 +241,5 @@ while (($a = $q->fetch_assoc()) != null) {
             })
         })
     </script>
+    <script src="../js/assitirAula.js"></script>
 </body>
