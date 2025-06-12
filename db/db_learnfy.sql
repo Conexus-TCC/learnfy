@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 29/05/2025 às 16:11
+-- Tempo de geração: 12/06/2025 às 03:58
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -28,27 +28,30 @@ USE `db_learnfy`;
 --
 -- Estrutura para tabela `aula`
 --
+-- Criação: 06/06/2025 às 18:15
+--
 
 CREATE TABLE `aula` (
   `id_aula` int(11) NOT NULL,
   `nome` varchar(255) NOT NULL,
   `descricao` varchar(255) NOT NULL,
   `video` varchar(255) NOT NULL,
-  `id_curso` int(11) NOT NULL
+  `id_curso` int(11) NOT NULL,
+  `tempo_em_segundos` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Despejando dados para a tabela `aula`
+-- RELACIONAMENTOS PARA TABELAS `aula`:
+--   `id_curso`
+--       `curso` -> `id_curso`
 --
-
-INSERT INTO `aula` (`id_aula`, `nome`, `descricao`, `video`, `id_curso`) VALUES
-(1, ' Conceitos de API REST', 'Aula sobre o que é API REST', '../fotosSite/0932a54b62fd5ca5ce305708dde962331.mp4', 1),
-(2, 'Introdução Ao node ', 'Introdução ao conceito de node', '../fotosSite/0932a54b62fd5ca5ce305708dde962331.mp4', 1);
 
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `categoria_curso`
+--
+-- Criação: 08/05/2025 às 17:05
 --
 
 CREATE TABLE `categoria_curso` (
@@ -59,16 +62,18 @@ CREATE TABLE `categoria_curso` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Despejando dados para a tabela `categoria_curso`
+-- RELACIONAMENTOS PARA TABELAS `categoria_curso`:
+--   `id_empresa`
+--       `empresa` -> `id_empresa`
 --
-
-INSERT INTO `categoria_curso` (`id_categoria`, `nome_categoria`, `id_empresa`, `nivelAcesso`) VALUES
-(1, 'Programação', 1, 0);
 
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `curso`
+--
+-- Criação: 08/05/2025 às 17:05
+-- Última atualização: 11/06/2025 às 23:47
 --
 
 CREATE TABLE `curso` (
@@ -82,16 +87,19 @@ CREATE TABLE `curso` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Despejando dados para a tabela `curso`
+-- RELACIONAMENTOS PARA TABELAS `curso`:
+--   `categoria`
+--       `categoria_curso` -> `id_categoria`
+--   `id_empresa`
+--       `empresa` -> `id_empresa`
 --
-
-INSERT INTO `curso` (`id_curso`, `nome`, `descricao`, `imagem`, `categoria`, `id_empresa`, `nivel`) VALUES
-(1, 'Node-JS', 'Curso de prgramação de Node.Js', '../fotosSite/6e2927e4df2b83d4e5808639585f109f1.jpg', 1, 1, 0);
 
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `empresa`
+--
+-- Criação: 08/05/2025 às 17:05
 --
 
 CREATE TABLE `empresa` (
@@ -107,16 +115,27 @@ CREATE TABLE `empresa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- RELACIONAMENTOS PARA TABELAS `empresa`:
+--
+
+--
+-- Tabela truncada antes do insert `empresa`
+--
+
+TRUNCATE TABLE `empresa`;
+--
 -- Despejando dados para a tabela `empresa`
 --
 
-INSERT INTO `empresa` (`id_empresa`, `nome_empresa`, `cnpj`, `cep`, `email`, `senha`, `logo`, `ddd`, `telefone`) VALUES
-(1, 'Conexus', '50.405.354/0001-94', '03590-070', 'conexus@mail.com', '$2y$10$GmoWw6KvOW..CSUeBVENGOaOIBzND8.aNZzIiMHpbR7rcSxgFdtla', '../fotosSite/d24b530a6fcf7c9d0da4c061f626532f.jpg', NULL, '47 8978-9789');
+INSERT INTO `empresa` VALUES
+(1, 'Conexus', '50.405.354/0001-94', '03590-070', 'conexus@mail.com', '$2y$10$GmoWw6KvOW..CSUeBVENGOaOIBzND8.aNZzIiMHpbR7rcSxgFdtla', 'https://github.com/Conexus-TCC/Site-Conexus/raw/main/media/imgs/contato/technologyBranco.png', NULL, '47 8978-9789');
 
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `materiais_aula`
+--
+-- Criação: 08/05/2025 às 17:05
 --
 
 CREATE TABLE `materiais_aula` (
@@ -127,17 +146,17 @@ CREATE TABLE `materiais_aula` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Despejando dados para a tabela `materiais_aula`
+-- RELACIONAMENTOS PARA TABELAS `materiais_aula`:
+--   `id_aula`
+--       `aula` -> `id_aula`
 --
-
-INSERT INTO `materiais_aula` (`id_material`, `filename`, `caminho`, `id_aula`) VALUES
-(1, 'matertial.txt', '../fotosSite/0932a54b62fd5ca5ce305708dde962331.txt', 1),
-(2, 'matertial.txt', '../fotosSite/0932a54b62fd5ca5ce305708dde962331.txt', 2);
 
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `pergunta`
+--
+-- Criação: 26/05/2025 às 18:05
 --
 
 CREATE TABLE `pergunta` (
@@ -148,17 +167,62 @@ CREATE TABLE `pergunta` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Despejando dados para a tabela `pergunta`
+-- RELACIONAMENTOS PARA TABELAS `pergunta`:
+--   `id_quiz`
+--       `quiz` -> `id_quiz`
 --
 
-INSERT INTO `pergunta` (`id_pergunta`, `pergunta`, `id_quiz`, `id_res_certa`) VALUES
-(1, ' Em uma API RESTful, qual das opções abaixo corresponde corretamente à função do verbo HTTP GET?', 1, 3),
-(2, 'O Que é Node?', 2, 6);
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `perguntas_respondidas`
+--
+-- Criação: 09/06/2025 às 14:32
+--
+
+CREATE TABLE `perguntas_respondidas` (
+  `id_usuario` int(11) NOT NULL,
+  `id_pergunta` int(11) NOT NULL,
+  `acertado` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- RELACIONAMENTOS PARA TABELAS `perguntas_respondidas`:
+--   `id_pergunta`
+--       `resposta` -> `id_resposta`
+--   `id_usuario`
+--       `usuario` -> `id_usuario`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `progresso`
+--
+-- Criação: 09/06/2025 às 17:49
+-- Última atualização: 12/06/2025 às 01:51
+--
+
+CREATE TABLE `progresso` (
+  `id_aula` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `tempo_assistido` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- RELACIONAMENTOS PARA TABELAS `progresso`:
+--   `id_aula`
+--       `aula` -> `id_aula`
+--   `id_usuario`
+--       `usuario` -> `id_usuario`
+--
 
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `quiz`
+--
+-- Criação: 21/05/2025 às 17:53
 --
 
 CREATE TABLE `quiz` (
@@ -167,17 +231,17 @@ CREATE TABLE `quiz` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Despejando dados para a tabela `quiz`
+-- RELACIONAMENTOS PARA TABELAS `quiz`:
+--   `id_aula`
+--       `aula` -> `id_aula`
 --
-
-INSERT INTO `quiz` (`id_quiz`, `id_aula`) VALUES
-(1, 1),
-(2, 2);
 
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `resposta`
+--
+-- Criação: 26/05/2025 às 16:28
 --
 
 CREATE TABLE `resposta` (
@@ -187,23 +251,17 @@ CREATE TABLE `resposta` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Despejando dados para a tabela `resposta`
+-- RELACIONAMENTOS PARA TABELAS `resposta`:
+--   `id_pergunta`
+--       `pergunta` -> `id_pergunta`
 --
-
-INSERT INTO `resposta` (`id_resposta`, `resposta`, `id_pergunta`) VALUES
-(1, 'Atualizar um recurso existente no servidor.', 1),
-(2, 'Excluir um recurso do servidor.', 1),
-(3, 'Consultar ou recuperar informações de um recurso.', 1),
-(4, 'Criar um novo recurso no servidor.', 1),
-(5, 'Uma linguagem', 2),
-(6, 'Um Interpretador', 2),
-(7, 'Uma biblioteca ', 2),
-(8, 'Um Compilador', 2);
 
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `usuario`
+--
+-- Criação: 08/05/2025 às 17:05
 --
 
 CREATE TABLE `usuario` (
@@ -223,20 +281,31 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- RELACIONAMENTOS PARA TABELAS `usuario`:
+--   `id_Empresa`
+--       `empresa` -> `id_empresa`
+--
+
+--
+-- Tabela truncada antes do insert `usuario`
+--
+
+TRUNCATE TABLE `usuario`;
+--
 -- Despejando dados para a tabela `usuario`
 --
 
-INSERT INTO `usuario` (`id_usuario`, `nome_usuario`, `data_nascimento`, `sexo`, `ddd`, `telefone`, `email`, `senha`, `cpf`, `foto`, `status`, `id_Empresa`, `nivel`) VALUES
-(1, 'Ana', '1990-01-01', 'F', '11', '999999999', 'ana@email.com', '$2y$10$VOfQp79gxge4PwxLJ3HqbuLcVL8f4lp15ZfCr1TadAcLBg3tPyzDW', '12345678901', '../fotosSite/pessoa.jpg', 1, 1, 1),
-(2, 'Bruno', '1985-05-15', 'M', '21', '988888888', 'bruno@email.com', '$2y$10$U9t44asLv9e/YzKKec3M6OLfJLtHHOGb31O2OfBCJsfJXfCHHrJSe', '23456789012', '../fotosSite/pessoa.jpg', 1, 1, 2),
-(3, 'Carlos', '1992-03-10', 'M', '31', '977777777', 'carlos@email.com', '$2y$10$W05CwUwTP/d4jgQEVJM4r.bZk5s2R3SP572/o2/vliMoflP7E5oF6', '34567890123', '../fotosSite/pessoa.jpg', 1, 1, 1),
-(4, 'Daniela', '1995-07-20', 'F', '41', '966666666', 'daniela@email.com', '$2y$10$ssZYiU1woDea5RBL1Q0Qye6yCzhjIZrx68LOzi2Bo7IBXzEfo50Ma', '45678901234', '../fotosSite/pessoa.jpg', 1, 1, 2),
-(5, 'Eduardo', '1988-11-25', 'M', '51', '955555555', 'eduardo@email.com', '$2y$10$U94x7ALRwAA4MbmIs70xj.hzZ.U1ofyKqurQdDZRcdnul77hLNDki', '56789012345', '../fotosSite/pessoa.jpg', 1, 1, 1),
-(6, 'Fernanda', '1993-09-12', 'F', '61', '944444444', 'fernanda@email.com', '$2y$10$vG0EqcDcKan6faE8Lax5XeJwYv/Jkl2HYjBaIOUgzSCIUL9UW5eeu', '67890123456', '../fotosSite/pessoa.jpg', 1, 1, 2),
-(7, 'Gabriel', '1990-04-18', 'M', '71', '933333333', 'gabriel@email.com', '$2y$10$05GZWxe6WHRTlupz2evnte5MK/HI7gbi6MZyHLgFWJH6qZZZ4HPoC', '78901234567', '../fotosSite/pessoa.jpg', 1, 1, 1),
-(8, 'Helena', '1997-06-30', 'F', '81', '922222222', 'helena@email.com', '$2y$10$tH10idbEBFZ.RV6RDTwK9uGVZH56KGc3ijlCghbTytI1D0KuAWMe.', '89012345678', '../fotosSite/pessoa.jpg', 1, 1, 2),
-(9, 'Igor', '1989-02-14', 'M', '91', '911111111', 'igor@email.com', '$2y$10$o8YM31ZVsHfZHt0HHXEeg.2kd4NcwsMhTBk5roCafWoO8jClG4SMe', '90123456789', '../fotosSite/pessoa.jpg', 1, 1, 1),
-(10, 'Juliana', '1994-08-05', 'F', '71', '900000000', 'juliana@email.com', '$2y$10$/bh50EB.213ZzbXxo05jGexEZrrx1YWKZKEJaP2Nbc0HmiEZmbfKW', '01234567890', '../fotosSite/pessoa.jpg', 1, 1, 2);
+INSERT INTO `usuario` VALUES
+(1, 'Ana', '1990-01-01', 'F', '11', '999999999', 'ana@email.com', '$2y$10$ZYdswmu0.gKKChhe17Q2CerjZBw9crSW4qIBZ7qpeio1P5Aw5leHy', '12345678901', '../fotosSite/pessoa.jpg', 1, 1, 1),
+(2, 'Bruno', '1985-05-15', 'M', '21', '988888888', 'bruno@email.com', '$2y$10$tf6hLcBrONevq6MZRuPLXuHHrpn6gh5LonbC.xPndDq1BC8/8jM6q', '23456789012', '../fotosSite/pessoa.jpg', 1, 1, 2),
+(3, 'Carlos', '1992-03-10', 'M', '31', '977777777', 'carlos@email.com', '$2y$10$PurondNM95.7us8xs6tQDeEYa89ouYU2UVFH9JmG97Vfvzy02W6ci', '34567890123', '../fotosSite/pessoa.jpg', 1, 1, 1),
+(4, 'Daniela', '1995-07-20', 'F', '41', '966666666', 'daniela@email.com', '$2y$10$VhIUo2eorHpD4Cak89/PVeDrKr/wI6YjsKaINZpyaSeRVrBXe7o16', '45678901234', '../fotosSite/pessoa.jpg', 1, 1, 2),
+(5, 'Eduardo', '1988-11-25', 'M', '51', '955555555', 'eduardo@email.com', '$2y$10$BLC0rVj0P2mh.ueGHf4Aa.v7.4SeqyTIJqyiNZ5pZIlqPpNKSmN1.', '56789012345', '../fotosSite/pessoa.jpg', 1, 1, 1),
+(6, 'Fernanda', '1993-09-12', 'F', '61', '944444444', 'fernanda@email.com', '$2y$10$q60XhFan8Oju/T3yNdfPjelgymhmNJqbeYAxivZvp8qjq/od8IklW', '67890123456', '../fotosSite/pessoa.jpg', 1, 1, 2),
+(7, 'Gabriel', '1990-04-18', 'M', '71', '933333333', 'gabriel@email.com', '$2y$10$RWpao8mx9qaTqkRMaCzOuO.sDxmYYQAq21KVMs4rZnEZVp9DodBYO', '78901234567', '../fotosSite/pessoa.jpg', 1, 1, 1),
+(8, 'Helena', '1997-06-30', 'F', '81', '922222222', 'helena@email.com', '$2y$10$Q3FQIFwk4dJJYBEniP49ievdNl4.61jbQj31dqG8SG7mY2j3anWhy', '89012345678', '../fotosSite/pessoa.jpg', 1, 1, 2),
+(9, 'Igor', '1989-02-14', 'M', '91', '911111111', 'igor@email.com', '$2y$10$.7pLh.swRsoR3nzj5hf.lOqMWxliSGAWC3IvTJaO5h/7/hYTzlkOm', '90123456789', '../fotosSite/pessoa.jpg', 1, 1, 1),
+(10, 'Juliana', '1994-08-05', 'F', '71', '900000000', 'juliana@email.com', '$2y$10$QgblgeAoda3qGm4M0DnqfOjO.r4EsioPsGHzI4fUH44xzPpPJWki2', '01234567890', '../fotosSite/pessoa.jpg', 1, 1, 2);
 
 --
 -- Índices para tabelas despejadas
@@ -286,6 +355,20 @@ ALTER TABLE `pergunta`
   ADD KEY `fk_pergunta_resposta` (`id_res_certa`);
 
 --
+-- Índices de tabela `perguntas_respondidas`
+--
+ALTER TABLE `perguntas_respondidas`
+  ADD KEY `P_respondidas_usuario` (`id_usuario`),
+  ADD KEY `P_respondidas_pergunta` (`id_pergunta`);
+
+--
+-- Índices de tabela `progresso`
+--
+ALTER TABLE `progresso`
+  ADD KEY `fk_prog_user` (`id_usuario`),
+  ADD KEY `fk_prog_aula` (`id_aula`);
+
+--
 -- Índices de tabela `quiz`
 --
 ALTER TABLE `quiz`
@@ -314,19 +397,19 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `aula`
 --
 ALTER TABLE `aula`
-  MODIFY `id_aula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_aula` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `categoria_curso`
 --
 ALTER TABLE `categoria_curso`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `curso`
 --
 ALTER TABLE `curso`
-  MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `empresa`
@@ -338,25 +421,25 @@ ALTER TABLE `empresa`
 -- AUTO_INCREMENT de tabela `materiais_aula`
 --
 ALTER TABLE `materiais_aula`
-  MODIFY `id_material` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_material` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `pergunta`
 --
 ALTER TABLE `pergunta`
-  MODIFY `id_pergunta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pergunta` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `quiz`
 --
 ALTER TABLE `quiz`
-  MODIFY `id_quiz` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_quiz` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `resposta`
 --
 ALTER TABLE `resposta`
-  MODIFY `id_resposta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_resposta` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`
@@ -398,6 +481,20 @@ ALTER TABLE `materiais_aula`
 --
 ALTER TABLE `pergunta`
   ADD CONSTRAINT `fk_pergunta_quiz` FOREIGN KEY (`id_quiz`) REFERENCES `quiz` (`id_quiz`);
+
+--
+-- Restrições para tabelas `perguntas_respondidas`
+--
+ALTER TABLE `perguntas_respondidas`
+  ADD CONSTRAINT `P_respondidas_pergunta` FOREIGN KEY (`id_pergunta`) REFERENCES `resposta` (`id_resposta`),
+  ADD CONSTRAINT `P_respondidas_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`);
+
+--
+-- Restrições para tabelas `progresso`
+--
+ALTER TABLE `progresso`
+  ADD CONSTRAINT `fk_prog_aula` FOREIGN KEY (`id_aula`) REFERENCES `aula` (`id_aula`),
+  ADD CONSTRAINT `fk_prog_user` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`);
 
 --
 -- Restrições para tabelas `quiz`

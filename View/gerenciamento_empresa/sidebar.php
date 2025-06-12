@@ -63,6 +63,10 @@
   </ul>
 
   <div class="sidebar-footer">
+    <a href="../../View/index.php" class="logoff-btn">
+      <span class="sidebar-menu-icon">🔙</span>
+      <span class="logoff-btn-text">Voltar</span>
+    </a>
     <a href="../../Controller/logout.php" class="logoff-btn">
       <span class="sidebar-menu-icon">🚪</span>
       <span class="logoff-btn-text">Sair</span>

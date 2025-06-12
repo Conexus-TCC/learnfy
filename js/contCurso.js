@@ -10,7 +10,7 @@ boxQuiz.style.display="none";
 btnVideo.classList.add("ativo");
 btnVideo.style.backgroundColor = "rgb(209, 206, 206)";
 
-btnVideo.addEventListener('click', () => {
+btnVideo.addEventListener('click', (event) => {
     event.preventDefault();
     btnVideo.style.backgroundColor = "rgb(209, 206, 206)";
     btnMateriais.style.backgroundColor = "white";
@@ -26,7 +26,7 @@ btnVideo.addEventListener('click', () => {
     boxQuiz.style.display = "none";
 });
 
-btnMateriais.addEventListener('click', () => {
+btnMateriais.addEventListener('click', (event) => {
     event.preventDefault();
     btnMateriais.style.backgroundColor = "rgb(209, 206, 206)";
     btnVideo.style.backgroundColor = "white";
@@ -42,7 +42,7 @@ btnMateriais.addEventListener('click', () => {
      btnQuiz.classList.add("desativado");
 });
 
-btnQuiz.addEventListener('click', () => {
+btnQuiz.addEventListener('click', (event) => {
     event.preventDefault();
     btnQuiz.style.backgroundColor = "rgb(209, 206, 206)";
     btnVideo.style.backgroundColor = "white";

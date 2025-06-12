@@ -3,7 +3,7 @@
   @session_start();
   $_SESSION["contexto"] = "dashboard"
   ?>
-
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
  <link rel="stylesheet" href="../../Css/gerenciamento.css">
  <!-- Header da Página -->
  <div class="page-header">
@@ -14,25 +14,25 @@
  </div>
 
 
- <?php 
- 
-@session_start();
- require("../../Model/connect.php");
- $consulta = mysqli_query($con, "SELECT *, count(id_usuario) AS totUser FROM `usuario` WHERE `id_empresa` = {$_SESSION['id_empresa']}");
- $consulta2 = mysqli_query($con, "SELECT *, count(id_curso) AS totCurso FROM `curso` WHERE `id_empresa` = {$_SESSION['id_empresa']}");
+ <?php
 
- 
- 
- 
- ?>
+  @session_start();
+  require("../../Model/connect.php");
+  $consulta = mysqli_query($con, "SELECT *, count(id_usuario) AS totUser FROM `usuario` WHERE `id_empresa` = {$_SESSION['id_empresa']}");
+  $consulta2 = mysqli_query($con, "SELECT *, count(id_curso) AS totCurso FROM `curso` WHERE `id_empresa` = {$_SESSION['id_empresa']}");
+
+
+
+
+  ?>
  <!-- Cartões de Estatísticas -->
  <div class="stats-grid">
    <div class="stat-card">
      <div class="stat-info">
        <h3>Colaboradores Ativos</h3>
-       <div class="stat-value"><?php   while($totUser = mysqli_fetch_assoc($consulta)){
-            echo $totUser["totUser"];
-          }?></div>
+       <div class="stat-value"><?php while ($totUser = mysqli_fetch_assoc($consulta)) {
+                                  echo $totUser["totUser"];
+                                } ?></div>
        <!-- <div class="stat-trend trend-up">
          +12% <span style="color: var(--muted);">vs. último mês</span>
        </div> -->
@@ -43,16 +43,16 @@
    <div class="stat-card">
      <div class="stat-info">
        <h3>Cursos Publicados</h3>
-       <div class="stat-value"><?php   while($totCurso = mysqli_fetch_assoc($consulta2)){
-            echo $totCurso["totCurso"];
-          }?></div>
+       <div class="stat-value"><?php while ($totCurso = mysqli_fetch_assoc($consulta2)) {
+                                  echo $totCurso["totCurso"];
+                                } ?></div>
        <div class="stat-trend trend-up">
          <!-- +4% <span style="color: var(--muted);">vs. último mês</span> -->
        </div>
      </div>
      <div class="stat-icon">📚</div>
    </div>
-<!-- 
+   <!-- 
    <div class="stat-card">
      <div class="stat-info">
        <h3>Taxa de Conclusão</h3>
@@ -76,15 +76,42 @@
    </div> -->
  </div>
  <!-- Gráficos -->
+
+ <script type="text/javascript">
+   google.charts.load('current', {
+     'packages': ['corechart']
+   });
+   google.charts.setOnLoadCallback(drawChart);
+
+   function drawChart() {
+     var data = google.visualization.arrayToDataTable([
+       ['Mês', 'Sales', 'Expenses'],
+       ['Janeiro', 1000, 400],
+       ['Fevereiro', 1170, 460],
+       ['Março', 660, 1120],
+       ['Abril', 1030, 540]
+     ]);
+
+     var options = {
+       curveType: 'function',
+       legend: {
+         position: 'bottom'
+       }
+     };
+
+     var chart = new google.visualization.LineChart(document.getElementById('performace'));
+
+     chart.draw(data, options);
+   }
+ </script>
+
  <div class="charts-grid">
    <div class="chart-card">
      <div class="chart-header">
        <h3 class="chart-title">Performance ao Longo do Ano</h3>
      </div>
      <div class="chart-container">
-       <div class="chart-placeholder">
-         <span>Gráfico de Performance</span>
-       </div>
+       <div id="performace"></div>
      </div>
    </div>
 
@@ -93,9 +120,7 @@
        <h3 class="chart-title">Engajamento dos Colaboradores</h3>
      </div>
      <div class="chart-container">
-       <div class="chart-placeholder">
-         <span>Gráfico de Engajamento</span>
-       </div>
+       <div id="performace"></div>
      </div>
    </div>
  </div>
@@ -108,136 +133,58 @@
        <h2 class="section-title">Cursos Recentes</h2>
        <a href="#" class="view-all">Ver todos &rarr;</a>
      </div>
+     <?php
+      $query = "SELECT curso.*,categoria_curso.nome_categoria as categoria,aula.tempo_aula , COUNT(usuario.id_usuario) as funcionarios
+      FROM curso
+       inner join categoria_curso on categoria_curso.id_categoria = curso.categoria
+        right JOIN usuario on usuario.id_Empresa = curso.id_empresa AND curso.nivel <= usuario.nivel 
+        Right JOIN (SELECT curso.id_curso, SUM(aula.tempo_em_segundos)as tempo_aula from aula
+                    INNER JOIN curso on curso.id_curso =aula.id_aula
+                    GROUP BY curso.id_curso)as aula  ON aula.id_curso = curso.id_curso 
+        where curso.id_empresa =$_SESSION[id_empresa]
+        GROUP BY curso.id_curso 
+      LIMIT 5
+  ";
 
+
+      ?>
      <div class="courses-grid">
-       <div class="course-card">
-         <div class="course-image">
-           <img src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80" alt="Marketing Digital">
-           <div class="course-tag">Marketing</div>
-         </div>
-         <div class="course-content">
-           <h3 class="course-title">Introdução ao Marketing Digital</h3>
-           <div class="course-meta">
-             <div class="meta-item">⏱️ 4h 30min</div>
-             <div class="meta-item">👥 78 alunos</div>
-           </div>
-           <div class="progress-container">
-             <div class="progress-bar" style="width: 85%;"></div>
-           </div>
-           <div class="progress-stats">
-             <span>Progresso: 85%</span>
-           </div>
-           <div class="course-actions">
-             <button class="edit-btn" onclick="openEditModal('Introdução ao Marketing Digital')">
-               <span>✏️</span> Editar
-             </button>
-           </div>
-         </div>
-       </div>
 
-       <div class="course-card">
-         <div class="course-image">
-           <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Liderança">
-           <div class="course-tag">Liderança</div>
-         </div>
-         <div class="course-content">
-           <h3 class="course-title">Liderança e Gestão de Equipes</h3>
-           <div class="course-meta">
-             <div class="meta-item">⏱️ 6h 15min</div>
-             <div class="meta-item">👥 124 alunos</div>
-           </div>
-           <div class="progress-container">
-             <div class="progress-bar" style="width: 62%;"></div>
-           </div>
-           <div class="progress-stats">
-             <span>Progresso: 62%</span>
-           </div>
-           <div class="course-actions">
-             <button class="edit-btn" onclick="openEditModal('Liderança e Gestão de Equipes')">
-               <span>✏️</span> Editar
-             </button>
-           </div>
-         </div>
-       </div>
+       <?php
+        $res = mysqli_query($con, $query);
+        while ($curso = $res->fetch_assoc()) { 
+          $t = $curso["tempo_aula"];
+          ?>
 
-       <div class="course-card">
-         <div class="course-image">
-           <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Dados">
-           <div class="course-tag">Dados</div>
+         <div class="course-card">
+           <div class="course-image">
+
+             <img src="../<?= $curso["imagem"] ?>" alt="Marketing Digital">
+             <div class="course-tag"><?= $curso["categoria"] ?></div>
+           </div>
+           <div class="course-content">
+             <h3 class="course-title"><?= $curso["nome"] ?></h3>
+             <div class="course-meta">
+               <div class="meta-item">⏱️ <?= sprintf('%02dH %02dM', $t / 3600, floor($t / 60) % 60) ?></div>
+               <div class="meta-item">👥 <?= $curso["funcionarios"] ?> alunos</div>
+             </div>
+             <div class="progress-container">
+               <div class="progress-bar" style="width: 85%;"></div>
+             </div>
+             <div class="progress-stats">
+               <span>Progresso: 85%</span>
+             </div>
+             <div class="course-actions">
+             </div>
+           </div>
          </div>
-         <div class="course-content">
-           <h3 class="course-title">Fundamentos de Análise de Dados</h3>
-           <div class="course-meta">
-             <div class="meta-item">⏱️ 5h 45min</div>
-             <div class="meta-item">👥 96 alunos</div>
-           </div>
-           <div class="progress-container">
-             <div class="progress-bar" style="width: 38%;"></div>
-           </div>
-           <div class="progress-stats">
-             <span>Progresso: 38%</span>
-           </div>
-           <div class="course-actions">
-             <button class="edit-btn" onclick="openEditModal('Fundamentos de Análise de Dados')">
-               <span>✏️</span> Editar
-             </button>
-           </div>
-         </div>
-       </div>
+       <?php } ?>
+
      </div>
    </div>
 
    <!-- Progress Cards -->
-   <div>
-     <div class="section-header">
-       <h2 class="section-title">Progresso</h2>
-       <a href="#" class="view-all">Detalhes &rarr;</a>
-     </div>
 
-     <div class="progress-cards">
-       <div class="progress-card">
-         <div class="card-header">
-           <h3 class="card-title">Cursos Publicados</h3>
-           <span class="percentage">80%</span>
-         </div>
-         <div class="progress-container">
-           <div class="progress-bar" style="width: 80%;"></div>
-         </div>
-         <div class="progress-stats">
-           <span>48 concluídos</span>
-           <span>60 total</span>
-         </div>
-       </div>
-
-       <div class="progress-card">
-         <div class="card-header">
-           <h3 class="card-title">Colaboradores Treinados</h3>
-           <span class="percentage">77%</span>
-         </div>
-         <div class="progress-container">
-           <div class="progress-bar" style="width: 77%;"></div>
-         </div>
-         <div class="progress-stats">
-           <span>189 concluídos</span>
-           <span>245 total</span>
-         </div>
-       </div>
-
-       <div class="progress-card">
-         <div class="card-header">
-           <h3 class="card-title">Conteúdos Produzidos</h3>
-           <span class="percentage">78%</span>
-         </div>
-         <div class="progress-container">
-           <div class="progress-bar" style="width: 78%;"></div>
-         </div>
-         <div class="progress-stats">
-           <span>156 concluídos</span>
-           <span>200 total</span>
-         </div>
-       </div>
-     </div>
-   </div>
  </div>
 
  <!-- Tabela de Colaboradores -->
@@ -247,94 +194,63 @@
      <a href="#" class="view-all">Ver todos &rarr;</a>
    </div>
 
+   <?php
+    $sql = "SELECT usuario.nome_usuario as nome,
+    SUM(aula.tempo_em_segundos) as tempo_total,
+    COALESCE(SUM(progresso.tempo_assistido),0) as tempo_assistido 
+     from usuario 
+INNER JOIN curso on curso.id_empresa =usuario.id_Empresa AND usuario.nivel>=curso.nivel
+INNER JOIN aula on curso.id_curso = aula.id_aula
+LEFT JOIN progresso on progresso.id_usuario = usuario.id_usuario
+WHERE usuario.id_Empresa = $_SESSION[id_empresa]
+GROUP BY usuario.id_usuario;";
+    function formatarTempo($seconds)
+    {
+      $t = round($seconds);
+      return sprintf('%02d:%02d:%02d', $t / 3600, floor($t / 60) % 60, $t % 60);
+    }
+
+    ?>
+
    <div class="employees-table-container">
      <table class="employees-table">
        <thead>
          <tr>
            <th>Nome</th>
-           <th>Cargo</th>
-           <th>Departamento</th>
-           <th>Cursos Concluídos</th>
+           <th>horas disponiveis</th>
+           <th>horas Assistidas</th>
            <th>Progresso</th>
-           <th>Performance</th>
          </tr>
        </thead>
        <tbody>
-         <tr>
-           <td>Ana Silva</td>
-           <td>Analista de Marketing</td>
-           <td>Marketing</td>
-           <td>8</td>
-           <td>
-             <div class="progress-cell">
-               <div class="table-progress">
-                 <div class="table-progress-bar" style="width: 92%;"></div>
+         <?php
+          $res = mysqli_query($con, $sql);
+          while ($fun = $res->fetch_assoc()) {
+            $perc = round($fun["tempo_assistido"] * 100 / $fun["tempo_total"]);
+
+          ?>
+           <tr>
+             <td><?= $fun["nome"] ?></td>
+             <td><?= formatarTempo($fun["tempo_total"]) ?></td>
+             <td><?= formatarTempo($fun["tempo_assistido"]) ?></td>
+             <td>
+               <div class="progress-cell">
+                 <div class="table-progress">
+                   <div class="table-progress-bar" style="width: <?= $perc ?>%;"></div>
+                 </div>
+                 <span><?= $perc ?>%</span>
                </div>
-               <span>92%</span>
-             </div>
-           </td>
-           <td><span class="performance-badge badge-up">9.4 ↗</span></td>
-         </tr>
-         <tr>
-           <td>Carlos Oliveira</td>
-           <td>Gerente de Vendas</td>
-           <td>Comercial</td>
-           <td>12</td>
-           <td>
-             <div class="progress-cell">
-               <div class="table-progress">
-                 <div class="table-progress-bar" style="width: 100%;"></div>
-               </div>
-               <span>100%</span>
-             </div>
-           </td>
-           <td><span class="performance-badge badge-up">9.8 ↗</span></td>
-         </tr>
-         <tr>
-           <td>Mariana Costa</td>
-           <td>Desenvolvedora Front-end</td>
-           <td>Tecnologia</td>
-           <td>5</td>
-           <td>
-             <div class="progress-cell">
-               <div class="table-progress">
-                 <div class="table-progress-bar" style="width: 64%;"></div>
-               </div>
-               <span>64%</span>
-             </div>
-           </td>
-           <td><span class="performance-badge badge-up">7.5 ↗</span></td>
-         </tr>
-         <tr>
-           <td>Felipe Martins</td>
-           <td>Analista Financeiro</td>
-           <td>Financeiro</td>
-           <td>3</td>
-           <td>
-             <div class="progress-cell">
-               <div class="table-progress">
-                 <div class="table-progress-bar" style="width: 28%;"></div>
-               </div>
-               <span>28%</span>
-             </div>
-           </td>
-           <td><span class="performance-badge badge-down">6.2 ↘</span></td>
-         </tr>
-         <tr>
-           <td>Juliana Ferreira</td>
-           <td>Recursos Humanos</td>
-           <td>Administrativo</td>
-           <td>9</td>
-           <td>
-             <div class="progress-cell">
-               <div class="table-progress">
-                 <div class="table-progress-bar" style="width: 85%;"></div>
-               </div>
-               <span>85%</span>
-             </div>
-           </td>
-           <td><span class="performance-badge badge-up">8.7 ↗</span></td>
-         </tr>
+             </td>
+           <tr>
+           <?php } ?>
+
+
+
+           </tr>
+
+
+
+
        </tbody>
      </table>
    </div>
