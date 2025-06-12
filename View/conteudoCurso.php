@@ -54,9 +54,8 @@ $aulaGlobal = $aulas[0];
 
             <div id="contCurso">
                 <h1>Conteúdo do curso</h1>
-                <p><!--$Aulas--><?= $curso["contagem_de_aulas"] ?> Aulas - <!--$Minutos--><?=
-                                                                                            number_format($curso["total_tempo"] / 60, 2, ":") ?> Minutos</p>
-
+                <p><!--$Aulas--><?= $curso["total_tempo"] ?> Aulas - <!--$Minutos-->
+                    <?= number_format($curso["total_tempo"] / 60, 2, ":") ?> Minutos</p>
                 <?php
                 foreach ($aulas as $aula) { ?>
                     <div class="aulas <?php
@@ -114,16 +113,16 @@ $aulaGlobal = $aulas[0];
                     <p>Quiz</p>
                 </div>
             </div>
-                <?php 
-                $prg = mysqli_query($con, "select tempo_assistido from progresso Where 
-                id_aula = $aula[id] AND id_usuario = $_SESSION[id_usuario]")->fetch_assoc()["tempo_assistido"]??0;
-                ?>
+            <?php
+            $prg = mysqli_query($con, "select tempo_assistido from progresso Where 
+                id_aula = $aula[id] AND id_usuario = $_SESSION[id_usuario]")->fetch_assoc()["tempo_assistido"] ?? 0;
+            ?>
             <div id="boxVideo" class="boxVideo">
                 <video width="900"  height="400" src="<?= $aula["video"] ?>" controls>
                     Your browser does not support the video tag.
                 </video>
                 <script>
-                    document.querySelector("video").currentTime=<?=$prg?>
+                    document.querySelector("video").currentTime = <?= $prg ?>
                 </script>
             </div>
 
@@ -158,8 +157,8 @@ $aulaGlobal = $aulas[0];
 
                     <?php
                     foreach ($respostas  as $key => $resposta) { ?>
-                        <label id="lb<?= $idsResposta[$key] ?>" class="<?= $repondido? ($idsResposta[$key] == $pergunta["id_res_certa"]  ? "certo" : "errado ") :"" ?>" for="">
-                            <input type="radio" name="resposta"  id="" value="<?= $idsResposta[$key] ?>" <?=$repondido ? ($idsResposta[$key] == $pergunta["id_res_certa"] ? "checked disabled" : "disabled") : " " ?>>
+                        <label id="lb<?= $idsResposta[$key] ?>" class="<?= $repondido ? ($idsResposta[$key] == $pergunta["id_res_certa"]  ? "certo" : "errado ") : "" ?>" for="">
+                            <input type="radio" name="resposta" id="" value="<?= $idsResposta[$key] ?>" <?= $repondido ? ($idsResposta[$key] == $pergunta["id_res_certa"] ? "checked disabled" : "disabled") : " " ?>>
                             <p><?= $resposta ?></p>
                         </label>
 
@@ -179,7 +178,7 @@ $aulaGlobal = $aulas[0];
                 foreach ($materiais as $material) { ?>
                     <div>
                         <section>
-                            <i class="mdi <?=getFileIcon(strtolower(pathinfo($material['caminho'],PATHINFO_EXTENSION)))?>"></i>
+                            <i class="mdi <?= getFileIcon(strtolower(pathinfo($material['caminho'], PATHINFO_EXTENSION))) ?>"></i>
                             <div>
                                 <h1><?= $material["filename"] ?> <!--$nomeArquivo--></h1>
                                 <!---TODO: ADICIONAR DETECTAR O FILE TYPE 
@@ -208,9 +207,9 @@ $aulaGlobal = $aulas[0];
 
     </div>
     <script>
-        const data={
-            idUsuario:<?=$_SESSION["id_usuario"]?>,
-            idQuiz:<?=$aula["id"]?>
+        const data = {
+            idUsuario: <?= $_SESSION["id_usuario"] ?>,
+            idQuiz: <?= $aula["id"] ?>
         }
         const Forms = document.querySelectorAll("form")
         /**
@@ -226,7 +225,7 @@ $aulaGlobal = $aulas[0];
                     method: form.method,
                     body: bodyForm
                 })
-                form.action ="";
+                form.action = "";
                 const data = await res.json();
                 if (data.status) {
                     statuss.push(true);

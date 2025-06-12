@@ -61,7 +61,7 @@ if (isset($_SESSION["msg"])) {
             </div>
         </div>
         <a href="index.php">Home</a>
-        <a href="#">Cursos</a>
+        <a href="cursos.php">Cursos</a>
         <a href="sobre.php">Sobre</a>
         <a href="contato.php">Contato</a>
     </div>

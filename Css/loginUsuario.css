@@ -189,4 +189,14 @@
             font-size: 0.8rem;
             margin-top: 0.8rem;
         }
-    
+    .btn-sair{
+        border-radius: 15px;
+        margin: 25px 0px ;
+        padding:  10px  25px;
+        float: right;
+        border: solid #985C7E 1px;
+        &:hover{
+            background: #985C7E;
+            color: white;
+        }
+    }
