@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 12/06/2025 às 03:58
+-- Tempo de geração: 12/06/2025 às 20:02
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -28,9 +28,8 @@ USE `db_learnfy`;
 --
 -- Estrutura para tabela `aula`
 --
--- Criação: 06/06/2025 às 18:15
---
 
+DROP TABLE IF EXISTS `aula`;
 CREATE TABLE `aula` (
   `id_aula` int(11) NOT NULL,
   `nome` varchar(255) NOT NULL,
@@ -41,19 +40,20 @@ CREATE TABLE `aula` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- RELACIONAMENTOS PARA TABELAS `aula`:
---   `id_curso`
---       `curso` -> `id_curso`
+-- Despejando dados para a tabela `aula`
 --
+
+INSERT INTO `aula` (`id_aula`, `nome`, `descricao`, `video`, `id_curso`, `tempo_em_segundos`) VALUES
+(1, 'Conceitos de node', 'Descrevendo NodeJS', '../fotosSite/a079cbae3280539db097f3823d4d39581.mp4', 1, 824),
+(2, 'Api Rest', 'conceitos de API Rest', '../fotosSite/a079cbae3280539db097f3823d4d39581.mp4', 1, 582);
 
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `categoria_curso`
 --
--- Criação: 08/05/2025 às 17:05
---
 
+DROP TABLE IF EXISTS `categoria_curso`;
 CREATE TABLE `categoria_curso` (
   `id_categoria` int(11) NOT NULL,
   `nome_categoria` varchar(30) NOT NULL,
@@ -62,20 +62,19 @@ CREATE TABLE `categoria_curso` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- RELACIONAMENTOS PARA TABELAS `categoria_curso`:
---   `id_empresa`
---       `empresa` -> `id_empresa`
+-- Despejando dados para a tabela `categoria_curso`
 --
+
+INSERT INTO `categoria_curso` (`id_categoria`, `nome_categoria`, `id_empresa`, `nivelAcesso`) VALUES
+(1, 'Programação', 1, 0);
 
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `curso`
 --
--- Criação: 08/05/2025 às 17:05
--- Última atualização: 11/06/2025 às 23:47
---
 
+DROP TABLE IF EXISTS `curso`;
 CREATE TABLE `curso` (
   `id_curso` int(11) NOT NULL,
   `nome` varchar(255) NOT NULL,
@@ -87,21 +86,19 @@ CREATE TABLE `curso` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- RELACIONAMENTOS PARA TABELAS `curso`:
---   `categoria`
---       `categoria_curso` -> `id_categoria`
---   `id_empresa`
---       `empresa` -> `id_empresa`
+-- Despejando dados para a tabela `curso`
 --
+
+INSERT INTO `curso` (`id_curso`, `nome`, `descricao`, `imagem`, `categoria`, `id_empresa`, `nivel`) VALUES
+(1, 'Node JS', 'Curso de node', '../fotosSite/0dbf392946de563420e9daa72e416e5b1.jpg', 1, 1, 0);
 
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `empresa`
 --
--- Criação: 08/05/2025 às 17:05
---
 
+DROP TABLE IF EXISTS `empresa`;
 CREATE TABLE `empresa` (
   `id_empresa` int(11) NOT NULL,
   `nome_empresa` varchar(50) NOT NULL,
@@ -115,19 +112,10 @@ CREATE TABLE `empresa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- RELACIONAMENTOS PARA TABELAS `empresa`:
---
-
---
--- Tabela truncada antes do insert `empresa`
---
-
-TRUNCATE TABLE `empresa`;
---
 -- Despejando dados para a tabela `empresa`
 --
 
-INSERT INTO `empresa` VALUES
+INSERT INTO `empresa` (`id_empresa`, `nome_empresa`, `cnpj`, `cep`, `email`, `senha`, `logo`, `ddd`, `telefone`) VALUES
 (1, 'Conexus', '50.405.354/0001-94', '03590-070', 'conexus@mail.com', '$2y$10$GmoWw6KvOW..CSUeBVENGOaOIBzND8.aNZzIiMHpbR7rcSxgFdtla', 'https://github.com/Conexus-TCC/Site-Conexus/raw/main/media/imgs/contato/technologyBranco.png', NULL, '47 8978-9789');
 
 -- --------------------------------------------------------
@@ -135,9 +123,8 @@ INSERT INTO `empresa` VALUES
 --
 -- Estrutura para tabela `materiais_aula`
 --
--- Criação: 08/05/2025 às 17:05
---
 
+DROP TABLE IF EXISTS `materiais_aula`;
 CREATE TABLE `materiais_aula` (
   `id_material` int(11) NOT NULL,
   `filename` varchar(255) NOT NULL,
@@ -146,19 +133,22 @@ CREATE TABLE `materiais_aula` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- RELACIONAMENTOS PARA TABELAS `materiais_aula`:
---   `id_aula`
---       `aula` -> `id_aula`
+-- Despejando dados para a tabela `materiais_aula`
 --
+
+INSERT INTO `materiais_aula` (`id_material`, `filename`, `caminho`, `id_aula`) VALUES
+(1, 'material .pdf', '../fotosSite/a079cbae3280539db097f3823d4d39581.pdf', 1),
+(2, 'material.docx', '../fotosSite/a079cbae3280539db097f3823d4d39581.docx', 1),
+(3, 'material .pdf', '../fotosSite/a079cbae3280539db097f3823d4d39581.pdf', 2),
+(4, 'material.docx', '../fotosSite/a079cbae3280539db097f3823d4d39581.docx', 2);
 
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `pergunta`
 --
--- Criação: 26/05/2025 às 18:05
---
 
+DROP TABLE IF EXISTS `pergunta`;
 CREATE TABLE `pergunta` (
   `id_pergunta` int(11) NOT NULL,
   `pergunta` varchar(190) NOT NULL,
@@ -167,83 +157,66 @@ CREATE TABLE `pergunta` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- RELACIONAMENTOS PARA TABELAS `pergunta`:
---   `id_quiz`
---       `quiz` -> `id_quiz`
+-- Despejando dados para a tabela `pergunta`
 --
+
+INSERT INTO `pergunta` (`id_pergunta`, `pergunta`, `id_quiz`, `id_res_certa`) VALUES
+(1, 'O que é node JS', 1, 1),
+(2, 'Qual o verbo HTTP se utiliza para enviar os dados pra API', 2, 6);
 
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `perguntas_respondidas`
 --
--- Criação: 09/06/2025 às 14:32
---
 
+DROP TABLE IF EXISTS `perguntas_respondidas`;
 CREATE TABLE `perguntas_respondidas` (
   `id_usuario` int(11) NOT NULL,
   `id_pergunta` int(11) NOT NULL,
   `acertado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- RELACIONAMENTOS PARA TABELAS `perguntas_respondidas`:
---   `id_pergunta`
---       `resposta` -> `id_resposta`
---   `id_usuario`
---       `usuario` -> `id_usuario`
---
-
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `progresso`
 --
--- Criação: 09/06/2025 às 17:49
--- Última atualização: 12/06/2025 às 01:51
---
 
+DROP TABLE IF EXISTS `progresso`;
 CREATE TABLE `progresso` (
   `id_aula` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `tempo_assistido` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- RELACIONAMENTOS PARA TABELAS `progresso`:
---   `id_aula`
---       `aula` -> `id_aula`
---   `id_usuario`
---       `usuario` -> `id_usuario`
---
-
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `quiz`
 --
--- Criação: 21/05/2025 às 17:53
---
 
+DROP TABLE IF EXISTS `quiz`;
 CREATE TABLE `quiz` (
   `id_quiz` int(11) NOT NULL,
   `id_aula` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- RELACIONAMENTOS PARA TABELAS `quiz`:
---   `id_aula`
---       `aula` -> `id_aula`
+-- Despejando dados para a tabela `quiz`
 --
+
+INSERT INTO `quiz` (`id_quiz`, `id_aula`) VALUES
+(1, 1),
+(2, 2);
 
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `resposta`
 --
--- Criação: 26/05/2025 às 16:28
---
 
+DROP TABLE IF EXISTS `resposta`;
 CREATE TABLE `resposta` (
   `id_resposta` int(11) NOT NULL,
   `resposta` varchar(190) NOT NULL,
@@ -251,19 +224,26 @@ CREATE TABLE `resposta` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- RELACIONAMENTOS PARA TABELAS `resposta`:
---   `id_pergunta`
---       `pergunta` -> `id_pergunta`
+-- Despejando dados para a tabela `resposta`
 --
+
+INSERT INTO `resposta` (`id_resposta`, `resposta`, `id_pergunta`) VALUES
+(1, 'Compilador JavaScript', 1),
+(2, 'Interpretador JavaScript', 1),
+(3, 'biblioteca  JavaScript', 1),
+(4, 'Framework JavaScript', 1),
+(5, 'GET', 2),
+(6, 'POST', 2),
+(7, 'DELETE', 2),
+(8, 'PUT', 2);
 
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `usuario`
 --
--- Criação: 08/05/2025 às 17:05
---
 
+DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE `usuario` (
   `id_usuario` int(11) NOT NULL,
   `nome_usuario` varchar(60) NOT NULL,
@@ -281,21 +261,10 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- RELACIONAMENTOS PARA TABELAS `usuario`:
---   `id_Empresa`
---       `empresa` -> `id_empresa`
---
-
---
--- Tabela truncada antes do insert `usuario`
---
-
-TRUNCATE TABLE `usuario`;
---
 -- Despejando dados para a tabela `usuario`
 --
 
-INSERT INTO `usuario` VALUES
+INSERT INTO `usuario` (`id_usuario`, `nome_usuario`, `data_nascimento`, `sexo`, `ddd`, `telefone`, `email`, `senha`, `cpf`, `foto`, `status`, `id_Empresa`, `nivel`) VALUES
 (1, 'Ana', '1990-01-01', 'F', '11', '999999999', 'ana@email.com', '$2y$10$ZYdswmu0.gKKChhe17Q2CerjZBw9crSW4qIBZ7qpeio1P5Aw5leHy', '12345678901', '../fotosSite/pessoa.jpg', 1, 1, 1),
 (2, 'Bruno', '1985-05-15', 'M', '21', '988888888', 'bruno@email.com', '$2y$10$tf6hLcBrONevq6MZRuPLXuHHrpn6gh5LonbC.xPndDq1BC8/8jM6q', '23456789012', '../fotosSite/pessoa.jpg', 1, 1, 2),
 (3, 'Carlos', '1992-03-10', 'M', '31', '977777777', 'carlos@email.com', '$2y$10$PurondNM95.7us8xs6tQDeEYa89ouYU2UVFH9JmG97Vfvzy02W6ci', '34567890123', '../fotosSite/pessoa.jpg', 1, 1, 1),
@@ -397,19 +366,19 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `aula`
 --
 ALTER TABLE `aula`
-  MODIFY `id_aula` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_aula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `categoria_curso`
 --
 ALTER TABLE `categoria_curso`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `curso`
 --
 ALTER TABLE `curso`
-  MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `empresa`
@@ -421,25 +390,25 @@ ALTER TABLE `empresa`
 -- AUTO_INCREMENT de tabela `materiais_aula`
 --
 ALTER TABLE `materiais_aula`
-  MODIFY `id_material` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_material` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `pergunta`
 --
 ALTER TABLE `pergunta`
-  MODIFY `id_pergunta` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pergunta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `quiz`
 --
 ALTER TABLE `quiz`
-  MODIFY `id_quiz` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_quiz` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `resposta`
 --
 ALTER TABLE `resposta`
-  MODIFY `id_resposta` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_resposta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`

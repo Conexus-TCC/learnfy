@@ -118,7 +118,7 @@ $aulaGlobal = $aulas[0];
                 id_aula = $aula[id] AND id_usuario = $_SESSION[id_usuario]")->fetch_assoc()["tempo_assistido"] ?? 0;
             ?>
             <div id="boxVideo" class="boxVideo">
-                <video width="900"  height="400" src="<?= $aula["video"] ?>" controls>
+                <video width="900" height="400" src="<?= $aula["video"] ?>" controls>
                     Your browser does not support the video tag.
                 </video>
                 <script>
@@ -230,8 +230,13 @@ $aulaGlobal = $aulas[0];
                 if (data.status) {
                     statuss.push(true);
                     document.querySelector("#lb" + data.resp).classList.add("certo")
+                    const p = form.querySelector("form>p")
+                    p.classList.remove("invisivel")
+                    p.style.color = ""
+                    p.innerText = "Você Acertou"
                 } else {
                     statuss.push(false);
+                    document.querySelector("#lb" + data.resCerta).classList.add("certo")
                     document.querySelector("#lb" + data.resp).classList.add("errado")
                     const p = form.querySelector("form>p")
                     p.classList.remove("invisivel")
