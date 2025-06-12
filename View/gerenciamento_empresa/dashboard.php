@@ -134,13 +134,16 @@
        <a href="#" class="view-all">Ver todos &rarr;</a>
      </div>
      <?php
-      $query = "SELECT curso.*,categoria_curso.nome_categoria as categoria, COUNT(usuario.id_usuario) as funcionarios 
+      $query = "SELECT curso.*,categoria_curso.nome_categoria as categoria,aula.tempo_aula , COUNT(usuario.id_usuario) as funcionarios
       FROM curso
        inner join categoria_curso on categoria_curso.id_categoria = curso.categoria
-        LEFT JOIN usuario on usuario.id_Empresa = curso.id_empresa AND curso.nivel <= usuario.nivel 
-        where curso.id_empresa = 1 
+        right JOIN usuario on usuario.id_Empresa = curso.id_empresa AND curso.nivel <= usuario.nivel 
+        Right JOIN (SELECT curso.id_curso, SUM(aula.tempo_em_segundos)as tempo_aula from aula
+                    INNER JOIN curso on curso.id_curso =aula.id_aula
+                    GROUP BY curso.id_curso)as aula  ON aula.id_curso = curso.id_curso 
+        where curso.id_empresa =$_SESSION[id_empresa]
         GROUP BY curso.id_curso 
-      LIMIT 5;
+      LIMIT 5
   ";
 
 
@@ -149,7 +152,9 @@
 
        <?php
         $res = mysqli_query($con, $query);
-        while ($curso = $res->fetch_assoc()) { ?>
+        while ($curso = $res->fetch_assoc()) { 
+          $t = $curso["tempo_aula"];
+          ?>
 
          <div class="course-card">
            <div class="course-image">
@@ -160,8 +165,8 @@
            <div class="course-content">
              <h3 class="course-title"><?= $curso["nome"] ?></h3>
              <div class="course-meta">
-               <div class="meta-item">⏱️ 4h 30min</div>
-               <div class="meta-item">👥 <?=$curso["funcionarios"]?>  alunos</div>
+               <div class="meta-item">⏱️ <?= sprintf('%02dH %02dM', $t / 3600, floor($t / 60) % 60) ?></div>
+               <div class="meta-item">👥 <?= $curso["funcionarios"] ?> alunos</div>
              </div>
              <div class="progress-container">
                <div class="progress-bar" style="width: 85%;"></div>
@@ -190,51 +195,62 @@
    </div>
 
    <?php
-   $sql = "SELECT COUNT(pergunta.id_pergunta) as total_de_perguntas, COUNT(progresso.id_pergunta) as respondido, usuario.nome_usuario as nome,  curso.id_curso FROM `pergunta`
-LEFT JOIN quiz on quiz.id_quiz = pergunta.id_quiz 
-LEFT JOIN aula on aula.id_aula = quiz.id_aula
-LEFT JOIN curso on curso.id_curso = aula.id_curso
-LEFT  JOIN  usuario On curso.id_empresa = usuario.id_Empresa
-left JOIN progresso on progresso.id_usuario = usuario.id_usuario
-GROUP BY usuario.id_usuario"
-   ?>
-  
+    $sql = "SELECT usuario.nome_usuario as nome,
+    SUM(aula.tempo_em_segundos) as tempo_total,
+    COALESCE(SUM(progresso.tempo_assistido),0) as tempo_assistido 
+     from usuario 
+INNER JOIN curso on curso.id_empresa =usuario.id_Empresa AND usuario.nivel>=curso.nivel
+INNER JOIN aula on curso.id_curso = aula.id_aula
+LEFT JOIN progresso on progresso.id_usuario = usuario.id_usuario
+WHERE usuario.id_Empresa = $_SESSION[id_empresa]
+GROUP BY usuario.id_usuario;";
+    function formatarTempo($seconds)
+    {
+      $t = round($seconds);
+      return sprintf('%02d:%02d:%02d', $t / 3600, floor($t / 60) % 60, $t % 60);
+    }
+
+    ?>
+
    <div class="employees-table-container">
      <table class="employees-table">
        <thead>
          <tr>
            <th>Nome</th>
-           <th>Curso disponiveis</th>
-           <th>Cursos Concluídos</th>
+           <th>horas disponiveis</th>
+           <th>horas Assistidas</th>
            <th>Progresso</th>
          </tr>
        </thead>
        <tbody>
-         <?php 
-          $res = mysqli_query($con,$sql);
-          while($fun = $res->fetch_assoc()){ ?>
-            <tr>
-          <td><?= $fun["nome"]?></td>
-          <td><?= $fun["total_de_perguntas"]?></td>
-          <td><?= $fun["respondido"]?></td>
-           <td>
-             <div class="progress-cell">
-               <div class="table-progress">
-                 <div class="table-progress-bar" style="width: 92%;"></div>
-               </div>
-               <span>92%</span>
-             </div>
-           </td>
+         <?php
+          $res = mysqli_query($con, $sql);
+          while ($fun = $res->fetch_assoc()) {
+            $perc = round($fun["tempo_assistido"] * 100 / $fun["tempo_total"]);
+
+          ?>
            <tr>
-    <?php }?>
-    
-           
-           
-         </tr>
-         
-         
-      
-    
+             <td><?= $fun["nome"] ?></td>
+             <td><?= formatarTempo($fun["tempo_total"]) ?></td>
+             <td><?= formatarTempo($fun["tempo_assistido"]) ?></td>
+             <td>
+               <div class="progress-cell">
+                 <div class="table-progress">
+                   <div class="table-progress-bar" style="width: <?= $perc ?>%;"></div>
+                 </div>
+                 <span><?= $perc ?>%</span>
+               </div>
+             </td>
+           <tr>
+           <?php } ?>
+
+
+
+           </tr>
+
+
+
+
        </tbody>
      </table>
    </div>

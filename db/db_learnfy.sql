@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 09/06/2025 às 20:20
+-- Tempo de geração: 12/06/2025 às 03:58
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -20,11 +20,15 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `db_learnfy`
 --
+CREATE DATABASE IF NOT EXISTS `db_learnfy` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE `db_learnfy`;
 
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `aula`
+--
+-- Criação: 06/06/2025 às 18:15
 --
 
 CREATE TABLE `aula` (
@@ -33,13 +37,21 @@ CREATE TABLE `aula` (
   `descricao` varchar(255) NOT NULL,
   `video` varchar(255) NOT NULL,
   `id_curso` int(11) NOT NULL,
-  `tempo_em_segundos` double NOT NULL
+  `tempo_em_segundos` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- RELACIONAMENTOS PARA TABELAS `aula`:
+--   `id_curso`
+--       `curso` -> `id_curso`
+--
 
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `categoria_curso`
+--
+-- Criação: 08/05/2025 às 17:05
 --
 
 CREATE TABLE `categoria_curso` (
@@ -49,10 +61,19 @@ CREATE TABLE `categoria_curso` (
   `nivelAcesso` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- RELACIONAMENTOS PARA TABELAS `categoria_curso`:
+--   `id_empresa`
+--       `empresa` -> `id_empresa`
+--
+
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `curso`
+--
+-- Criação: 08/05/2025 às 17:05
+-- Última atualização: 11/06/2025 às 23:47
 --
 
 CREATE TABLE `curso` (
@@ -65,10 +86,20 @@ CREATE TABLE `curso` (
   `nivel` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- RELACIONAMENTOS PARA TABELAS `curso`:
+--   `categoria`
+--       `categoria_curso` -> `id_categoria`
+--   `id_empresa`
+--       `empresa` -> `id_empresa`
+--
+
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `empresa`
+--
+-- Criação: 08/05/2025 às 17:05
 --
 
 CREATE TABLE `empresa` (
@@ -84,16 +115,27 @@ CREATE TABLE `empresa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- RELACIONAMENTOS PARA TABELAS `empresa`:
+--
+
+--
+-- Tabela truncada antes do insert `empresa`
+--
+
+TRUNCATE TABLE `empresa`;
+--
 -- Despejando dados para a tabela `empresa`
 --
 
-INSERT INTO `empresa` (`id_empresa`, `nome_empresa`, `cnpj`, `cep`, `email`, `senha`, `logo`, `ddd`, `telefone`) VALUES
+INSERT INTO `empresa` VALUES
 (1, 'Conexus', '50.405.354/0001-94', '03590-070', 'conexus@mail.com', '$2y$10$GmoWw6KvOW..CSUeBVENGOaOIBzND8.aNZzIiMHpbR7rcSxgFdtla', 'https://github.com/Conexus-TCC/Site-Conexus/raw/main/media/imgs/contato/technologyBranco.png', NULL, '47 8978-9789');
 
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `materiais_aula`
+--
+-- Criação: 08/05/2025 às 17:05
 --
 
 CREATE TABLE `materiais_aula` (
@@ -103,10 +145,18 @@ CREATE TABLE `materiais_aula` (
   `id_aula` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- RELACIONAMENTOS PARA TABELAS `materiais_aula`:
+--   `id_aula`
+--       `aula` -> `id_aula`
+--
+
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `pergunta`
+--
+-- Criação: 26/05/2025 às 18:05
 --
 
 CREATE TABLE `pergunta` (
@@ -116,10 +166,18 @@ CREATE TABLE `pergunta` (
   `id_res_certa` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- RELACIONAMENTOS PARA TABELAS `pergunta`:
+--   `id_quiz`
+--       `quiz` -> `id_quiz`
+--
+
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `perguntas_respondidas`
+--
+-- Criação: 09/06/2025 às 14:32
 --
 
 CREATE TABLE `perguntas_respondidas` (
@@ -128,10 +186,21 @@ CREATE TABLE `perguntas_respondidas` (
   `acertado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- RELACIONAMENTOS PARA TABELAS `perguntas_respondidas`:
+--   `id_pergunta`
+--       `resposta` -> `id_resposta`
+--   `id_usuario`
+--       `usuario` -> `id_usuario`
+--
+
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `progresso`
+--
+-- Criação: 09/06/2025 às 17:49
+-- Última atualização: 12/06/2025 às 01:51
 --
 
 CREATE TABLE `progresso` (
@@ -140,10 +209,20 @@ CREATE TABLE `progresso` (
   `tempo_assistido` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- RELACIONAMENTOS PARA TABELAS `progresso`:
+--   `id_aula`
+--       `aula` -> `id_aula`
+--   `id_usuario`
+--       `usuario` -> `id_usuario`
+--
+
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `quiz`
+--
+-- Criação: 21/05/2025 às 17:53
 --
 
 CREATE TABLE `quiz` (
@@ -151,10 +230,18 @@ CREATE TABLE `quiz` (
   `id_aula` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- RELACIONAMENTOS PARA TABELAS `quiz`:
+--   `id_aula`
+--       `aula` -> `id_aula`
+--
+
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `resposta`
+--
+-- Criação: 26/05/2025 às 16:28
 --
 
 CREATE TABLE `resposta` (
@@ -163,10 +250,18 @@ CREATE TABLE `resposta` (
   `id_pergunta` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- RELACIONAMENTOS PARA TABELAS `resposta`:
+--   `id_pergunta`
+--       `pergunta` -> `id_pergunta`
+--
+
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `usuario`
+--
+-- Criação: 08/05/2025 às 17:05
 --
 
 CREATE TABLE `usuario` (
@@ -186,10 +281,21 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- RELACIONAMENTOS PARA TABELAS `usuario`:
+--   `id_Empresa`
+--       `empresa` -> `id_empresa`
+--
+
+--
+-- Tabela truncada antes do insert `usuario`
+--
+
+TRUNCATE TABLE `usuario`;
+--
 -- Despejando dados para a tabela `usuario`
 --
 
-INSERT INTO `usuario` (`id_usuario`, `nome_usuario`, `data_nascimento`, `sexo`, `ddd`, `telefone`, `email`, `senha`, `cpf`, `foto`, `status`, `id_Empresa`, `nivel`) VALUES
+INSERT INTO `usuario` VALUES
 (1, 'Ana', '1990-01-01', 'F', '11', '999999999', 'ana@email.com', '$2y$10$ZYdswmu0.gKKChhe17Q2CerjZBw9crSW4qIBZ7qpeio1P5Aw5leHy', '12345678901', '../fotosSite/pessoa.jpg', 1, 1, 1),
 (2, 'Bruno', '1985-05-15', 'M', '21', '988888888', 'bruno@email.com', '$2y$10$tf6hLcBrONevq6MZRuPLXuHHrpn6gh5LonbC.xPndDq1BC8/8jM6q', '23456789012', '../fotosSite/pessoa.jpg', 1, 1, 2),
 (3, 'Carlos', '1992-03-10', 'M', '31', '977777777', 'carlos@email.com', '$2y$10$PurondNM95.7us8xs6tQDeEYa89ouYU2UVFH9JmG97Vfvzy02W6ci', '34567890123', '../fotosSite/pessoa.jpg', 1, 1, 1),
