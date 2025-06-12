@@ -52,8 +52,8 @@ while (($a = $q->fetch_assoc()) != null) {
 
             <div id="contCurso">
                 <h1>Conteúdo do curso</h1>
-                <p><!--$Aulas--><?= $curso["contagem_de_aulas"] ?> Aulas - <!--$Minutos-->480 Minutos</p>
-
+                <p><!--$Aulas--><?= $curso["total_tempo"] ?> Aulas - <!--$Minutos-->
+                    <?= number_format($curso["total_tempo"] / 60, 2, ":") ?> Minutos</p>
                 <?php
                 foreach ($aulas as $aula) { ?>
                     <div class="aulas <?php
@@ -114,12 +114,17 @@ while (($a = $q->fetch_assoc()) != null) {
                     <p>Quiz</p>
                 </div>
             </div>
-
+            <?php
+            $prg = mysqli_query($con, "select tempo_assistido from progresso Where 
+                id_aula = $aula[id] AND id_usuario = $_SESSION[id_usuario]")->fetch_assoc()["tempo_assistido"] ?? 0;
+            ?>
             <div id="boxVideo" class="boxVideo">
                 <video width="900" height="400" src="<?= $aula["video"] ?>" controls>
                     Your browser does not support the video tag.
                 </video>
-
+                <script>
+                    document.querySelector("video").currentTime = <?= $prg ?>
+                </script>
             </div>
 
             <div id="boxQuiz">
@@ -136,19 +141,21 @@ while (($a = $q->fetch_assoc()) != null) {
                     <form>
                         <h1> <?= $i . ") " . $pergunta["pergunta"] ?></h1>
 
-                        <?php
-                        foreach ($respostas as $resposta) { ?>
-                            <label for="">
-                                <input type="radio" name="reposta" id="" value="<?= $resposta ?>">
-                                <p><?= $resposta ?></p>
-                            </label>
-                    
-            <?php }
-                        $i++;
-            echo "</form>";
-            // echo "<hr>"
-                    } ?>
+                    <?php
+                    foreach ($respostas  as $key => $resposta) { ?>
+                        <label id="lb<?= $idsResposta[$key] ?>" class="<?= $repondido ? ($idsResposta[$key] == $pergunta["id_res_certa"]  ? "certo" : "errado ") : "" ?>" for="">
+                            <input type="radio" name="resposta" id="" value="<?= $idsResposta[$key] ?>" <?= $repondido ? ($idsResposta[$key] == $pergunta["id_res_certa"] ? "checked disabled" : "disabled") : " " ?>>
+                            <p><?= $resposta ?></p>
+                        </label>
 
+                <?php }
+
+                    $i++;
+                    echo "<p class='invisivel'></p>";
+                    echo "</form>";
+                    // echo "<hr>"
+                } ?>
+                <button class="enviar">Enviar</button>
             </div>
 
             <div id="boxMateriais" class="boxMateriais">
@@ -157,7 +164,7 @@ while (($a = $q->fetch_assoc()) != null) {
                 foreach ($materiais as $material) { ?>
                     <div>
                         <section>
-                            <img src="../icones/pdf.png" alt="">
+                            <i class="mdi <?= getFileIcon(strtolower(pathinfo($material['caminho'], PATHINFO_EXTENSION))) ?>"></i>
                             <div>
                                 <h1><?= $material["filename"] ?> <!--$nomeArquivo--></h1>
                                 <!---TODO: ADICIONAR DETECTAR O FILE TYPE 
@@ -185,5 +192,39 @@ while (($a = $q->fetch_assoc()) != null) {
         </div>
 
     </div>
-
+    <script>
+        const data = {
+            idUsuario: <?= $_SESSION["id_usuario"] ?>,
+            idQuiz: <?= $aula["id"] ?>
+        }
+        const Forms = document.querySelectorAll("form")
+        /**
+         * @type HTMLButtonElement
+         */
+        const btnEnviar = document.querySelector(".enviar")
+        const statuss = [];
+        btnEnviar.addEventListener("click", e => {
+            // e.preventDefault()
+            Forms.forEach(async form => {
+                const bodyForm = new FormData(form)
+                const res = await fetch(form.action, {
+                    method: form.method,
+                    body: bodyForm
+                })
+                form.action = "";
+                const data = await res.json();
+                if (data.status) {
+                    statuss.push(true);
+                    document.querySelector("#lb" + data.resp).classList.add("certo")
+                } else {
+                    statuss.push(false);
+                    document.querySelector("#lb" + data.resp).classList.add("errado")
+                    const p = form.querySelector("form>p")
+                    p.classList.remove("invisivel")
+                    p.innerText = data.motivo
+                }
+            })
+        })
+    </script>
+    <script src="../js/assitirAula.js"></script>
 </body>

@@ -121,12 +121,6 @@
                 </div>
             </div>
         </div>
+        <a class="btn-sair" href="../Controller/logout.php">Sair 🚪</a>
     </div>
-    <!-- <div style="display: flex;flex-direction:column;justify-content: center;align-items: center;">
-        <h1>Login Usuario</h1>
-      
-    </div>
-   
-</body>
-
-</html>
+  
