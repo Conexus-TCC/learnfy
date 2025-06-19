@@ -51,10 +51,9 @@ $aulaGlobal = $aulas[0];
     <div id="principal">
 
         <div id="esq">
-
             <div id="contCurso">
                 <h1>Conteúdo do curso</h1>
-                <p><!--$Aulas--><?= $curso["total_tempo"] ?> Aulas - <!--$Minutos-->
+                <p><!--$Aulas--><?= $curso["contagem_de_aulas"] ?> Aulas - <!--$Minutos-->
                     <?= number_format($curso["total_tempo"] / 60, 2, ":") ?> Minutos</p>
                 <?php
                 foreach ($aulas as $aula) { ?>
@@ -76,7 +75,7 @@ $aulaGlobal = $aulas[0];
 
                 <?php } ?>
             </div>
-
+            <a class="btn-certificado" href="../Controller/gerarCertificado.php?curso=<?=$id_curso?>">Gerar Certificado</a>
         </div>
 
 
@@ -95,10 +94,10 @@ $aulaGlobal = $aulas[0];
                     <p><?= $aula["nome"] ?> <!--nomeAula--></p>
                 </div>
 
-                <div id="btn">
+                <!-- <div id="btn">
                     <button>Anterior</button>
                     <button>Próxima</button>
-                </div>
+                </div> -->
 
             </div>
 
@@ -113,16 +112,16 @@ $aulaGlobal = $aulas[0];
                     <p>Quiz</p>
                 </div>
             </div>
-                <?php 
-                $prg = mysqli_query($con, "select tempo_assistido from progresso Where 
-                id_aula = $aula[id] AND id_usuario = $_SESSION[id_usuario]")->fetch_assoc()["tempo_assistido"]??0;
-                ?>
+            <?php
+            $prg = mysqli_query($con, "select tempo_assistido from progresso Where 
+                id_aula = $aula[id] AND id_usuario = $_SESSION[id_usuario]")->fetch_assoc()["tempo_assistido"] ?? 0;
+            ?>
             <div id="boxVideo" class="boxVideo">
-                <video width="900"  height="400" src="<?= $aula["video"] ?>" controls>
+                <video width="900" height="400" src="<?= $aula["video"] ?>" controls>
                     Your browser does not support the video tag.
                 </video>
                 <script>
-                    document.querySelector("video").currentTime=<?=$prg?>
+                    document.querySelector("video").currentTime = <?= $prg ?>
                 </script>
             </div>
 
@@ -140,7 +139,7 @@ $aulaGlobal = $aulas[0];
                      GROUP BY pergunta.id_pergunta; ");
                 $i = 1;
                 while ($pergunta = $query->fetch_assoc()) {
-                    $nums = mysqli_query($con, "SELECT acertado from perguntas_respondidas where id_pergunta = $pergunta[id_pergunta]");
+                    $nums = mysqli_query($con, "SELECT acertado from perguntas_respondidas where id_pergunta = $pergunta[id_pergunta] AND id_usuario=$_SESSION[id_usuario]");
                     $repondido = $nums->num_rows > 0 ? true : false;
                     $idQuiz = $pergunta["id_quiz"];
                     $acetado = $nums->fetch_assoc();
@@ -157,8 +156,8 @@ $aulaGlobal = $aulas[0];
 
                     <?php
                     foreach ($respostas  as $key => $resposta) { ?>
-                        <label id="lb<?= $idsResposta[$key] ?>" class="<?= $repondido? ($idsResposta[$key] == $pergunta["id_res_certa"]  ? "certo" : "errado ") :"" ?>" for="">
-                            <input type="radio" name="resposta"  id="" value="<?= $idsResposta[$key] ?>" <?=$repondido ? ($idsResposta[$key] == $pergunta["id_res_certa"] ? "checked disabled" : "disabled") : " " ?>>
+                        <label id="lb<?= $idsResposta[$key] ?>" class="<?= $repondido ? ($idsResposta[$key] == $pergunta["id_res_certa"]  ? "certo" : "errado ") : "" ?>" for="">
+                            <input type="radio" name="resposta" id="" value="<?= $idsResposta[$key] ?>" <?= $repondido ? ($idsResposta[$key] == $pergunta["id_res_certa"] ? "checked disabled" : "disabled") : " " ?>>
                             <p><?= $resposta ?></p>
                         </label>
 
@@ -193,7 +192,7 @@ $aulaGlobal = $aulas[0];
                             <a download="<?= $material['filename'] ?>" href="<?= $material['caminho'] ?>">
                                 <img src="../icones/download-direto.png" alt="">
                             </a>
-                            <a download="<?= $materiail['filename'] ?>" href="<?= $material['caminho'] ?>">
+                            <a download="<?= $material['filename'] ?>" href="<?= $material['caminho'] ?>">
                                 <p>Baixar</p>
                             </a>
                         </div>
@@ -205,6 +204,18 @@ $aulaGlobal = $aulas[0];
 
         </div>
 
+        <script>
+            const style = document.createElement("style")
+            setTimeout(() => {
+                console.log(document.querySelector("#dir").offsetHeight)
+                style.innerHTML = `
+            :root{
+            --height_dir:${document.querySelector("#dir").offsetHeight}px    
+            }
+            ` /*css */
+            }, 1000)
+            document.head.appendChild(style)
+        </script>
     </div>
     <script>
         const data = {
@@ -240,6 +251,6 @@ $aulaGlobal = $aulas[0];
             })
         })
     </script>
-   
+
     <script src="../js/assitirAula.js"></script>
 </body>
