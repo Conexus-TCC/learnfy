@@ -36,7 +36,7 @@
       <div class="tooltip">Colaboradores</div>
     </li>
     <li class="sidebar-menu-item">
-      <a href="#" class="sidebar-menu-link">
+      <a onclick="trocarSite('relatorio.php',this)" class="sidebar-menu-link">
         <span class="sidebar-menu-icon">📈</span>
         <span class="sidebar-menu-text">Relatórios</span>
       </a>
@@ -56,15 +56,6 @@
         <span class="sidebar-menu-text">categoria Cursos</span>
       </a>
       <div class="tooltip">Empresa</div>
-    </li>
-
-
-    <li class="sidebar-menu-item">
-      <a href="#" class="sidebar-menu-link">
-        <span class="sidebar-menu-icon">⚙️</span>
-        <span class="sidebar-menu-text">Configurações</span>
-      </a>
-      <div class="tooltip">Configurações</div>
     </li>
   </ul>
 
