@@ -54,7 +54,8 @@ if(!str_contains($video_aula['type'], 'video/')){
     http_response_code("400");
     exit();
 }
-$caminhoVideo = "../fotosSite/". md5(time()) .$id_curso . ".mp4";
+
+$caminhoVideo = "../fotosSite/". md5(time()) . rand(1,1000) .$id_curso . ".mp4";
 @move_uploaded_file($video_aula['tmp_name'], $caminhoVideo);
 $tempoEmSegundos = $getId3->analyze($caminhoVideo)["playtime_seconds"];
 
@@ -84,7 +85,7 @@ $cont = count($input_materiais["name"]);
 for($i=0;$i<$cont;$i++){
   if($input_materiais["name"][$i]!=""){
     $ext = pathinfo($input_materiais["full_path"][$i], PATHINFO_EXTENSION);
-    $caminhoMaterial = "../fotosSite/". md5(time()) .$id_curso . ".".$ext;
+    $caminhoMaterial = "../fotosSite/". md5(time()) .rand(1, 1000) .$id_curso . ".".$ext;
     $filename = $input_materiais["name"][$i];
     $sql = "INSERT INTO `materiais_aula` (`filename`, `caminho`, `id_aula`) VALUES ('$filename', '$caminhoMaterial', '$idAula')";
     if(mysqli_query($con,$sql)){
