@@ -155,7 +155,7 @@ while (($a = $q->fetch_assoc()) != null) {
                 while ($pergunta = $query->fetch_assoc()) {
                     $pedaço = isset($_SESSION["id_usuario"])?" AND id_usuario=$_SESSION[id_usuario]":"";
                     $nums = mysqli_query($con, "SELECT acertado from perguntas_respondidas where id_pergunta = $pergunta[id_pergunta]  " . $pedaço);
-                    $repondido = $nums->num_rows > 0 ? true : false;
+                    $repondido = ($nums->num_rows > 0|| !isset($_SESSION["id_usuario"]) ) ? true : false;
                     $idQuiz = $pergunta["id_quiz"];
                     $acetado = $nums->fetch_assoc();
                     $respostas = explode(",", $pergunta["resp_concat"]);

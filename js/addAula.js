@@ -164,18 +164,14 @@ enviar.addEventListener("click", async (e) => {
       success: function (response) {
         console.log(response);
         if (i - 1 < forms.length && success) {
-          Swal.fire({
-            icon: "success",
-            title: "Aulas cadastradas com sucesso!",
-            text: "🎉🥳",
-          }).then(() => {
-          //  window.location.href = "./dashboard.php";
-          });
           return;
         }
       },
     });
     if (success == false) break;
+  }
+  if(!success){
+    console.log("fsafsa")
   }
 });
 window.addEventListener("criar-aula", function (e) {

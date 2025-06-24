@@ -3,6 +3,8 @@ require_once "../Model/connect.php";
 require_once "../helpers/getid3/getid3.php";
 $getId3 = new getID3;
 @session_start();
+unset($_SESSION["contexto"]);
+http_response_code("400");
 // header("Content-Type: application/json; charset=UTF-8");
 
 $id_curso = $_SESSION["id_curso"];
