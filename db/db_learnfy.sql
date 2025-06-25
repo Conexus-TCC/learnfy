@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 19/06/2025 às 03:20
+-- Tempo de geração: 25/06/2025 às 22:06
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -28,8 +28,10 @@ USE `db_learnfy`;
 --
 -- Estrutura para tabela `aula`
 --
+-- Criação: 25/06/2025 às 17:28
+-- Última atualização: 25/06/2025 às 19:25
+--
 
-DROP TABLE IF EXISTS `aula`;
 CREATE TABLE `aula` (
   `id_aula` int(11) NOT NULL,
   `nome` varchar(255) NOT NULL,
@@ -40,25 +42,36 @@ CREATE TABLE `aula` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- RELACIONAMENTOS PARA TABELAS `aula`:
+--   `id_curso`
+--       `curso` -> `id_curso`
+--
+
+--
+-- Tabela truncada antes do insert `aula`
+--
+
+TRUNCATE TABLE `aula`;
+--
 -- Despejando dados para a tabela `aula`
 --
 
 INSERT INTO `aula` (`id_aula`, `nome`, `descricao`, `video`, `id_curso`, `tempo_em_segundos`) VALUES
 (1, 'Conceitos de node', 'Descrevendo NodeJS', '../fotosSite/a079cbae3280539db097f3823d4d39581.mp4', 1, 824),
-(2, 'Api Rest', 'conceitos de API Rest', '../fotosSite/a079cbae3280539db097f3823d4d39581.mp4', 1, 582);
+(2, 'Api Rest', 'conceitos de API Rest', '../fotosSite/a079cbae3280539db097f3823d4d39581.mp4', 1, 582),
+(6, 'Introdução PHP', 'safsfa', '../fotosSite/a1b07ba22635d05220483eab3f26bba65443.mp4', 3, 343),
+(7, 'Conexao com banco de dados ', 'Descricao', '../fotosSite/a1b07ba22635d05220483eab3f26bba61923.mp4', 3, 299),
+(8, 'Introdução', 'Sla ', '../fotosSite/7ef65bc629850f6ff5c927ead3ada6517454.mp4', 4, 824);
 
 -- --------------------------------------------------------
-CREATE TABLE `certificado` (
-  `id_certificado` int(11) NOT NULL,
-  `id_usuario` int(11) NOT NULL,
-  `id_curso` int(11) NOT NULL,
-  `data_emissao` date NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 --
 -- Estrutura para tabela `categoria_curso`
 --
+-- Criação: 25/06/2025 às 17:28
+-- Última atualização: 25/06/2025 às 19:20
+--
 
-DROP TABLE IF EXISTS `categoria_curso`;
 CREATE TABLE `categoria_curso` (
   `id_categoria` int(11) NOT NULL,
   `nome_categoria` varchar(30) NOT NULL,
@@ -67,19 +80,69 @@ CREATE TABLE `categoria_curso` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- RELACIONAMENTOS PARA TABELAS `categoria_curso`:
+--   `id_empresa`
+--       `empresa` -> `id_empresa`
+--
+
+--
+-- Tabela truncada antes do insert `categoria_curso`
+--
+
+TRUNCATE TABLE `categoria_curso`;
+--
 -- Despejando dados para a tabela `categoria_curso`
 --
 
 INSERT INTO `categoria_curso` (`id_categoria`, `nome_categoria`, `id_empresa`, `nivelAcesso`) VALUES
-(1, 'Programação', 1, 0);
+(1, 'Programação', 1, 0),
+(2, 'Office', 1, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `certificado`
+--
+-- Criação: 25/06/2025 às 17:29
+-- Última atualização: 25/06/2025 às 19:52
+--
+
+CREATE TABLE `certificado` (
+  `id_certificado` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `id_curso` int(11) NOT NULL,
+  `data_emissao` date NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- RELACIONAMENTOS PARA TABELAS `certificado`:
+--   `id_curso`
+--       `curso` -> `id_curso`
+--   `id_usuario`
+--       `usuario` -> `id_usuario`
+--
+
+--
+-- Tabela truncada antes do insert `certificado`
+--
+
+TRUNCATE TABLE `certificado`;
+--
+-- Despejando dados para a tabela `certificado`
+--
+
+INSERT INTO `certificado` (`id_certificado`, `id_usuario`, `id_curso`, `data_emissao`) VALUES
+(1, 1, 1, '2025-06-25');
 
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `curso`
 --
+-- Criação: 25/06/2025 às 17:28
+-- Última atualização: 25/06/2025 às 19:22
+--
 
-DROP TABLE IF EXISTS `curso`;
 CREATE TABLE `curso` (
   `id_curso` int(11) NOT NULL,
   `nome` varchar(255) NOT NULL,
@@ -91,19 +154,36 @@ CREATE TABLE `curso` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- RELACIONAMENTOS PARA TABELAS `curso`:
+--   `categoria`
+--       `categoria_curso` -> `id_categoria`
+--   `id_empresa`
+--       `empresa` -> `id_empresa`
+--
+
+--
+-- Tabela truncada antes do insert `curso`
+--
+
+TRUNCATE TABLE `curso`;
+--
 -- Despejando dados para a tabela `curso`
 --
 
 INSERT INTO `curso` (`id_curso`, `nome`, `descricao`, `imagem`, `categoria`, `id_empresa`, `nivel`) VALUES
-(1, 'Node JS', 'Curso de node', '../fotosSite/0dbf392946de563420e9daa72e416e5b1.jpg', 1, 1, 0);
+(1, 'Node JS', 'Curso de node', '../fotosSite/0dbf392946de563420e9daa72e416e5b1.jpg', 1, 1, 0),
+(3, 'PHP', 'Aula 1', '../fotosSite/29355becca8aec6f245dc7452b23d33e1.jpg', 1, 1, 0),
+(4, 'Word', 'Curso Sobre Microsoft Word', '../fotosSite/22b3ba562d306af35329dfa9d41f545f1.jpg', 2, 1, 0);
 
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `empresa`
 --
+-- Criação: 25/06/2025 às 17:28
+-- Última atualização: 25/06/2025 às 19:19
+--
 
-DROP TABLE IF EXISTS `empresa`;
 CREATE TABLE `empresa` (
   `id_empresa` int(11) NOT NULL,
   `nome_empresa` varchar(50) NOT NULL,
@@ -117,19 +197,30 @@ CREATE TABLE `empresa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- RELACIONAMENTOS PARA TABELAS `empresa`:
+--
+
+--
+-- Tabela truncada antes do insert `empresa`
+--
+
+TRUNCATE TABLE `empresa`;
+--
 -- Despejando dados para a tabela `empresa`
 --
 
 INSERT INTO `empresa` (`id_empresa`, `nome_empresa`, `cnpj`, `cep`, `email`, `senha`, `logo`, `ddd`, `telefone`) VALUES
-(1, 'Conexus', '50.405.354/0001-94', '03590-070', 'conexus@mail.com', '$2y$10$GmoWw6KvOW..CSUeBVENGOaOIBzND8.aNZzIiMHpbR7rcSxgFdtla', 'https://github.com/Conexus-TCC/Site-Conexus/raw/main/media/imgs/contato/technologyBranco.png', NULL, '47 8978-9789');
+(1, 'Conexus', '50.405.354/0001-94', '03590-070', 'conexus@mail.com', '$2y$10$GmoWw6KvOW..CSUeBVENGOaOIBzND8.aNZzIiMHpbR7rcSxgFdtla', '../fotosSite/f261f5f7822fcd5fcaf43196e3d52e31.jpg', NULL, '47 8978-9789');
 
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `materiais_aula`
 --
+-- Criação: 25/06/2025 às 17:28
+-- Última atualização: 25/06/2025 às 19:25
+--
 
-DROP TABLE IF EXISTS `materiais_aula`;
 CREATE TABLE `materiais_aula` (
   `id_material` int(11) NOT NULL,
   `filename` varchar(255) NOT NULL,
@@ -138,6 +229,17 @@ CREATE TABLE `materiais_aula` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- RELACIONAMENTOS PARA TABELAS `materiais_aula`:
+--   `id_aula`
+--       `aula` -> `id_aula`
+--
+
+--
+-- Tabela truncada antes do insert `materiais_aula`
+--
+
+TRUNCATE TABLE `materiais_aula`;
+--
 -- Despejando dados para a tabela `materiais_aula`
 --
 
@@ -145,15 +247,20 @@ INSERT INTO `materiais_aula` (`id_material`, `filename`, `caminho`, `id_aula`) V
 (1, 'material .pdf', '../fotosSite/a079cbae3280539db097f3823d4d39581.pdf', 1),
 (2, 'material.docx', '../fotosSite/a079cbae3280539db097f3823d4d39581.docx', 1),
 (3, 'material .pdf', '../fotosSite/a079cbae3280539db097f3823d4d39581.pdf', 2),
-(4, 'material.docx', '../fotosSite/a079cbae3280539db097f3823d4d39581.docx', 2);
+(4, 'material.docx', '../fotosSite/a079cbae3280539db097f3823d4d39581.docx', 2),
+(8, 'site.php', '../fotosSite/a1b07ba22635d05220483eab3f26bba65423.php', 6),
+(9, 'connect.php', '../fotosSite/a1b07ba22635d05220483eab3f26bba69823.php', 7),
+(10, 'tccCONEXUS-1.docx', '../fotosSite/7ef65bc629850f6ff5c927ead3ada6513194.docx', 8);
 
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `pergunta`
 --
+-- Criação: 25/06/2025 às 17:28
+-- Última atualização: 25/06/2025 às 19:25
+--
 
-DROP TABLE IF EXISTS `pergunta`;
 CREATE TABLE `pergunta` (
   `id_pergunta` int(11) NOT NULL,
   `pergunta` varchar(190) NOT NULL,
@@ -162,72 +269,161 @@ CREATE TABLE `pergunta` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- RELACIONAMENTOS PARA TABELAS `pergunta`:
+--   `id_quiz`
+--       `quiz` -> `id_quiz`
+--
+
+--
+-- Tabela truncada antes do insert `pergunta`
+--
+
+TRUNCATE TABLE `pergunta`;
+--
 -- Despejando dados para a tabela `pergunta`
 --
 
 INSERT INTO `pergunta` (`id_pergunta`, `pergunta`, `id_quiz`, `id_res_certa`) VALUES
 (1, 'O que é node JS', 1, 1),
-(2, 'Qual o verbo HTTP se utiliza para enviar os dados pra API', 2, 6);
+(2, 'Qual o verbo HTTP se utiliza para enviar os dados pra API', 2, 6),
+(6, 'O que é PHP', 6, 23),
+(7, 'Qual A boa pratica de se conectar o banco de dados', 7, 27),
+(8, 'Qual A principal funcionalidade do word', 8, 29);
 
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `perguntas_respondidas`
 --
+-- Criação: 25/06/2025 às 17:28
+-- Última atualização: 25/06/2025 às 19:51
+--
 
-DROP TABLE IF EXISTS `perguntas_respondidas`;
 CREATE TABLE `perguntas_respondidas` (
   `id_usuario` int(11) NOT NULL,
   `id_pergunta` int(11) NOT NULL,
   `acertado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- RELACIONAMENTOS PARA TABELAS `perguntas_respondidas`:
+--   `id_pergunta`
+--       `resposta` -> `id_resposta`
+--   `id_usuario`
+--       `usuario` -> `id_usuario`
+--
+
+--
+-- Tabela truncada antes do insert `perguntas_respondidas`
+--
+
+TRUNCATE TABLE `perguntas_respondidas`;
+--
+-- Despejando dados para a tabela `perguntas_respondidas`
+--
+
+INSERT INTO `perguntas_respondidas` (`id_usuario`, `id_pergunta`, `acertado`) VALUES
+(1, 1, 0),
+(1, 2, 1);
+
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `progresso`
 --
+-- Criação: 25/06/2025 às 17:28
+-- Última atualização: 25/06/2025 às 19:52
+--
 
-DROP TABLE IF EXISTS `progresso`;
 CREATE TABLE `progresso` (
   `id_aula` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `tempo_assistido` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- RELACIONAMENTOS PARA TABELAS `progresso`:
+--   `id_aula`
+--       `aula` -> `id_aula`
+--   `id_usuario`
+--       `usuario` -> `id_usuario`
+--
+
+--
+-- Tabela truncada antes do insert `progresso`
+--
+
+TRUNCATE TABLE `progresso`;
+--
+-- Despejando dados para a tabela `progresso`
+--
+
+INSERT INTO `progresso` (`id_aula`, `id_usuario`, `tempo_assistido`) VALUES
+(1, 1, 553),
+(2, 1, 550);
+
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `quiz`
 --
+-- Criação: 25/06/2025 às 17:28
+-- Última atualização: 25/06/2025 às 19:25
+--
 
-DROP TABLE IF EXISTS `quiz`;
 CREATE TABLE `quiz` (
   `id_quiz` int(11) NOT NULL,
   `id_aula` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- RELACIONAMENTOS PARA TABELAS `quiz`:
+--   `id_aula`
+--       `aula` -> `id_aula`
+--
+
+--
+-- Tabela truncada antes do insert `quiz`
+--
+
+TRUNCATE TABLE `quiz`;
+--
 -- Despejando dados para a tabela `quiz`
 --
 
 INSERT INTO `quiz` (`id_quiz`, `id_aula`) VALUES
 (1, 1),
-(2, 2);
+(2, 2),
+(6, 6),
+(7, 7),
+(8, 8);
 
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `resposta`
 --
+-- Criação: 25/06/2025 às 17:28
+-- Última atualização: 25/06/2025 às 19:25
+--
 
-DROP TABLE IF EXISTS `resposta`;
 CREATE TABLE `resposta` (
   `id_resposta` int(11) NOT NULL,
   `resposta` varchar(190) NOT NULL,
   `id_pergunta` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- RELACIONAMENTOS PARA TABELAS `resposta`:
+--   `id_pergunta`
+--       `pergunta` -> `id_pergunta`
+--
+
+--
+-- Tabela truncada antes do insert `resposta`
+--
+
+TRUNCATE TABLE `resposta`;
 --
 -- Despejando dados para a tabela `resposta`
 --
@@ -240,15 +436,28 @@ INSERT INTO `resposta` (`id_resposta`, `resposta`, `id_pergunta`) VALUES
 (5, 'GET', 2),
 (6, 'POST', 2),
 (7, 'DELETE', 2),
-(8, 'PUT', 2);
+(8, 'PUT', 2),
+(21, 'Uma ide ', 6),
+(22, 'Uma biblioteca', 6),
+(23, 'uma linguagem de programação', 6),
+(24, 'Um Framework', 6),
+(25, 'Com função ', 7),
+(26, 'Toda pagina que precise ', 7),
+(27, 'Com uma variavel $con', 7),
+(28, 'Nenhuma das anteriores', 7),
+(29, 'Escrever textos Academicos', 8),
+(30, 'Fazer plailhas', 8),
+(31, 'fazer apresentações', 8),
+(32, 'Nenhuma das alternativas', 8);
 
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `usuario`
 --
+-- Criação: 25/06/2025 às 17:28
+--
 
-DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE `usuario` (
   `id_usuario` int(11) NOT NULL,
   `nome_usuario` varchar(60) NOT NULL,
@@ -265,6 +474,17 @@ CREATE TABLE `usuario` (
   `nivel` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- RELACIONAMENTOS PARA TABELAS `usuario`:
+--   `id_Empresa`
+--       `empresa` -> `id_empresa`
+--
+
+--
+-- Tabela truncada antes do insert `usuario`
+--
+
+TRUNCATE TABLE `usuario`;
 --
 -- Despejando dados para a tabela `usuario`
 --
@@ -379,25 +599,25 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `aula`
 --
 ALTER TABLE `aula`
-  MODIFY `id_aula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_aula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de tabela `categoria_curso`
 --
 ALTER TABLE `categoria_curso`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `certificado`
 --
 ALTER TABLE `certificado`
-  MODIFY `id_certificado` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_certificado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `curso`
 --
 ALTER TABLE `curso`
-  MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `empresa`
@@ -409,25 +629,25 @@ ALTER TABLE `empresa`
 -- AUTO_INCREMENT de tabela `materiais_aula`
 --
 ALTER TABLE `materiais_aula`
-  MODIFY `id_material` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_material` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de tabela `pergunta`
 --
 ALTER TABLE `pergunta`
-  MODIFY `id_pergunta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pergunta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de tabela `quiz`
 --
 ALTER TABLE `quiz`
-  MODIFY `id_quiz` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_quiz` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de tabela `resposta`
 --
 ALTER TABLE `resposta`
-  MODIFY `id_resposta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_resposta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`
