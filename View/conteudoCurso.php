@@ -23,12 +23,18 @@ if (!isset($curso)) {
     header("location:cursos.php");
     exit();
 }
-$aulas = array();
+$idAula = $_GET["aula"]??0;
+$aulas = [];
 $q = mysqli_query($con, "SELECT nome,id_aula as id,tempo_em_segundos,video from aula where id_curso= $id_curso");
+$cont =0;
 while (($a = $q->fetch_assoc()) != null) {
-    array_push($aulas, $a);
+    if($cont==0 || $a["id"]==$idAula){
+        $aulaGlobal=$a;
+    }
+    $cont++;
+    $aulas[]=$a;
 }
-$aulaGlobal = $aulas[0];
+
 ?>
 
 
@@ -51,15 +57,14 @@ $aulaGlobal = $aulas[0];
     <div id="principal">
 
         <div id="esq">
-
             <div id="contCurso">
                 <h1>Conteúdo do curso</h1>
-                <p><!--$Aulas--><?= $curso["total_tempo"] ?> Aulas - <!--$Minutos-->
+                <p><!--$Aulas--><?= $curso["contagem_de_aulas"] ?> Aulas - <!--$Minutos-->
                     <?= number_format($curso["total_tempo"] / 60, 2, ":") ?> Minutos</p>
                 <?php
                 foreach ($aulas as $aula) { ?>
                     <div class="aulas <?php
-                                        if (isset($_GET["aula"]) && $aula["id"] == $_GET["aula"]) {
+                                        if ((isset($_GET["aula"]) && $aula["id"] == $_GET["aula"])||$aulaGlobal["id"]==$aula["id"]) {
                                             $aulaGlobal = $aula;
                                             echo "selecionado";
                                         }
@@ -76,7 +81,11 @@ $aulaGlobal = $aulas[0];
 
                 <?php } ?>
             </div>
-
+           <?php
+           if(isset($_SESSION["id_usuario"])){
+            echo " <a class='btn-certificado' href='../Controller/gerarCertificado.php?curso=$id_curso'>Gerar Certificado</a>";
+           }
+           ?>
         </div>
 
 
@@ -95,10 +104,10 @@ $aulaGlobal = $aulas[0];
                     <p><?= $aula["nome"] ?> <!--nomeAula--></p>
                 </div>
 
-                <div id="btn">
+                <!-- <div id="btn">
                     <button>Anterior</button>
                     <button>Próxima</button>
-                </div>
+                </div> -->
 
             </div>
 
@@ -114,8 +123,12 @@ $aulaGlobal = $aulas[0];
                 </div>
             </div>
             <?php
-            $prg = mysqli_query($con, "select tempo_assistido from progresso Where 
+            if(isset($_SESSION["id_usuario"])){
+                $prg = mysqli_query($con, "select tempo_assistido from progresso Where 
                 id_aula = $aula[id] AND id_usuario = $_SESSION[id_usuario]")->fetch_assoc()["tempo_assistido"] ?? 0;
+            }else{
+                $prg=0;
+            }
             ?>
             <div id="boxVideo" class="boxVideo">
                 <video width="900" height="400" src="<?= $aula["video"] ?>" controls>
@@ -140,7 +153,8 @@ $aulaGlobal = $aulas[0];
                      GROUP BY pergunta.id_pergunta; ");
                 $i = 1;
                 while ($pergunta = $query->fetch_assoc()) {
-                    $nums = mysqli_query($con, "SELECT acertado from perguntas_respondidas where id_pergunta = $pergunta[id_pergunta]");
+                    $pedaço = isset($_SESSION["id_usuario"])?" AND id_usuario=$_SESSION[id_usuario]":"";
+                    $nums = mysqli_query($con, "SELECT acertado from perguntas_respondidas where id_pergunta = $pergunta[id_pergunta]  " . $pedaço);
                     $repondido = $nums->num_rows > 0 ? true : false;
                     $idQuiz = $pergunta["id_quiz"];
                     $acetado = $nums->fetch_assoc();
@@ -193,7 +207,7 @@ $aulaGlobal = $aulas[0];
                             <a download="<?= $material['filename'] ?>" href="<?= $material['caminho'] ?>">
                                 <img src="../icones/download-direto.png" alt="">
                             </a>
-                            <a download="<?= $materiail['filename'] ?>" href="<?= $material['caminho'] ?>">
+                            <a download="<?= $material['filename'] ?>" href="<?= $material['caminho'] ?>">
                                 <p>Baixar</p>
                             </a>
                         </div>
@@ -205,6 +219,18 @@ $aulaGlobal = $aulas[0];
 
         </div>
 
+        <script>
+            const style = document.createElement("style")
+            setTimeout(() => {
+                console.log(document.querySelector("#dir").offsetHeight)
+                style.innerHTML = `
+            :root{
+            --height_dir:${document.querySelector("#dir").offsetHeight}px    
+            }
+            ` /*css */
+            }, 1000)
+            document.head.appendChild(style)
+        </script>
     </div>
     <script>
         const data = {
@@ -245,5 +271,6 @@ $aulaGlobal = $aulas[0];
             })
         })
     </script>
+
     <script src="../js/assitirAula.js"></script>
 </body>

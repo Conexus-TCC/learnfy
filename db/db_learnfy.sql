@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 12/06/2025 às 20:02
+-- Tempo de geração: 19/06/2025 às 03:20
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -295,6 +295,14 @@ ALTER TABLE `categoria_curso`
   ADD KEY `fk_categoriaCurso` (`id_empresa`);
 
 --
+-- Índices de tabela `certificado`
+--
+ALTER TABLE `certificado`
+  ADD PRIMARY KEY (`id_certificado`),
+  ADD KEY `fk_certificado_usuario` (`id_usuario`),
+  ADD KEY `fk_certificado_curso` (`id_curso`);
+
+--
 -- Índices de tabela `curso`
 --
 ALTER TABLE `curso`
@@ -375,6 +383,12 @@ ALTER TABLE `categoria_curso`
   MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT de tabela `certificado`
+--
+ALTER TABLE `certificado`
+  MODIFY `id_certificado` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de tabela `curso`
 --
 ALTER TABLE `curso`
@@ -431,6 +445,13 @@ ALTER TABLE `aula`
 --
 ALTER TABLE `categoria_curso`
   ADD CONSTRAINT `fk_categoriaCurso` FOREIGN KEY (`id_empresa`) REFERENCES `empresa` (`id_empresa`);
+
+--
+-- Restrições para tabelas `certificado`
+--
+ALTER TABLE `certificado`
+  ADD CONSTRAINT `fk_certificado_curso` FOREIGN KEY (`id_curso`) REFERENCES `curso` (`id_curso`),
+  ADD CONSTRAINT `fk_certificado_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`);
 
 --
 -- Restrições para tabelas `curso`
