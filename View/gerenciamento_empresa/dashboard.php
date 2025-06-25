@@ -139,7 +139,7 @@
        inner join categoria_curso on categoria_curso.id_categoria = curso.categoria
         right JOIN usuario on usuario.id_Empresa = curso.id_empresa AND curso.nivel <= usuario.nivel 
         Right JOIN (SELECT curso.id_curso, SUM(aula.tempo_em_segundos)as tempo_aula from aula
-                    INNER JOIN curso on curso.id_curso =aula.id_aula
+                    INNER JOIN curso on curso.id_curso =aula.id_curso
                     GROUP BY curso.id_curso)as aula  ON aula.id_curso = curso.id_curso 
         where curso.id_empresa =$_SESSION[id_empresa]
         GROUP BY curso.id_curso 
@@ -196,11 +196,11 @@
 
    <?php
     $sql = "SELECT usuario.nome_usuario as nome,
-    SUM(aula.tempo_em_segundos) as tempo_total,
-    COALESCE(SUM(progresso.tempo_assistido),0) as tempo_assistido 
+    SUM( DISTINCT aula.tempo_em_segundos) as tempo_total,
+    COALESCE(SUM(progresso.tempo_assistido),0) as tempo_assistido
      from usuario 
-INNER JOIN curso on curso.id_empresa =usuario.id_Empresa AND usuario.nivel>=curso.nivel
-INNER JOIN aula on curso.id_curso = aula.id_aula
+RIGHT JOIN curso on curso.id_empresa =usuario.id_Empresa AND usuario.nivel>=curso.nivel
+LEFT JOIN aula on curso.id_curso = aula.id_curso
 LEFT JOIN progresso on progresso.id_usuario = usuario.id_usuario
 WHERE usuario.id_Empresa = $_SESSION[id_empresa]
 GROUP BY usuario.id_usuario;";
