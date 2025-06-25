@@ -19,7 +19,9 @@ include '../parts/head.php'
   </svg>
   <span>adicionar aula</span> </button>
 <div class="aulas">
-  
+  <script>
+    const idCurso = <?= $_SESSION["id_curso"]?>
+  </script>
 </div>
 <button id="enviar" type="submit">Próximo</button>
 <script type="module" src="../../js/addAula.js"> </script>

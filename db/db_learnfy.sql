@@ -48,7 +48,12 @@ INSERT INTO `aula` (`id_aula`, `nome`, `descricao`, `video`, `id_curso`, `tempo_
 (2, 'Api Rest', 'conceitos de API Rest', '../fotosSite/a079cbae3280539db097f3823d4d39581.mp4', 1, 582);
 
 -- --------------------------------------------------------
-
+CREATE TABLE `certificado` (
+  `id_certificado` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `id_curso` int(11) NOT NULL,
+  `data_emissao` date NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 --
 -- Estrutura para tabela `categoria_curso`
 --

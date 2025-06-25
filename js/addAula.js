@@ -4,6 +4,7 @@ const btnCriarAula = document.querySelector(".btn-Add-Aula");
 const enviar = document.querySelector("#enviar");
 const aulas = document.querySelector(".aulas");
 btnCriarAula.addEventListener("click", function () {
+  console.log("../../controller/deletarAula.php?id="+idCurso);
   let i = document.querySelectorAll(".campos-Curso").length+1;
   const evento = new CustomEvent("criar-aula", { detail: { index: i } });
   console.log(evento.detail);
@@ -140,6 +141,7 @@ enviar.addEventListener("click", async (e) => {
       contentType: false,
       error: function (response) {
         success = false;
+        fetch("../../controller/deletarAula.php?id="+idCurso)
         console.log(response);
         const { responseJSON } = response;
         if (responseJSON) {
