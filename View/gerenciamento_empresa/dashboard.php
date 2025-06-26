@@ -197,7 +197,7 @@
    <?php
     $sql = "SELECT usuario.nome_usuario as nome,
     SUM( DISTINCT aula.tempo_em_segundos) as tempo_total,
-    COALESCE(SUM(progresso.tempo_assistido),0) as tempo_assistido
+    COALESCE(SUM(DISTINCT progresso.tempo_assistido),0) as tempo_assistido
      from usuario 
 RIGHT JOIN curso on curso.id_empresa =usuario.id_Empresa AND usuario.nivel>=curso.nivel
 LEFT JOIN aula on curso.id_curso = aula.id_curso

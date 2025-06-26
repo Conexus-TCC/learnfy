@@ -171,7 +171,7 @@ enviar.addEventListener("click", async (e) => {
             title: "Aulas cadastradas com sucesso!",
             text: "🎉🥳",
           }).then(() => {
-          //  window.location.href = "./dashboard.php";
+           window.location.href = "./dashboard.php";
           });
           return;
         }

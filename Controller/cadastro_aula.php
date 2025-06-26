@@ -101,6 +101,8 @@ for($i=0;$i<$cont;$i++){
 }
   echo json_encode(array("msg" => "success", "alertMsg" => "Aula cadastrada com sucesso!", "alertIcon" => "success"));
   http_response_code("200");
+  unset($_SESSION["contexto"]);
+  exit();
 }else{
   err($id_curso, $con);
  echo json_encode(array("msg" => "error", "alertMsg" => "Erro ao cadastrar a aula!", "alertIcon" => "error"));

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 25/06/2025 às 22:06
+-- Tempo de geração: 26/06/2025 às 20:20
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -20,16 +20,11 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `db_learnfy`
 --
-CREATE DATABASE IF NOT EXISTS `db_learnfy` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE `db_learnfy`;
 
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `aula`
---
--- Criação: 25/06/2025 às 17:28
--- Última atualização: 25/06/2025 às 19:25
 --
 
 CREATE TABLE `aula` (
@@ -42,17 +37,6 @@ CREATE TABLE `aula` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- RELACIONAMENTOS PARA TABELAS `aula`:
---   `id_curso`
---       `curso` -> `id_curso`
---
-
---
--- Tabela truncada antes do insert `aula`
---
-
-TRUNCATE TABLE `aula`;
---
 -- Despejando dados para a tabela `aula`
 --
 
@@ -61,15 +45,13 @@ INSERT INTO `aula` (`id_aula`, `nome`, `descricao`, `video`, `id_curso`, `tempo_
 (2, 'Api Rest', 'conceitos de API Rest', '../fotosSite/a079cbae3280539db097f3823d4d39581.mp4', 1, 582),
 (6, 'Introdução PHP', 'safsfa', '../fotosSite/a1b07ba22635d05220483eab3f26bba65443.mp4', 3, 343),
 (7, 'Conexao com banco de dados ', 'Descricao', '../fotosSite/a1b07ba22635d05220483eab3f26bba61923.mp4', 3, 299),
-(8, 'Introdução', 'Sla ', '../fotosSite/7ef65bc629850f6ff5c927ead3ada6517454.mp4', 4, 824);
+(8, 'Introdução', 'Sla ', '../fotosSite/7ef65bc629850f6ff5c927ead3ada6517454.mp4', 4, 824),
+(9, 'Converse mais', 'sfafs', '../fotosSite/a1125a1a0c55d24f3fd5423a8ac4a3b89485.mp4', 5, 391);
 
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `categoria_curso`
---
--- Criação: 25/06/2025 às 17:28
--- Última atualização: 25/06/2025 às 19:20
 --
 
 CREATE TABLE `categoria_curso` (
@@ -80,31 +62,18 @@ CREATE TABLE `categoria_curso` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- RELACIONAMENTOS PARA TABELAS `categoria_curso`:
---   `id_empresa`
---       `empresa` -> `id_empresa`
---
-
---
--- Tabela truncada antes do insert `categoria_curso`
---
-
-TRUNCATE TABLE `categoria_curso`;
---
 -- Despejando dados para a tabela `categoria_curso`
 --
 
 INSERT INTO `categoria_curso` (`id_categoria`, `nome_categoria`, `id_empresa`, `nivelAcesso`) VALUES
 (1, 'Programação', 1, 0),
-(2, 'Office', 1, 0);
+(2, 'Office', 1, 0),
+(3, 'Social', 1, 0);
 
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `certificado`
---
--- Criação: 25/06/2025 às 17:29
--- Última atualização: 25/06/2025 às 19:52
 --
 
 CREATE TABLE `certificado` (
@@ -114,19 +83,6 @@ CREATE TABLE `certificado` (
   `data_emissao` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- RELACIONAMENTOS PARA TABELAS `certificado`:
---   `id_curso`
---       `curso` -> `id_curso`
---   `id_usuario`
---       `usuario` -> `id_usuario`
---
-
---
--- Tabela truncada antes do insert `certificado`
---
-
-TRUNCATE TABLE `certificado`;
 --
 -- Despejando dados para a tabela `certificado`
 --
@@ -138,9 +94,6 @@ INSERT INTO `certificado` (`id_certificado`, `id_usuario`, `id_curso`, `data_emi
 
 --
 -- Estrutura para tabela `curso`
---
--- Criação: 25/06/2025 às 17:28
--- Última atualização: 25/06/2025 às 19:22
 --
 
 CREATE TABLE `curso` (
@@ -154,34 +107,19 @@ CREATE TABLE `curso` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- RELACIONAMENTOS PARA TABELAS `curso`:
---   `categoria`
---       `categoria_curso` -> `id_categoria`
---   `id_empresa`
---       `empresa` -> `id_empresa`
---
-
---
--- Tabela truncada antes do insert `curso`
---
-
-TRUNCATE TABLE `curso`;
---
 -- Despejando dados para a tabela `curso`
 --
 
 INSERT INTO `curso` (`id_curso`, `nome`, `descricao`, `imagem`, `categoria`, `id_empresa`, `nivel`) VALUES
 (1, 'Node JS', 'Curso de node', '../fotosSite/0dbf392946de563420e9daa72e416e5b1.jpg', 1, 1, 0),
 (3, 'PHP', 'Aula 1', '../fotosSite/29355becca8aec6f245dc7452b23d33e1.jpg', 1, 1, 0),
-(4, 'Word', 'Curso Sobre Microsoft Word', '../fotosSite/22b3ba562d306af35329dfa9d41f545f1.jpg', 2, 1, 0);
+(4, 'Word', 'Curso Sobre Microsoft Word', '../fotosSite/22b3ba562d306af35329dfa9d41f545f1.jpg', 2, 1, 0),
+(5, 'Como falar em publico', 'Como falar', '../fotosSite/5ea7953e37852d891402a303e57f3b381.jpg', 3, 1, 0);
 
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `empresa`
---
--- Criação: 25/06/2025 às 17:28
--- Última atualização: 25/06/2025 às 19:19
 --
 
 CREATE TABLE `empresa` (
@@ -197,15 +135,6 @@ CREATE TABLE `empresa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- RELACIONAMENTOS PARA TABELAS `empresa`:
---
-
---
--- Tabela truncada antes do insert `empresa`
---
-
-TRUNCATE TABLE `empresa`;
---
 -- Despejando dados para a tabela `empresa`
 --
 
@@ -217,9 +146,6 @@ INSERT INTO `empresa` (`id_empresa`, `nome_empresa`, `cnpj`, `cep`, `email`, `se
 --
 -- Estrutura para tabela `materiais_aula`
 --
--- Criação: 25/06/2025 às 17:28
--- Última atualização: 25/06/2025 às 19:25
---
 
 CREATE TABLE `materiais_aula` (
   `id_material` int(11) NOT NULL,
@@ -228,17 +154,6 @@ CREATE TABLE `materiais_aula` (
   `id_aula` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- RELACIONAMENTOS PARA TABELAS `materiais_aula`:
---   `id_aula`
---       `aula` -> `id_aula`
---
-
---
--- Tabela truncada antes do insert `materiais_aula`
---
-
-TRUNCATE TABLE `materiais_aula`;
 --
 -- Despejando dados para a tabela `materiais_aula`
 --
@@ -250,15 +165,14 @@ INSERT INTO `materiais_aula` (`id_material`, `filename`, `caminho`, `id_aula`) V
 (4, 'material.docx', '../fotosSite/a079cbae3280539db097f3823d4d39581.docx', 2),
 (8, 'site.php', '../fotosSite/a1b07ba22635d05220483eab3f26bba65423.php', 6),
 (9, 'connect.php', '../fotosSite/a1b07ba22635d05220483eab3f26bba69823.php', 7),
-(10, 'tccCONEXUS-1.docx', '../fotosSite/7ef65bc629850f6ff5c927ead3ada6513194.docx', 8);
+(10, 'tccCONEXUS-1.docx', '../fotosSite/7ef65bc629850f6ff5c927ead3ada6513194.docx', 8),
+(11, 'artists.json', '../fotosSite/a1125a1a0c55d24f3fd5423a8ac4a3b8345.json', 9),
+(12, 'artists.json', '../fotosSite/e4c79e6ee2d051a9513eb7502bb75ef26515.json', 10);
 
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `pergunta`
---
--- Criação: 25/06/2025 às 17:28
--- Última atualização: 25/06/2025 às 19:25
 --
 
 CREATE TABLE `pergunta` (
@@ -269,17 +183,6 @@ CREATE TABLE `pergunta` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- RELACIONAMENTOS PARA TABELAS `pergunta`:
---   `id_quiz`
---       `quiz` -> `id_quiz`
---
-
---
--- Tabela truncada antes do insert `pergunta`
---
-
-TRUNCATE TABLE `pergunta`;
---
 -- Despejando dados para a tabela `pergunta`
 --
 
@@ -288,15 +191,13 @@ INSERT INTO `pergunta` (`id_pergunta`, `pergunta`, `id_quiz`, `id_res_certa`) VA
 (2, 'Qual o verbo HTTP se utiliza para enviar os dados pra API', 2, 6),
 (6, 'O que é PHP', 6, 23),
 (7, 'Qual A boa pratica de se conectar o banco de dados', 7, 27),
-(8, 'Qual A principal funcionalidade do word', 8, 29);
+(8, 'Qual A principal funcionalidade do word', 8, 29),
+(9, 'Qual a principal causa da ansiedade social', 9, 36);
 
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `perguntas_respondidas`
---
--- Criação: 25/06/2025 às 17:28
--- Última atualização: 25/06/2025 às 19:51
 --
 
 CREATE TABLE `perguntas_respondidas` (
@@ -305,19 +206,6 @@ CREATE TABLE `perguntas_respondidas` (
   `acertado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- RELACIONAMENTOS PARA TABELAS `perguntas_respondidas`:
---   `id_pergunta`
---       `resposta` -> `id_resposta`
---   `id_usuario`
---       `usuario` -> `id_usuario`
---
-
---
--- Tabela truncada antes do insert `perguntas_respondidas`
---
-
-TRUNCATE TABLE `perguntas_respondidas`;
 --
 -- Despejando dados para a tabela `perguntas_respondidas`
 --
@@ -331,9 +219,6 @@ INSERT INTO `perguntas_respondidas` (`id_usuario`, `id_pergunta`, `acertado`) VA
 --
 -- Estrutura para tabela `progresso`
 --
--- Criação: 25/06/2025 às 17:28
--- Última atualização: 25/06/2025 às 19:52
---
 
 CREATE TABLE `progresso` (
   `id_aula` int(11) NOT NULL,
@@ -341,19 +226,6 @@ CREATE TABLE `progresso` (
   `tempo_assistido` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- RELACIONAMENTOS PARA TABELAS `progresso`:
---   `id_aula`
---       `aula` -> `id_aula`
---   `id_usuario`
---       `usuario` -> `id_usuario`
---
-
---
--- Tabela truncada antes do insert `progresso`
---
-
-TRUNCATE TABLE `progresso`;
 --
 -- Despejando dados para a tabela `progresso`
 --
@@ -367,26 +239,12 @@ INSERT INTO `progresso` (`id_aula`, `id_usuario`, `tempo_assistido`) VALUES
 --
 -- Estrutura para tabela `quiz`
 --
--- Criação: 25/06/2025 às 17:28
--- Última atualização: 25/06/2025 às 19:25
---
 
 CREATE TABLE `quiz` (
   `id_quiz` int(11) NOT NULL,
   `id_aula` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- RELACIONAMENTOS PARA TABELAS `quiz`:
---   `id_aula`
---       `aula` -> `id_aula`
---
-
---
--- Tabela truncada antes do insert `quiz`
---
-
-TRUNCATE TABLE `quiz`;
 --
 -- Despejando dados para a tabela `quiz`
 --
@@ -396,15 +254,14 @@ INSERT INTO `quiz` (`id_quiz`, `id_aula`) VALUES
 (2, 2),
 (6, 6),
 (7, 7),
-(8, 8);
+(8, 8),
+(9, 9),
+(10, 10);
 
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `resposta`
---
--- Criação: 25/06/2025 às 17:28
--- Última atualização: 25/06/2025 às 19:25
 --
 
 CREATE TABLE `resposta` (
@@ -413,17 +270,6 @@ CREATE TABLE `resposta` (
   `id_pergunta` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- RELACIONAMENTOS PARA TABELAS `resposta`:
---   `id_pergunta`
---       `pergunta` -> `id_pergunta`
---
-
---
--- Tabela truncada antes do insert `resposta`
---
-
-TRUNCATE TABLE `resposta`;
 --
 -- Despejando dados para a tabela `resposta`
 --
@@ -448,14 +294,19 @@ INSERT INTO `resposta` (`id_resposta`, `resposta`, `id_pergunta`) VALUES
 (29, 'Escrever textos Academicos', 8),
 (30, 'Fazer plailhas', 8),
 (31, 'fazer apresentações', 8),
-(32, 'Nenhuma das alternativas', 8);
+(32, 'Nenhuma das alternativas', 8),
+(33, 'Falta de prática regular de exercícios físicos', 9),
+(34, 'Uso excessivo de redes sociais por mais de 8 horas diárias', 9),
+(35, 'Má alimentação e deficiência de vitaminas', 9),
+(36, 'Predisposição genética e histórico familiar de transtornos de ansiedade', 9),
+(38, 'Uso excessivo de redes sociais por mais de 8 horas diárias', 10),
+(39, 'Má alimentação e deficiência de vitaminas', 10),
+(40, 'Predisposição genética e histórico familiar de transtornos de ansiedade', 10);
 
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `usuario`
---
--- Criação: 25/06/2025 às 17:28
 --
 
 CREATE TABLE `usuario` (
@@ -474,17 +325,6 @@ CREATE TABLE `usuario` (
   `nivel` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- RELACIONAMENTOS PARA TABELAS `usuario`:
---   `id_Empresa`
---       `empresa` -> `id_empresa`
---
-
---
--- Tabela truncada antes do insert `usuario`
---
-
-TRUNCATE TABLE `usuario`;
 --
 -- Despejando dados para a tabela `usuario`
 --
@@ -599,13 +439,13 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `aula`
 --
 ALTER TABLE `aula`
-  MODIFY `id_aula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_aula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de tabela `categoria_curso`
 --
 ALTER TABLE `categoria_curso`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `certificado`
@@ -617,7 +457,7 @@ ALTER TABLE `certificado`
 -- AUTO_INCREMENT de tabela `curso`
 --
 ALTER TABLE `curso`
-  MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `empresa`
@@ -629,25 +469,25 @@ ALTER TABLE `empresa`
 -- AUTO_INCREMENT de tabela `materiais_aula`
 --
 ALTER TABLE `materiais_aula`
-  MODIFY `id_material` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_material` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de tabela `pergunta`
 --
 ALTER TABLE `pergunta`
-  MODIFY `id_pergunta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_pergunta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de tabela `quiz`
 --
 ALTER TABLE `quiz`
-  MODIFY `id_quiz` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_quiz` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de tabela `resposta`
 --
 ALTER TABLE `resposta`
-  MODIFY `id_resposta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id_resposta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`
